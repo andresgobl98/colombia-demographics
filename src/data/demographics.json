@@ -1,6 +1,6 @@
 {
   "departments": {
-    "ANT": {
+    "05": {
       "name": "Antioquia",
       "capital": "Medellín",
       "population": 6614182,
@@ -16,7 +16,7 @@
         "other": 1.0
       }
     },
-    "BOG": {
+    "11": {
       "name": "Bogotá D.C.",
       "capital": "Bogotá",
       "population": 8380801,
@@ -32,7 +32,7 @@
         "other": 5.0
       }
     },
-    "VAC": {
+    "76": {
       "name": "Valle del Cauca",
       "capital": "Cali",
       "population": 4532378,
@@ -48,7 +48,7 @@
         "other": 4.0
       }
     },
-    "ATL": {
+    "08": {
       "name": "Atlántico",
       "capital": "Barranquilla",
       "population": 2722128,
@@ -64,7 +64,7 @@
         "other": 4.0
       }
     },
-    "SAN": {
+    "68": {
       "name": "Santander",
       "capital": "Bucaramanga",
       "population": 2280356,
@@ -80,7 +80,7 @@
         "other": 3.0
       }
     },
-    "CUN": {
+    "25": {
       "name": "Cundinamarca",
       "capital": "Bogotá",
       "population": 3398431,
@@ -96,7 +96,7 @@
         "other": 2.0
       }
     },
-    "COR": {
+    "23": {
       "name": "Córdoba",
       "capital": "Montería",
       "population": 1872000,
@@ -112,7 +112,7 @@
         "other": 1.0
       }
     },
-    "NAR": {
+    "52": {
       "name": "Nariño",
       "capital": "Pasto",
       "population": 1722000,

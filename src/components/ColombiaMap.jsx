@@ -8,6 +8,7 @@ const GEO_URL = "/colombia.geojson";
 // Adjust this once real GeoJSON is loaded — depends on which property stores the DANE code.
 function getDeptCode(geo) {
   return (
+    geo.properties?.DPTO ||
     geo.properties?.DPTO_CCDGO ||
     geo.properties?.code ||
     geo.properties?.id ||
