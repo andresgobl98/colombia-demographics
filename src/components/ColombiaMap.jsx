@@ -69,7 +69,9 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
         <ComposableMap
           projection="geoMercator"
           projectionConfig={{ center: [-74, 4], scale: 2400 }}
-          className="w-full h-full"
+          width={600}
+          height={900}
+          style={{ width: "100%", height: "100%", display: "block" }}
         >
           <Geographies geography={{ type: "FeatureCollection", features: geographies }}>
             {({ geographies: geos }) =>
