@@ -1,0 +1,38 @@
+export const METRICS = [
+  {
+    id: "population",
+    label: "Population",
+    description: "Total population",
+    unit: "",
+    format: (v) => v?.toLocaleString("es-CO") ?? "N/A",
+    domain: [0, 9000000],
+    colorRange: ["#dbeafe", "#1d4ed8"],
+  },
+  {
+    id: "employmentRate",
+    label: "Employment Rate",
+    description: "Percentage of working-age population employed",
+    unit: "%",
+    format: (v) => (v != null ? `${v.toFixed(1)}%` : "N/A"),
+    domain: [30, 70],
+    colorRange: ["#fef9c3", "#854d0e"],
+  },
+  {
+    id: "gdpPerCapita",
+    label: "GDP per Capita",
+    description: "Annual GDP per capita in USD",
+    unit: "USD",
+    format: (v) => (v != null ? `$${v.toLocaleString("en-US")}` : "N/A"),
+    domain: [3000, 25000],
+    colorRange: ["#dcfce7", "#14532d"],
+  },
+  {
+    id: "urbanRate",
+    label: "Urban Population",
+    description: "Percentage of population living in urban areas",
+    unit: "%",
+    format: (v) => (v != null ? `${v.toFixed(1)}%` : "N/A"),
+    domain: [20, 100],
+    colorRange: ["#fce7f3", "#831843"],
+  },
+];

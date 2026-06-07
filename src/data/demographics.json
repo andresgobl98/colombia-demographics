@@ -1,0 +1,132 @@
+{
+  "departments": {
+    "ANT": {
+      "name": "Antioquia",
+      "capital": "Medellín",
+      "population": 6614182,
+      "area_km2": 63612,
+      "employmentRate": 54.3,
+      "gdpPerCapita": 12400,
+      "urbanRate": 76.8,
+      "ethnicity": {
+        "mestizo": 58.0,
+        "white": 22.0,
+        "afro": 14.0,
+        "indigenous": 5.0,
+        "other": 1.0
+      }
+    },
+    "BOG": {
+      "name": "Bogotá D.C.",
+      "capital": "Bogotá",
+      "population": 8380801,
+      "area_km2": 1587,
+      "employmentRate": 61.2,
+      "gdpPerCapita": 21600,
+      "urbanRate": 99.8,
+      "ethnicity": {
+        "mestizo": 65.0,
+        "white": 20.0,
+        "afro": 9.0,
+        "indigenous": 1.0,
+        "other": 5.0
+      }
+    },
+    "VAC": {
+      "name": "Valle del Cauca",
+      "capital": "Cali",
+      "population": 4532378,
+      "area_km2": 22140,
+      "employmentRate": 52.8,
+      "gdpPerCapita": 11200,
+      "urbanRate": 86.1,
+      "ethnicity": {
+        "mestizo": 42.0,
+        "white": 12.0,
+        "afro": 38.0,
+        "indigenous": 4.0,
+        "other": 4.0
+      }
+    },
+    "ATL": {
+      "name": "Atlántico",
+      "capital": "Barranquilla",
+      "population": 2722128,
+      "area_km2": 3388,
+      "employmentRate": 49.6,
+      "gdpPerCapita": 9800,
+      "urbanRate": 96.6,
+      "ethnicity": {
+        "mestizo": 55.0,
+        "white": 18.0,
+        "afro": 22.0,
+        "indigenous": 1.0,
+        "other": 4.0
+      }
+    },
+    "SAN": {
+      "name": "Santander",
+      "capital": "Bucaramanga",
+      "population": 2280356,
+      "area_km2": 30537,
+      "employmentRate": 56.7,
+      "gdpPerCapita": 13500,
+      "urbanRate": 74.2,
+      "ethnicity": {
+        "mestizo": 72.0,
+        "white": 16.0,
+        "afro": 5.0,
+        "indigenous": 4.0,
+        "other": 3.0
+      }
+    },
+    "CUN": {
+      "name": "Cundinamarca",
+      "capital": "Bogotá",
+      "population": 3398431,
+      "area_km2": 24210,
+      "employmentRate": 53.1,
+      "gdpPerCapita": 10900,
+      "urbanRate": 60.4,
+      "ethnicity": {
+        "mestizo": 70.0,
+        "white": 18.0,
+        "afro": 4.0,
+        "indigenous": 6.0,
+        "other": 2.0
+      }
+    },
+    "COR": {
+      "name": "Córdoba",
+      "capital": "Montería",
+      "population": 1872000,
+      "area_km2": 25020,
+      "employmentRate": 41.2,
+      "gdpPerCapita": 6200,
+      "urbanRate": 43.8,
+      "ethnicity": {
+        "mestizo": 52.0,
+        "white": 8.0,
+        "afro": 30.0,
+        "indigenous": 9.0,
+        "other": 1.0
+      }
+    },
+    "NAR": {
+      "name": "Nariño",
+      "capital": "Pasto",
+      "population": 1722000,
+      "area_km2": 33268,
+      "employmentRate": 38.9,
+      "gdpPerCapita": 5100,
+      "urbanRate": 44.6,
+      "ethnicity": {
+        "mestizo": 48.0,
+        "white": 6.0,
+        "afro": 18.0,
+        "indigenous": 27.0,
+        "other": 1.0
+      }
+    }
+  }
+}
