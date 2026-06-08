@@ -1,7 +1,7 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
 const SEX_COLORS = { male: "#3b82f6", female: "#f43f5e" };
-const SEX_LABELS  = { male: "Male", female: "Female" };
+const SEX_LABELS  = { male: "Hombres", female: "Mujeres" };
 
 const ETHNICITY_COLORS = {
   indigena:        "#fbbf24",
@@ -13,13 +13,13 @@ const ETHNICITY_COLORS = {
   sin_informacion: "#f472b6",
 };
 const ETHNICITY_LABELS = {
-  indigena:        "Indigenous",
+  indigena:        "Indígena",
   gitano_rrom:     "Gitano / Rrom",
   raizal:          "Raizal",
   palenquero:      "Palenquero",
-  afro:            "Afro-Colombian",
-  ningun_grupo:    "None",
-  sin_informacion: "Unknown",
+  afro:            "Afrocolombiano",
+  ningun_grupo:    "Ningún grupo",
+  sin_informacion: "Sin información",
 };
 
 function StatCard({ label, value }) {
@@ -79,12 +79,12 @@ export default function RegionPanel({ department, national }) {
 
   return (
     <div className="flex flex-col gap-4 p-4">
-      {/* Header */}
+      {/* Encabezado */}
       <div>
         {isNational ? (
           <>
             <h2 className="text-xl font-bold text-slate-800">Colombia</h2>
-            <p className="text-sm text-slate-400">National total · CNPV 2018</p>
+            <p className="text-sm text-slate-400">Total nacional · CNPV 2018</p>
           </>
         ) : (
           <>
@@ -96,33 +96,33 @@ export default function RegionPanel({ department, national }) {
         )}
       </div>
 
-      {/* Stat cards */}
+      {/* Tarjetas de estadísticas */}
       <div className="grid grid-cols-2 gap-2">
         <StatCard
-          label="Population"
-          value={display?.population?.toLocaleString("es-CO") ?? "N/A"}
+          label="Población"
+          value={display?.population?.toLocaleString("es-CO") ?? "N/D"}
         />
         <StatCard
-          label="Area"
-          value={display?.area_km2 ? `${display.area_km2.toLocaleString("es-CO")} km²` : "N/A"}
+          label="Superficie"
+          value={display?.area_km2 ? `${display.area_km2.toLocaleString("es-CO")} km²` : "N/D"}
         />
         <StatCard
-          label="Male"
-          value={display?.sex?.male?.toLocaleString("es-CO") ?? "N/A"}
+          label="Hombres"
+          value={display?.sex?.male?.toLocaleString("es-CO") ?? "N/D"}
         />
         <StatCard
-          label="Female"
-          value={display?.sex?.female?.toLocaleString("es-CO") ?? "N/A"}
+          label="Mujeres"
+          value={display?.sex?.female?.toLocaleString("es-CO") ?? "N/D"}
         />
         {isNational && (
-          <StatCard label="Departments" value={national.departments} />
+          <StatCard label="Departamentos" value={national.departments} />
         )}
       </div>
 
-      {/* Sex breakdown */}
+      {/* Gráfica por sexo */}
       {sexData.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-slate-600 mb-1">Sex breakdown</p>
+          <p className="text-sm font-semibold text-slate-600 mb-1">Distribución por sexo</p>
           <DonutChart
             data={sexData}
             formatTooltip={(v) => v.toLocaleString("es-CO")}
@@ -130,10 +130,10 @@ export default function RegionPanel({ department, national }) {
         </div>
       )}
 
-      {/* Ethnicity breakdown */}
+      {/* Gráfica por etnia */}
       {ethnicityData.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-slate-600 mb-1">Ethnicity breakdown</p>
+          <p className="text-sm font-semibold text-slate-600 mb-1">Autorreconocimiento étnico</p>
           <DonutChart
             data={ethnicityData}
             formatTooltip={(v) => `${v}%`}
@@ -143,7 +143,7 @@ export default function RegionPanel({ department, national }) {
 
       {isNational && (
         <p className="text-xs text-slate-400 text-center pt-2 border-t border-slate-100">
-          Click a department on the map to see its details
+          Haz clic en un departamento para ver su detalle
         </p>
       )}
     </div>

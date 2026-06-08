@@ -2,7 +2,7 @@ export default function MetricSelector({ metrics, selected, onChange }) {
   return (
     <div className="flex items-center gap-3">
       <label className="text-sm font-medium text-slate-600 whitespace-nowrap">
-        Color map by
+        Colorear mapa por
       </label>
       <select
         value={selected}
