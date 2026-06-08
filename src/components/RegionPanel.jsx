@@ -33,7 +33,7 @@ function StatCard({ label, value }) {
 
 function DonutChart({ data, formatTooltip }) {
   return (
-    <div style={{ height: 220 }}>
+    <div style={{ height: 230 }}>
       <ResponsiveContainer width="100%" height="100%">
         <PieChart>
           <Pie

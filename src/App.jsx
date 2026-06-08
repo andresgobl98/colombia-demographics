@@ -26,7 +26,7 @@ export default function App() {
             </svg>
           </div>
           <div>
-            <h1 className="text-base font-bold text-slate-800 leading-none">Colombia Demográfico</h1>
+            <h1 className="text-base font-bold text-slate-800 leading-none">Colombia en Datos</h1>
             <p className="text-xs text-slate-400 mt-0.5">CNPV 2018 · Explorador departamental</p>
           </div>
         </div>
