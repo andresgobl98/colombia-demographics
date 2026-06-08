@@ -3,129 +3,628 @@
     "05": {
       "name": "Antioquia",
       "capital": "Medellín",
-      "population": 6614182,
       "area_km2": 63612,
-      "employmentRate": 54.3,
-      "gdpPerCapita": 12400,
-      "urbanRate": 76.8,
+      "population": 5974788,
+      "sex": {
+        "male": 2885383,
+        "female": 3089405
+      },
       "ethnicity": {
-        "mestizo": 58.0,
-        "white": 22.0,
-        "afro": 14.0,
-        "indigenous": 5.0,
-        "other": 1.0
-      }
-    },
-    "11": {
-      "name": "Bogotá, D.C.",
-      "capital": "Bogotá",
-      "population": 8380801,
-      "area_km2": 1587,
-      "employmentRate": 61.2,
-      "gdpPerCapita": 21600,
-      "urbanRate": 99.8,
-      "ethnicity": {
-        "mestizo": 65.0,
-        "white": 20.0,
-        "afro": 9.0,
-        "indigenous": 1.0,
-        "other": 5.0
-      }
-    },
-    "76": {
-      "name": "Valle del Cauca",
-      "capital": "Cali",
-      "population": 4532378,
-      "area_km2": 22140,
-      "employmentRate": 52.8,
-      "gdpPerCapita": 11200,
-      "urbanRate": 86.1,
-      "ethnicity": {
-        "mestizo": 42.0,
-        "white": 12.0,
-        "afro": 38.0,
-        "indigenous": 4.0,
-        "other": 4.0
+        "indigena": 0.63,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 5.24,
+        "ningun_grupo": 93.19,
+        "sin_informacion": 0.93
       }
     },
     "08": {
       "name": "Atlántico",
       "capital": "Barranquilla",
-      "population": 2722128,
       "area_km2": 3388,
-      "employmentRate": 49.6,
-      "gdpPerCapita": 9800,
-      "urbanRate": 96.6,
+      "population": 2342265,
+      "sex": {
+        "male": 1140357,
+        "female": 1201908
+      },
       "ethnicity": {
-        "mestizo": 55.0,
-        "white": 18.0,
-        "afro": 22.0,
-        "indigenous": 1.0,
-        "other": 4.0
+        "indigena": 1.67,
+        "gitano_rrom": 0.0,
+        "raizal": 0.02,
+        "palenquero": 0.04,
+        "afro": 5.94,
+        "ningun_grupo": 91.32,
+        "sin_informacion": 1.0
       }
     },
-    "68": {
-      "name": "Santander",
-      "capital": "Bucaramanga",
-      "population": 2280356,
-      "area_km2": 30537,
-      "employmentRate": 56.7,
-      "gdpPerCapita": 13500,
-      "urbanRate": 74.2,
-      "ethnicity": {
-        "mestizo": 72.0,
-        "white": 16.0,
-        "afro": 5.0,
-        "indigenous": 4.0,
-        "other": 3.0
-      }
-    },
-    "25": {
-      "name": "Cundinamarca",
+    "11": {
+      "name": "Bogotá, D.C.",
       "capital": "Bogotá",
-      "population": 3398431,
-      "area_km2": 24210,
-      "employmentRate": 53.1,
-      "gdpPerCapita": 10900,
-      "urbanRate": 60.4,
+      "area_km2": 1587,
+      "population": 7181469,
+      "sex": {
+        "male": 3433586,
+        "female": 3747883
+      },
       "ethnicity": {
-        "mestizo": 70.0,
-        "white": 18.0,
-        "afro": 4.0,
-        "indigenous": 6.0,
-        "other": 2.0
+        "indigena": 0.26,
+        "gitano_rrom": 0.01,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 0.91,
+        "ningun_grupo": 96.91,
+        "sin_informacion": 1.9
+      }
+    },
+    "13": {
+      "name": "Bolívar",
+      "capital": "Cartagena",
+      "area_km2": 25978,
+      "population": 1909460,
+      "sex": {
+        "male": 947598,
+        "female": 961862
+      },
+      "ethnicity": {
+        "indigena": 0.27,
+        "gitano_rrom": 0.0,
+        "raizal": 0.03,
+        "palenquero": 0.21,
+        "afro": 16.53,
+        "ningun_grupo": 82.33,
+        "sin_informacion": 0.62
+      }
+    },
+    "15": {
+      "name": "Boyacá",
+      "capital": "Tunja",
+      "area_km2": 23189,
+      "population": 1135698,
+      "sex": {
+        "male": 559084,
+        "female": 576614
+      },
+      "ethnicity": {
+        "indigena": 0.61,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 0.35,
+        "ningun_grupo": 98.11,
+        "sin_informacion": 0.92
+      }
+    },
+    "17": {
+      "name": "Caldas",
+      "capital": "Manizales",
+      "area_km2": 7888,
+      "population": 923472,
+      "sex": {
+        "male": 447499,
+        "female": 475973
+      },
+      "ethnicity": {
+        "indigena": 6.08,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 1.58,
+        "ningun_grupo": 91.57,
+        "sin_informacion": 0.75
+      }
+    },
+    "18": {
+      "name": "Caquetá",
+      "capital": "Florencia",
+      "area_km2": 88965,
+      "population": 359602,
+      "sex": {
+        "male": 182378,
+        "female": 177224
+      },
+      "ethnicity": {
+        "indigena": 2.41,
+        "gitano_rrom": 0.01,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 1.42,
+        "ningun_grupo": 93.03,
+        "sin_informacion": 3.12
+      }
+    },
+    "19": {
+      "name": "Cauca",
+      "capital": "Popayán",
+      "area_km2": 29308,
+      "population": 1243503,
+      "sex": {
+        "male": 615833,
+        "female": 627670
+      },
+      "ethnicity": {
+        "indigena": 24.9,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 19.79,
+        "ningun_grupo": 54.4,
+        "sin_informacion": 0.88
+      }
+    },
+    "20": {
+      "name": "Cesar",
+      "capital": "Valledupar",
+      "area_km2": 22905,
+      "population": 1098577,
+      "sex": {
+        "male": 543838,
+        "female": 554739
+      },
+      "ethnicity": {
+        "indigena": 4.66,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 13.0,
+        "ningun_grupo": 81.39,
+        "sin_informacion": 0.93
       }
     },
     "23": {
       "name": "Córdoba",
       "capital": "Montería",
-      "population": 1872000,
       "area_km2": 25020,
-      "employmentRate": 41.2,
-      "gdpPerCapita": 6200,
-      "urbanRate": 43.8,
+      "population": 1555596,
+      "sex": {
+        "male": 774448,
+        "female": 781148
+      },
       "ethnicity": {
-        "mestizo": 52.0,
-        "white": 8.0,
-        "afro": 30.0,
-        "indigenous": 9.0,
-        "other": 1.0
+        "indigena": 13.05,
+        "gitano_rrom": 0.01,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 6.59,
+        "ningun_grupo": 79.74,
+        "sin_informacion": 0.6
+      }
+    },
+    "25": {
+      "name": "Cundinamarca",
+      "capital": "Bogotá",
+      "area_km2": 24210,
+      "population": 2792877,
+      "sex": {
+        "male": 1379858,
+        "female": 1413019
+      },
+      "ethnicity": {
+        "indigena": 0.36,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 0.46,
+        "ningun_grupo": 98.18,
+        "sin_informacion": 0.99
+      }
+    },
+    "27": {
+      "name": "Chocó",
+      "capital": "Quibdó",
+      "area_km2": 46530,
+      "population": 457412,
+      "sex": {
+        "male": 225982,
+        "female": 231430
+      },
+      "ethnicity": {
+        "indigena": 15.05,
+        "gitano_rrom": 0.01,
+        "raizal": 0.03,
+        "palenquero": 0.03,
+        "afro": 74.21,
+        "ningun_grupo": 4.59,
+        "sin_informacion": 6.09
+      }
+    },
+    "41": {
+      "name": "Huila",
+      "capital": "Neiva",
+      "area_km2": 19890,
+      "population": 1009548,
+      "sex": {
+        "male": 503766,
+        "female": 505782
+      },
+      "ethnicity": {
+        "indigena": 1.21,
+        "gitano_rrom": 0.0,
+        "raizal": 0.0,
+        "palenquero": 0.0,
+        "afro": 0.5,
+        "ningun_grupo": 97.44,
+        "sin_informacion": 0.84
+      }
+    },
+    "44": {
+      "name": "La Guajira",
+      "capital": "Riohacha",
+      "area_km2": 20848,
+      "population": 825364,
+      "sex": {
+        "male": 404215,
+        "female": 421149
+      },
+      "ethnicity": {
+        "indigena": 47.64,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 7.36,
+        "ningun_grupo": 43.86,
+        "sin_informacion": 1.11
+      }
+    },
+    "47": {
+      "name": "Magdalena",
+      "capital": "Santa Marta",
+      "area_km2": 23188,
+      "population": 1263788,
+      "sex": {
+        "male": 632502,
+        "female": 631286
+      },
+      "ethnicity": {
+        "indigena": 1.63,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 8.42,
+        "ningun_grupo": 89.23,
+        "sin_informacion": 0.71
+      }
+    },
+    "50": {
+      "name": "Meta",
+      "capital": "Villavicencio",
+      "area_km2": 85635,
+      "population": 919129,
+      "sex": {
+        "male": 464906,
+        "female": 454223
+      },
+      "ethnicity": {
+        "indigena": 2.22,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 0.94,
+        "ningun_grupo": 94.96,
+        "sin_informacion": 1.86
       }
     },
     "52": {
       "name": "Nariño",
       "capital": "Pasto",
-      "population": 1722000,
       "area_km2": 33268,
-      "employmentRate": 38.9,
-      "gdpPerCapita": 5100,
-      "urbanRate": 44.6,
+      "population": 1335521,
+      "sex": {
+        "male": 653754,
+        "female": 681767
+      },
       "ethnicity": {
-        "mestizo": 48.0,
-        "white": 6.0,
-        "afro": 18.0,
-        "indigenous": 27.0,
-        "other": 1.0
+        "indigena": 15.55,
+        "gitano_rrom": 0.01,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 17.51,
+        "ningun_grupo": 65.39,
+        "sin_informacion": 1.53
+      }
+    },
+    "54": {
+      "name": "Norte de Santander",
+      "capital": "Cúcuta",
+      "area_km2": 21648,
+      "population": 1346806,
+      "sex": {
+        "male": 664057,
+        "female": 682749
+      },
+      "ethnicity": {
+        "indigena": 0.34,
+        "gitano_rrom": 0.02,
+        "raizal": 0.0,
+        "palenquero": 0.0,
+        "afro": 0.39,
+        "ningun_grupo": 98.35,
+        "sin_informacion": 0.9
+      }
+    },
+    "63": {
+      "name": "Quindío",
+      "capital": "Armenia",
+      "area_km2": 1845,
+      "population": 509640,
+      "sex": {
+        "male": 245663,
+        "female": 263977
+      },
+      "ethnicity": {
+        "indigena": 0.56,
+        "gitano_rrom": 0.0,
+        "raizal": 0.0,
+        "palenquero": 0.0,
+        "afro": 1.18,
+        "ningun_grupo": 97.3,
+        "sin_informacion": 0.95
+      }
+    },
+    "66": {
+      "name": "Risaralda",
+      "capital": "Pereira",
+      "area_km2": 4140,
+      "population": 839597,
+      "sex": {
+        "male": 401748,
+        "female": 437849
+      },
+      "ethnicity": {
+        "indigena": 3.55,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 1.98,
+        "ningun_grupo": 93.72,
+        "sin_informacion": 0.73
+      }
+    },
+    "68": {
+      "name": "Santander",
+      "capital": "Bucaramanga",
+      "area_km2": 30537,
+      "population": 2008841,
+      "sex": {
+        "male": 983439,
+        "female": 1025402
+      },
+      "ethnicity": {
+        "indigena": 0.06,
+        "gitano_rrom": 0.02,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 1.13,
+        "ningun_grupo": 97.71,
+        "sin_informacion": 1.08
+      }
+    },
+    "70": {
+      "name": "Sucre",
+      "capital": "Sincelejo",
+      "area_km2": 10917,
+      "population": 864036,
+      "sex": {
+        "male": 434459,
+        "female": 429577
+      },
+      "ethnicity": {
+        "indigena": 12.19,
+        "gitano_rrom": 0.02,
+        "raizal": 0.02,
+        "palenquero": 0.01,
+        "afro": 11.93,
+        "ningun_grupo": 75.28,
+        "sin_informacion": 0.55
+      }
+    },
+    "73": {
+      "name": "Tolima",
+      "capital": "Ibagué",
+      "area_km2": 23562,
+      "population": 1228763,
+      "sex": {
+        "male": 609017,
+        "female": 619746
+      },
+      "ethnicity": {
+        "indigena": 3.71,
+        "gitano_rrom": 0.01,
+        "raizal": 0.0,
+        "palenquero": 0.0,
+        "afro": 0.41,
+        "ningun_grupo": 94.92,
+        "sin_informacion": 0.94
+      }
+    },
+    "76": {
+      "name": "Valle del Cauca",
+      "capital": "Cali",
+      "area_km2": 22140,
+      "population": 3789874,
+      "sex": {
+        "male": 1800614,
+        "female": 1989260
+      },
+      "ethnicity": {
+        "indigena": 0.81,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 17.13,
+        "ningun_grupo": 80.95,
+        "sin_informacion": 1.08
+      }
+    },
+    "81": {
+      "name": "Arauca",
+      "capital": "Arauca",
+      "area_km2": 23818,
+      "population": 239503,
+      "sex": {
+        "male": 121060,
+        "female": 118443
+      },
+      "ethnicity": {
+        "indigena": 2.63,
+        "gitano_rrom": 0.0,
+        "raizal": 0.02,
+        "palenquero": 0.01,
+        "afro": 4.21,
+        "ningun_grupo": 92.35,
+        "sin_informacion": 0.78
+      }
+    },
+    "85": {
+      "name": "Casanare",
+      "capital": "Yopal",
+      "area_km2": 44640,
+      "population": 379892,
+      "sex": {
+        "male": 192020,
+        "female": 187872
+      },
+      "ethnicity": {
+        "indigena": 1.72,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.0,
+        "afro": 1.6,
+        "ningun_grupo": 95.78,
+        "sin_informacion": 0.89
+      }
+    },
+    "86": {
+      "name": "Putumayo",
+      "capital": "Mocoa",
+      "area_km2": 24885,
+      "population": 283197,
+      "sex": {
+        "male": 142900,
+        "female": 140297
+      },
+      "ethnicity": {
+        "indigena": 18.02,
+        "gitano_rrom": 0.01,
+        "raizal": 0.0,
+        "palenquero": 0.01,
+        "afro": 3.61,
+        "ningun_grupo": 76.95,
+        "sin_informacion": 1.4
+      }
+    },
+    "88": {
+      "name": "San Andrés y Providencia",
+      "capital": "San Andrés",
+      "area_km2": 52,
+      "population": 48299,
+      "sex": {
+        "male": 23326,
+        "female": 24973
+      },
+      "ethnicity": {
+        "indigena": 0.04,
+        "gitano_rrom": 0.0,
+        "raizal": 42.46,
+        "palenquero": 0.02,
+        "afro": 13.65,
+        "ningun_grupo": 43.15,
+        "sin_informacion": 0.69
+      }
+    },
+    "91": {
+      "name": "Amazonas",
+      "capital": "Leticia",
+      "area_km2": 109665,
+      "population": 66056,
+      "sex": {
+        "male": 34422,
+        "female": 31634
+      },
+      "ethnicity": {
+        "indigena": 57.28,
+        "gitano_rrom": 0.01,
+        "raizal": 0.02,
+        "palenquero": 0.0,
+        "afro": 0.75,
+        "ningun_grupo": 38.31,
+        "sin_informacion": 3.63
+      }
+    },
+    "94": {
+      "name": "Guainía",
+      "capital": "Inírida",
+      "area_km2": 72238,
+      "population": 44431,
+      "sex": {
+        "male": 23214,
+        "female": 21217
+      },
+      "ethnicity": {
+        "indigena": 73.92,
+        "gitano_rrom": 0.01,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 1.18,
+        "ningun_grupo": 21.72,
+        "sin_informacion": 3.15
+      }
+    },
+    "95": {
+      "name": "Guaviare",
+      "capital": "San José del Guaviare",
+      "area_km2": 53460,
+      "population": 73081,
+      "sex": {
+        "male": 39080,
+        "female": 34001
+      },
+      "ethnicity": {
+        "indigena": 9.35,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 4.32,
+        "ningun_grupo": 83.84,
+        "sin_informacion": 2.47
+      }
+    },
+    "97": {
+      "name": "Vaupés",
+      "capital": "Mitú",
+      "area_km2": 54135,
+      "population": 37690,
+      "sex": {
+        "male": 19793,
+        "female": 17897
+      },
+      "ethnicity": {
+        "indigena": 83.22,
+        "gitano_rrom": 0.0,
+        "raizal": 0.03,
+        "palenquero": 0.03,
+        "afro": 0.83,
+        "ningun_grupo": 12.7,
+        "sin_informacion": 3.19
+      }
+    },
+    "99": {
+      "name": "Vichada",
+      "capital": "Puerto Carreño",
+      "area_km2": 100242,
+      "population": 76642,
+      "sex": {
+        "male": 40694,
+        "female": 35948
+      },
+      "ethnicity": {
+        "indigena": 58.71,
+        "gitano_rrom": 0.0,
+        "raizal": 0.01,
+        "palenquero": 0.01,
+        "afro": 0.78,
+        "ningun_grupo": 37.39,
+        "sin_informacion": 3.1
       }
     }
   }
