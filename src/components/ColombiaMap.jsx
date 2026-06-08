@@ -4,8 +4,6 @@ import { scaleLinear } from "d3-scale";
 
 const GEO_URL = "/colombia.geojson";
 
-// Maps a GeoJSON feature's department code to our data key.
-// Adjust this once real GeoJSON is loaded — depends on which property stores the DANE code.
 function getDeptCode(geo) {
   return (
     geo.properties?.DPTO ||
@@ -19,6 +17,7 @@ function getDeptCode(geo) {
 
 export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   const [geographies, setGeographies] = useState([]);
+  const [tooltip, setTooltip] = useState(null); // { name, x, y }
 
   useEffect(() => {
     fetch(GEO_URL)
@@ -53,16 +52,6 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
           <p className="text-sm max-w-xs">
             Add Colombia department features to{" "}
             <code className="bg-slate-100 px-1 rounded text-xs">public/colombia.geojson</code>.
-            A good source is{" "}
-            <a
-              href="https://github.com/marcovega/colombia-json"
-              target="_blank"
-              rel="noreferrer"
-              className="text-blue-500 underline"
-            >
-              marcovega/colombia-json
-            </a>{" "}
-            or DANE's official shapefiles converted with mapshaper.
           </p>
         </div>
       ) : (
@@ -77,6 +66,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
             {({ geographies: geos }) =>
               geos.map((geo) => {
                 const code = getDeptCode(geo);
+                const dept = data[code];
                 const isSelected = code === selectedId;
                 return (
                   <Geography
@@ -95,12 +85,39 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
                       pressed: { outline: "none" },
                     }}
                     onClick={() => onSelect(code === selectedId ? null : code)}
+                    onMouseEnter={(e) => {
+                      if (dept) {
+                        setTooltip({
+                          name: dept.name,
+                          value: metric.format(dept[metric.id]),
+                          x: e.clientX,
+                          y: e.clientY,
+                        });
+                      }
+                    }}
+                    onMouseMove={(e) => {
+                      if (tooltip) {
+                        setTooltip((t) => ({ ...t, x: e.clientX, y: e.clientY }));
+                      }
+                    }}
+                    onMouseLeave={() => setTooltip(null)}
                   />
                 );
               })
             }
           </Geographies>
         </ComposableMap>
+      )}
+
+      {/* Hover tooltip */}
+      {tooltip && (
+        <div
+          className="fixed z-50 pointer-events-none bg-slate-800 text-white text-xs rounded-lg px-3 py-2 shadow-lg"
+          style={{ left: tooltip.x + 12, top: tooltip.y - 36 }}
+        >
+          <p className="font-semibold">{tooltip.name}</p>
+          <p className="text-slate-300">{metric.label}: {tooltip.value}</p>
+        </div>
       )}
 
       {/* Color legend */}

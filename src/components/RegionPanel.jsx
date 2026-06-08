@@ -1,20 +1,7 @@
 import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
 
-const ETHNICITY_COLORS = {
-  mestizo: "#6366f1",
-  white: "#f59e0b",
-  afro: "#10b981",
-  indigenous: "#ef4444",
-  other: "#94a3b8",
-};
-
-const ETHNICITY_LABELS = {
-  mestizo: "Mestizo",
-  white: "White",
-  afro: "Afro-Colombian",
-  indigenous: "Indigenous",
-  other: "Other",
-};
+const SEX_COLORS = { male: "#3b82f6", female: "#f43f5e" };
+const SEX_LABELS  = { male: "Male", female: "Female" };
 
 function StatCard({ label, value }) {
   return (
@@ -25,104 +12,121 @@ function StatCard({ label, value }) {
   );
 }
 
-export default function RegionPanel({ department, metrics }) {
-  if (!department) {
-    return (
-      <div className="flex flex-col items-center justify-center h-full gap-3 text-slate-400 p-6 text-center">
-        <svg className="w-12 h-12 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M15 15l-2 5L9 9l11 4-5 2zm0 0l5 5" />
-        </svg>
-        <p className="text-sm">Click a department on the map to see its demographics.</p>
-      </div>
-    );
-  }
-
-  const ethnicityData = Object.entries(department.ethnicity ?? {}).map(([key, value]) => ({
-    name: ETHNICITY_LABELS[key] ?? key,
+function SexPieChart({ sex }) {
+  const data = Object.entries(sex ?? {}).map(([key, value]) => ({
+    name: SEX_LABELS[key] ?? key,
     value,
-    color: ETHNICITY_COLORS[key] ?? "#cbd5e1",
-  }));
-
-  const sexData = Object.entries(department.sex ?? {}).map(([key, value]) => ({
-    name: key.charAt(0).toUpperCase() + key.slice(1),
-    value,
-    color: key === "male" ? "#3b82f6" : "#f43f5e",
+    color: SEX_COLORS[key] ?? "#cbd5e1",
   }));
 
   return (
-    <div className="flex flex-col gap-4 p-4 overflow-y-auto">
+    <ResponsiveContainer width="100%" height={200}>
+      <PieChart>
+        <Pie
+          data={data}
+          cx="50%"
+          cy="50%"
+          innerRadius={48}
+          outerRadius={80}
+          paddingAngle={2}
+          dataKey="value"
+        >
+          {data.map((entry) => (
+            <Cell key={entry.name} fill={entry.color} />
+          ))}
+        </Pie>
+        <Tooltip formatter={(v) => v.toLocaleString("es-CO")} />
+        <Legend
+          iconType="circle"
+          iconSize={8}
+          formatter={(v) => <span className="text-xs text-slate-600">{v}</span>}
+        />
+      </PieChart>
+    </ResponsiveContainer>
+  );
+}
+
+// Aggregate all departments into a national total
+function buildNational(departments) {
+  const totals = { population: 0, sex: { male: 0, female: 0 }, area_km2: 0 };
+  Object.values(departments).forEach((d) => {
+    totals.population   += d.population  ?? 0;
+    totals.sex.male     += d.sex?.male   ?? 0;
+    totals.sex.female   += d.sex?.female ?? 0;
+    totals.area_km2     += d.area_km2    ?? 0;
+  });
+  totals.masculinityIndex = parseFloat(
+    ((totals.sex.male / totals.sex.female) * 100).toFixed(1)
+  );
+  return totals;
+}
+
+export default function RegionPanel({ department, allDepartments }) {
+  const isNational = !department;
+  const national   = isNational ? buildNational(allDepartments) : null;
+  const display    = isNational ? national : department;
+
+  return (
+    <div className="flex flex-col gap-4 p-4 overflow-y-auto h-full">
+      {/* Header */}
       <div>
-        <h2 className="text-xl font-bold text-slate-800">{department.name}</h2>
-        <p className="text-sm text-slate-400">Capital: {department.capital}</p>
+        {isNational ? (
+          <>
+            <h2 className="text-xl font-bold text-slate-800">Colombia</h2>
+            <p className="text-sm text-slate-400">National total · CNPV 2018</p>
+          </>
+        ) : (
+          <>
+            <h2 className="text-xl font-bold text-slate-800">{department.name}</h2>
+            {department.capital && (
+              <p className="text-sm text-slate-400">Capital: {department.capital}</p>
+            )}
+          </>
+        )}
       </div>
 
+      {/* Stat cards */}
       <div className="grid grid-cols-2 gap-2">
-        {metrics.map((m) => (
-          <StatCard
-            key={m.id}
-            label={m.label}
-            value={
-              m.id === "population"
-                ? (department[m.id] ?? 0).toLocaleString("es-CO")
-                : m.format(department[m.id])
-            }
-          />
-        ))}
-        <StatCard label="Area" value={`${(department.area_km2 ?? 0).toLocaleString()} km²`} />
+        <StatCard
+          label="Population"
+          value={display.population?.toLocaleString("es-CO") ?? "N/A"}
+        />
+        <StatCard
+          label="Area"
+          value={display.area_km2 ? `${display.area_km2.toLocaleString("es-CO")} km²` : "N/A"}
+        />
+        <StatCard
+          label="Male"
+          value={display.sex?.male?.toLocaleString("es-CO") ?? "N/A"}
+        />
+        <StatCard
+          label="Female"
+          value={display.sex?.female?.toLocaleString("es-CO") ?? "N/A"}
+        />
+        <StatCard
+          label="Masculinity Index"
+          value={display.masculinityIndex?.toFixed(1) ?? "N/A"}
+        />
+        {!isNational && (
+          <StatCard label="Departments" value="—" />
+        )}
+        {isNational && (
+          <StatCard label="Departments" value="33" />
+        )}
       </div>
 
-      <div>
-        <p className="text-sm font-semibold text-slate-600 mb-2">Ethnicity breakdown</p>
-        <ResponsiveContainer width="100%" height={200}>
-          <PieChart>
-            <Pie
-              data={ethnicityData}
-              cx="50%"
-              cy="50%"
-              innerRadius={48}
-              outerRadius={80}
-              paddingAngle={2}
-              dataKey="value"
-            >
-              {ethnicityData.map((entry) => (
-                <Cell key={entry.name} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(v) => `${v}%`} />
-            <Legend
-              iconType="circle"
-              iconSize={8}
-              formatter={(v) => <span className="text-xs text-slate-600">{v}</span>}
-            />
-          </PieChart>
-        </ResponsiveContainer>
-      </div>
+      {/* Sex breakdown chart */}
       <div>
         <p className="text-sm font-semibold text-slate-600 mb-2">Sex breakdown</p>
-        <ResponsiveContainer width="100%" height={200}>
-          <PieChart>
-            <Pie
-              data={sexData}
-              cx="50%"
-              cy="50%"
-              innerRadius={48}
-              outerRadius={80}
-              paddingAngle={2}
-              dataKey="value"
-            >
-              {sexData.map((entry) => (
-                <Cell key={entry.name} fill={entry.color} />
-              ))}
-            </Pie>
-            <Tooltip formatter={(v) => `${v}%`} />
-            <Legend
-              iconType="circle"
-              iconSize={8}
-              formatter={(v) => <span className="text-xs text-slate-600">{v}</span>}
-            />
-          </PieChart>
-        </ResponsiveContainer>
+        <SexPieChart sex={display.sex} />
       </div>
+
+      {/* Hint when no department selected */}
+      {isNational && (
+        <p className="text-xs text-slate-400 text-center mt-auto pt-2 border-t border-slate-100">
+          Click a department on the map to see its details
+        </p>
+      )}
     </div>
   );
 }

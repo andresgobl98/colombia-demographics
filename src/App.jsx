@@ -4,16 +4,15 @@ import RegionPanel from "./components/RegionPanel";
 import MetricSelector from "./components/MetricSelector";
 import TopicRanking from "./components/TopicRanking";
 import { METRICS } from "./data/metrics";
-import demographicsData from "./data/demographics.json";
-import simpleDemographicsData from "./data/population.json";
+import populationData from "./data/population.json";
 
-const { departments } = simpleDemographicsData;
+const { departments } = populationData;
 
 export default function App() {
   const [selectedMetricId, setSelectedMetricId] = useState(METRICS[0].id);
   const [selectedDeptCode, setSelectedDeptCode] = useState(null);
 
-  const metric = METRICS.find((m) => m.id === selectedMetricId);
+  const metric      = METRICS.find((m) => m.id === selectedMetricId);
   const selectedDept = selectedDeptCode ? departments[selectedDeptCode] : null;
 
   return (
@@ -28,7 +27,7 @@ export default function App() {
           </div>
           <div>
             <h1 className="text-base font-bold text-slate-800 leading-none">Colombia Demographics</h1>
-            <p className="text-xs text-slate-400 mt-0.5">Departmental statistics explorer</p>
+            <p className="text-xs text-slate-400 mt-0.5">CNPV 2018 · Departmental explorer</p>
           </div>
         </div>
         <MetricSelector
@@ -40,7 +39,7 @@ export default function App() {
 
       {/* Main layout */}
       <div className="flex flex-1 overflow-hidden">
-        {/* Map area */}
+        {/* Map + ranking */}
         <main className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
           <div className="flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
             <ColombiaMap
@@ -55,7 +54,10 @@ export default function App() {
 
         {/* Side panel */}
         <aside className="w-80 bg-white border-l border-slate-200 overflow-y-auto">
-          <RegionPanel department={selectedDept} metrics={METRICS} />
+          <RegionPanel
+            department={selectedDept}
+            allDepartments={departments}
+          />
         </aside>
       </div>
     </div>
