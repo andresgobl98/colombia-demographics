@@ -2,6 +2,7 @@ import { useState } from "react";
 import Dashboard from "./pages/Dashboard";
 import { METRICS } from "./data/metrics";
 import demographicsData from "./data/demographics.json";
+import { Analytics } from "@vercel/analytics/react"
 
 const { departments, national } = demographicsData;
 
@@ -26,5 +27,10 @@ export default function App() {
     setSelectedDeptCode,
   };
 
-  return <Dashboard state={state} actions={actions} />;
+  return (
+    <>
+      <Analytics />
+      <Dashboard state={state} actions={actions} />
+    </>
+  );
 }
