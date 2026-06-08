@@ -21,7 +21,8 @@ Toda la información proviene del **Censo Nacional de Población y Vivienda 2018
 | 1PD  | Población total por departamento, sexo e índice de masculinidad |
 | 12PD | Población por autorreconocimiento étnico y departamento |
 
-Los datos geográficos (geometría de departamentos) provienen de una fuente GeoJSON compatible con los códigos DANE de dos dígitos.
+Los datos geográficos (geometría de departamentos) provienen del GeoJSON publicado por **John Guerra**:
+[gist.github.com/john-guerra/43c7656821069d00dcbc](https://gist.github.com/john-guerra/43c7656821069d00dcbc)
 
 Los datos de superficie (km²) y capitales departamentales corresponden a cifras oficiales del DANE / IGAC.
 
