@@ -5,8 +5,9 @@ import MetricSelector from "./components/MetricSelector";
 import TopicRanking from "./components/TopicRanking";
 import { METRICS } from "./data/metrics";
 import demographicsData from "./data/demographics.json";
+import simpleDemographicsData from "./data/population.json";
 
-const { departments } = demographicsData;
+const { departments } = simpleDemographicsData;
 
 export default function App() {
   const [selectedMetricId, setSelectedMetricId] = useState(METRICS[0].id);

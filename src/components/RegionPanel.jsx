@@ -43,6 +43,12 @@ export default function RegionPanel({ department, metrics }) {
     color: ETHNICITY_COLORS[key] ?? "#cbd5e1",
   }));
 
+  const sexData = Object.entries(department.sex ?? {}).map(([key, value]) => ({
+    name: key.charAt(0).toUpperCase() + key.slice(1),
+    value,
+    color: key === "male" ? "#3b82f6" : "#f43f5e",
+  }));
+
   return (
     <div className="flex flex-col gap-4 p-4 overflow-y-auto">
       <div>
@@ -79,6 +85,32 @@ export default function RegionPanel({ department, metrics }) {
               dataKey="value"
             >
               {ethnicityData.map((entry) => (
+                <Cell key={entry.name} fill={entry.color} />
+              ))}
+            </Pie>
+            <Tooltip formatter={(v) => `${v}%`} />
+            <Legend
+              iconType="circle"
+              iconSize={8}
+              formatter={(v) => <span className="text-xs text-slate-600">{v}</span>}
+            />
+          </PieChart>
+        </ResponsiveContainer>
+      </div>
+      <div>
+        <p className="text-sm font-semibold text-slate-600 mb-2">Sex breakdown</p>
+        <ResponsiveContainer width="100%" height={200}>
+          <PieChart>
+            <Pie
+              data={sexData}
+              cx="50%"
+              cy="50%"
+              innerRadius={48}
+              outerRadius={80}
+              paddingAngle={2}
+              dataKey="value"
+            >
+              {sexData.map((entry) => (
                 <Cell key={entry.name} fill={entry.color} />
               ))}
             </Pie>

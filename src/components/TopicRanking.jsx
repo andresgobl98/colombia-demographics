@@ -9,7 +9,7 @@ export default function TopicRanking({ data, metric }) {
   const max = entries[0].value;
 
   return (
-    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4">
+    <div className="bg-white rounded-2xl shadow-sm border border-slate-100 p-4 max-h-64 overflow-y-auto">
       <p className="text-sm font-semibold text-slate-600 mb-3">
         Ranking — {metric.label}
       </p>
