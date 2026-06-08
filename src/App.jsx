@@ -13,7 +13,7 @@ export default function App() {
   const selectedDept = selectedDeptCode ? departments[selectedDeptCode] : null;
 
   const state = {
-    metrics,
+    metrics: METRICS,
     metric,
     selectedDeptCode,
     selectedDept,
