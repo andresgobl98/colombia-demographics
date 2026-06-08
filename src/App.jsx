@@ -4,9 +4,9 @@ import RegionPanel from "./components/RegionPanel";
 import MetricSelector from "./components/MetricSelector";
 import TopicRanking from "./components/TopicRanking";
 import { METRICS } from "./data/metrics";
-import populationData from "./data/population.json";
+import demographicsData from "./data/demographics.json";
 
-const { departments } = populationData;
+const { departments, national } = demographicsData;
 
 export default function App() {
   const [selectedMetricId, setSelectedMetricId] = useState(METRICS[0].id);
@@ -56,7 +56,7 @@ export default function App() {
         <aside className="w-80 bg-white border-l border-slate-200 overflow-y-auto">
           <RegionPanel
             department={selectedDept}
-            allDepartments={departments}
+            national={national}
           />
         </aside>
       </div>

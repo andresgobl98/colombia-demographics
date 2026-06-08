@@ -1,4 +1,23 @@
 {
+  "national": {
+    "name": "Colombia",
+    "area_km2": 1141748,
+    "population": 44164417,
+    "departments": 33,
+    "sex": {
+      "male": 21570493,
+      "female": 22593924
+    },
+    "ethnicity": {
+      "indigena": 4.28,
+      "gitano_rrom": 0.01,
+      "raizal": 0.06,
+      "palenquero": 0.02,
+      "afro": 6.71,
+      "ningun_grupo": 87.77,
+      "sin_informacion": 1.19
+    }
+  },
   "departments": {
     "05": {
       "name": "Antioquia",
