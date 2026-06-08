@@ -1,0 +1,301 @@
+{
+  "departments": {
+    "05": {
+      "name": "Antioquia",
+      "population": 5974788,
+      "sex": {
+        "male": 2885383,
+        "female": 3089405
+      },
+      "masculinityIndex": 93.4
+    },
+    "08": {
+      "name": "Atlántico",
+      "population": 2342265,
+      "sex": {
+        "male": 1140357,
+        "female": 1201908
+      },
+      "masculinityIndex": 94.9
+    },
+    "11": {
+      "name": "Bogotá, D.C.",
+      "population": 7181469,
+      "sex": {
+        "male": 3433586,
+        "female": 3747883
+      },
+      "masculinityIndex": 91.6
+    },
+    "13": {
+      "name": "Bolívar",
+      "population": 1909460,
+      "sex": {
+        "male": 947598,
+        "female": 961862
+      },
+      "masculinityIndex": 98.5
+    },
+    "15": {
+      "name": "Boyacá",
+      "population": 1135698,
+      "sex": {
+        "male": 559084,
+        "female": 576614
+      },
+      "masculinityIndex": 97.0
+    },
+    "17": {
+      "name": "Caldas",
+      "population": 923472,
+      "sex": {
+        "male": 447499,
+        "female": 475973
+      },
+      "masculinityIndex": 94.0
+    },
+    "18": {
+      "name": "Caquetá",
+      "population": 359602,
+      "sex": {
+        "male": 182378,
+        "female": 177224
+      },
+      "masculinityIndex": 102.9
+    },
+    "19": {
+      "name": "Cauca",
+      "population": 1243503,
+      "sex": {
+        "male": 615833,
+        "female": 627670
+      },
+      "masculinityIndex": 98.1
+    },
+    "20": {
+      "name": "Cesar",
+      "population": 1098577,
+      "sex": {
+        "male": 543838,
+        "female": 554739
+      },
+      "masculinityIndex": 98.0
+    },
+    "23": {
+      "name": "Córdoba",
+      "population": 1555596,
+      "sex": {
+        "male": 774448,
+        "female": 781148
+      },
+      "masculinityIndex": 99.1
+    },
+    "25": {
+      "name": "Cundinamarca",
+      "population": 2792877,
+      "sex": {
+        "male": 1379858,
+        "female": 1413019
+      },
+      "masculinityIndex": 97.7
+    },
+    "27": {
+      "name": "Chocó",
+      "population": 457412,
+      "sex": {
+        "male": 225982,
+        "female": 231430
+      },
+      "masculinityIndex": 97.6
+    },
+    "41": {
+      "name": "Huila",
+      "population": 1009548,
+      "sex": {
+        "male": 503766,
+        "female": 505782
+      },
+      "masculinityIndex": 99.6
+    },
+    "44": {
+      "name": "La Guajira",
+      "population": 825364,
+      "sex": {
+        "male": 404215,
+        "female": 421149
+      },
+      "masculinityIndex": 96.0
+    },
+    "47": {
+      "name": "Magdalena",
+      "population": 1263788,
+      "sex": {
+        "male": 632502,
+        "female": 631286
+      },
+      "masculinityIndex": 100.2
+    },
+    "50": {
+      "name": "Meta",
+      "population": 919129,
+      "sex": {
+        "male": 464906,
+        "female": 454223
+      },
+      "masculinityIndex": 102.4
+    },
+    "52": {
+      "name": "Nariño",
+      "population": 1335521,
+      "sex": {
+        "male": 653754,
+        "female": 681767
+      },
+      "masculinityIndex": 95.9
+    },
+    "54": {
+      "name": "Norte de Santander",
+      "population": 1346806,
+      "sex": {
+        "male": 664057,
+        "female": 682749
+      },
+      "masculinityIndex": 97.3
+    },
+    "63": {
+      "name": "Quindio",
+      "population": 509640,
+      "sex": {
+        "male": 245663,
+        "female": 263977
+      },
+      "masculinityIndex": 93.1
+    },
+    "66": {
+      "name": "Risaralda",
+      "population": 839597,
+      "sex": {
+        "male": 401748,
+        "female": 437849
+      },
+      "masculinityIndex": 91.8
+    },
+    "68": {
+      "name": "Santander",
+      "population": 2008841,
+      "sex": {
+        "male": 983439,
+        "female": 1025402
+      },
+      "masculinityIndex": 95.9
+    },
+    "70": {
+      "name": "Sucre",
+      "population": 864036,
+      "sex": {
+        "male": 434459,
+        "female": 429577
+      },
+      "masculinityIndex": 101.1
+    },
+    "73": {
+      "name": "Tolima",
+      "population": 1228763,
+      "sex": {
+        "male": 609017,
+        "female": 619746
+      },
+      "masculinityIndex": 98.3
+    },
+    "76": {
+      "name": "Valle del Cauca",
+      "population": 3789874,
+      "sex": {
+        "male": 1800614,
+        "female": 1989260
+      },
+      "masculinityIndex": 90.5
+    },
+    "81": {
+      "name": "Arauca",
+      "population": 239503,
+      "sex": {
+        "male": 121060,
+        "female": 118443
+      },
+      "masculinityIndex": 102.2
+    },
+    "85": {
+      "name": "Casanare",
+      "population": 379892,
+      "sex": {
+        "male": 192020,
+        "female": 187872
+      },
+      "masculinityIndex": 102.2
+    },
+    "86": {
+      "name": "Putumayo",
+      "population": 283197,
+      "sex": {
+        "male": 142900,
+        "female": 140297
+      },
+      "masculinityIndex": 101.9
+    },
+    "88": {
+      "name": "Archipiélago de San Andrés, Providencia y Santa Catalina",
+      "population": 48299,
+      "sex": {
+        "male": 23326,
+        "female": 24973
+      },
+      "masculinityIndex": 93.4
+    },
+    "91": {
+      "name": "Amazonas",
+      "population": 66056,
+      "sex": {
+        "male": 34422,
+        "female": 31634
+      },
+      "masculinityIndex": 108.8
+    },
+    "94": {
+      "name": "Guainía",
+      "population": 44431,
+      "sex": {
+        "male": 23214,
+        "female": 21217
+      },
+      "masculinityIndex": 109.4
+    },
+    "95": {
+      "name": "Guaviare",
+      "population": 73081,
+      "sex": {
+        "male": 39080,
+        "female": 34001
+      },
+      "masculinityIndex": 114.9
+    },
+    "97": {
+      "name": "Vaupés",
+      "population": 37690,
+      "sex": {
+        "male": 19793,
+        "female": 17897
+      },
+      "masculinityIndex": 110.6
+    },
+    "99": {
+      "name": "Vichada",
+      "population": 76642,
+      "sex": {
+        "male": 40694,
+        "female": 35948
+      },
+      "masculinityIndex": 113.2
+    }
+  }
+}
