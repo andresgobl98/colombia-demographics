@@ -57,7 +57,7 @@ def main():
     df.columns = [
         "departamento", "area", "edad",
         "total", "hombres", "mujeres",
-        "idx_masculinidad", "idx_feminidad",
+        "idx_masculinidad", "idx_feminidad",  # kept for column alignment, not used
     ]
 
     # Merged cells arrive as NaN after the first row — forward-fill them
@@ -91,11 +91,10 @@ def main():
         nombre = match.group(2).strip()     # "Antioquia"
 
         result[code] = {
-            "name":              nombre,
-            "population":        int(row["total"]),
-            "male":              int(row["hombres"]),
-            "female":            int(row["mujeres"]),
-            "masculinityIndex":  round(float(row["idx_masculinidad"]), 1),
+            "name":       nombre,
+            "population": int(row["total"]),
+            "male":       int(row["hombres"]),
+            "female":     int(row["mujeres"]),
         }
 
     output_path = Path(OUTPUT_FILE)

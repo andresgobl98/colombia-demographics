@@ -9,15 +9,6 @@ export const METRICS = [
     colorRange: ["#dbeafe", "#1d4ed8"],
   },
   {
-    id: "masculinityIndex",
-    label: "Índice de masculinidad",
-    description: "Hombres por cada 100 mujeres",
-    unit: "",
-    format: (v) => (v != null ? v.toFixed(1) : "N/D"),
-    domain: [88, 116],
-    colorRange: ["#fce7f3", "#7c3aed"],
-  },
-  {
     id: "area_km2",
     label: "Área",
     description: "Superficie en km²",

@@ -66,7 +66,6 @@ colombia-demographics/
 ## Métricas disponibles
 
 - **Población** — Total de personas censadas por departamento
-- **Índice de masculinidad** — Hombres por cada 100 mujeres
 - **Área** — Superficie del departamento en km²
 
 ---
