@@ -60,6 +60,30 @@ export default function App() {
           />
         </aside>
       </div>
+
+      <footer className="bg-white border-t border-slate-200 px-6 py-3 flex items-center justify-between text-xs text-slate-400">
+        <span>Datos: DANE · CNPV 2018</span>
+        <span>
+          Desarrollado por{" "}
+          <a
+            href="https://github.com/andresgobl98"
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-500 hover:text-blue-600 transition-colors"
+          >
+            Andrés González
+          </a>
+          {" · "}
+          <a
+            href="https://github.com/andresgobl98/colombia-demographics"
+            target="_blank"
+            rel="noreferrer"
+            className="text-slate-500 hover:text-blue-600 transition-colors"
+          >
+            Ver repositorio
+          </a>
+        </span>
+      </footer>
     </div>
   );
 }
