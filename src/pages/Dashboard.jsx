@@ -1,46 +1,11 @@
-import { useEffect, useState } from "react";
 import ColombiaMap from "../components/ColombiaMap";
 import RegionPanel from "../components/RegionPanel";
 import MetricSelector from "../components/MetricSelector";
 import TopicRanking from "../components/TopicRanking";
 
-// ── Icons ─────────────────────────────────────────────────────────────────────
-
-function MapIcon({ active }) {
-  return (
-    <svg className={`w-6 h-6 ${active ? "text-blue-600" : "text-slate-400"}`} fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
-    </svg>
-  );
-}
-
-function StatsIcon({ active }) {
-  return (
-    <svg className={`w-6 h-6 ${active ? "text-blue-600" : "text-slate-400"}`} fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
-      <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-    </svg>
-  );
-}
-
-// ── Dashboard ─────────────────────────────────────────────────────────────────
-
 export default function Dashboard({ state, actions }) {
   const { metric, metrics, selectedDept, selectedDeptCode, national, departments } = state;
   const { setSelectedMetricId, setSelectedDeptCode } = actions;
-
-  const [activeTab, setActiveTab] = useState("mapa");
-  const [toast, setToast]         = useState(false);
-
-  const handleSelect = (code) => {
-    setSelectedDeptCode(code);
-    if (code && activeTab === "mapa") setToast(true);
-  };
-
-  useEffect(() => {
-    if (!toast) return;
-    const t = setTimeout(() => setToast(false), 3500);
-    return () => clearTimeout(t);
-  }, [toast]);
 
   return (
     <div className="flex flex-col h-svh bg-slate-50">
@@ -84,60 +49,34 @@ export default function Dashboard({ state, actions }) {
       </div>
 
       {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
-      <div className="flex md:hidden flex-1 overflow-hidden flex-col">
-        {activeTab === "mapa" && (
-          <div className="flex-1 overflow-hidden">
-            <ColombiaMap
-              data={departments}
-              metric={metric}
-              selectedId={selectedDeptCode}
-              onSelect={handleSelect}
-            />
-          </div>
-        )}
-        {activeTab === "estadisticas" && (
-          <div className="flex-1 overflow-y-auto">
-            <RegionPanel department={selectedDept} national={national} />
-            <div className="px-4 pb-4">
-              <TopicRanking data={departments} metric={metric} />
-            </div>
-          </div>
-        )}
+      <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
+        {/* Map */}
+        <div className="h-[55vh] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden shrink-0">
+          <ColombiaMap
+            data={departments}
+            metric={metric}
+            selectedId={selectedDeptCode}
+            onSelect={setSelectedDeptCode}
+          />
+        </div>
+        {/* National ranking lives with the map */}
+        <TopicRanking data={departments} metric={metric} />
       </div>
 
-      {/* ── Toast (mobile only) ─────────────────────────────────────────────── */}
-      {toast && (
-        <div className="md:hidden fixed bottom-20 left-1/2 -translate-x-1/2 z-50">
-          <button
-            onClick={() => { setActiveTab("estadisticas"); setToast(false); }}
-            className="flex items-center gap-2 bg-slate-800 text-white text-sm rounded-full px-4 py-2.5 shadow-lg"
-          >
-            <span>{selectedDept?.name} seleccionado</span>
-            <span className="text-blue-300 font-medium">Ver estadísticas →</span>
-          </button>
-        </div>
-      )}
-
-      {/* ── Bottom nav (mobile only) ────────────────────────────────────────── */}
-      <nav className="md:hidden bg-white border-t border-slate-200 flex shrink-0">
-        <button
-          onClick={() => setActiveTab("mapa")}
-          className={`flex-1 flex flex-col items-center justify-center gap-1 py-3 text-xs font-medium transition-colors ${activeTab === "mapa" ? "text-blue-600" : "text-slate-400"}`}
-        >
-          <MapIcon active={activeTab === "mapa"} />
-          Mapa
-        </button>
-        <button
-          onClick={() => setActiveTab("estadisticas")}
-          className={`relative flex-1 flex flex-col items-center justify-center gap-1 py-3 text-xs font-medium transition-colors ${activeTab === "estadisticas" ? "text-blue-600" : "text-slate-400"}`}
-        >
-          <StatsIcon active={activeTab === "estadisticas"} />
-          Estadísticas
-          {selectedDept && activeTab !== "estadisticas" && (
-            <span className="absolute top-2.5 right-[calc(50%-18px)] w-2 h-2 bg-blue-500 rounded-full" />
-          )}
-        </button>
-      </nav>
+      {/* ── Mobile slide-in panel ───────────────────────────────────────────── */}
+      <div
+        className={`md:hidden fixed inset-0 z-40 bg-white overflow-y-auto transition-transform duration-300 ease-out ${
+          selectedDept ? "translate-x-0" : "translate-x-full"
+        }`}
+      >
+        {selectedDept && (
+          <RegionPanel
+            department={selectedDept}
+            national={national}
+            onBack={() => setSelectedDeptCode(null)}
+          />
+        )}
+      </div>
 
       {/* ── Footer (desktop only) ───────────────────────────────────────────── */}
       <footer className="hidden md:flex bg-white border-t border-slate-200 px-6 py-3 items-center justify-between text-xs text-slate-400 shrink-0">

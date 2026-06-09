@@ -61,7 +61,7 @@ function DonutChart({ data, formatTooltip }) {
   );
 }
 
-export default function RegionPanel({ department, national }) {
+export default function RegionPanel({ department, national, onBack }) {
   const isNational = !department;
   const display    = isNational ? national : department;
 
@@ -79,6 +79,19 @@ export default function RegionPanel({ department, national }) {
 
   return (
     <div className="flex flex-col gap-4 p-4">
+      {/* Botón de regreso (solo móvil) */}
+      {onBack && (
+        <button
+          onClick={onBack}
+          className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-blue-600 transition-colors -mb-1 self-start"
+        >
+          <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
+          </svg>
+          Volver al mapa
+        </button>
+      )}
+
       {/* Encabezado */}
       <div>
         {isNational ? (
