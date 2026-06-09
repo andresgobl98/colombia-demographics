@@ -31,6 +31,37 @@ function StatCard({ label, value }) {
   );
 }
 
+// Labeled horizontal bars — every group stays visible regardless of size.
+// Bar width reflects true proportion; the value label always carries the exact figure.
+function BarBreakdown({ data }) {
+  const max = Math.max(...data.map((d) => d.value), 0);
+  return (
+    <ul className="flex flex-col gap-2">
+      {data.map((entry) => {
+        const pct = max > 0 ? (entry.value / max) * 100 : 0;
+        return (
+          <li key={entry.name} className="flex items-center gap-2">
+            <span className="text-xs text-slate-600 w-28 shrink-0 truncate">{entry.name}</span>
+            <div className="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden">
+              <div
+                className="h-full rounded-full"
+                style={{
+                  // floor non-zero groups at 2px so they never vanish
+                  width: entry.value > 0 ? `max(2px, ${pct}%)` : 0,
+                  backgroundColor: entry.color,
+                }}
+              />
+            </div>
+            <span className="text-xs font-medium text-slate-700 w-12 text-right tabular-nums">
+              {entry.value}%
+            </span>
+          </li>
+        );
+      })}
+    </ul>
+  );
+}
+
 function DonutChart({ data, formatTooltip }) {
   return (
     <div style={{ height: 230 }}>
@@ -42,7 +73,7 @@ function DonutChart({ data, formatTooltip }) {
             cy="45%"
             innerRadius={48}
             outerRadius={75}
-            paddingAngle={2}
+            paddingAngle={0.1}
             dataKey="value"
           >
             {data.map((entry) => (
@@ -71,11 +102,13 @@ export default function RegionPanel({ department, national, onBack }) {
     color: SEX_COLORS[key] ?? "#cbd5e1",
   }));
 
-  const ethnicityData = Object.entries(display?.ethnicity ?? {}).map(([key, value]) => ({
-    name:  ETHNICITY_LABELS[key]  ?? key,
-    value,
-    color: ETHNICITY_COLORS[key] ?? "#cbd5e1",
-  }));
+  const ethnicityData = Object.entries(display?.ethnicity ?? {})
+    .map(([key, value]) => ({
+      name:  ETHNICITY_LABELS[key]  ?? key,
+      value,
+      color: ETHNICITY_COLORS[key] ?? "#cbd5e1",
+    }))
+    .sort((a, b) => b.value - a.value);
 
   return (
     <div className="flex flex-col gap-4 p-4">
@@ -143,14 +176,11 @@ export default function RegionPanel({ department, national, onBack }) {
         </div>
       )}
 
-      {/* Gráfica por etnia */}
+      {/* Desglose por etnia */}
       {ethnicityData.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-slate-600 mb-1">Autorreconocimiento étnico</p>
-          <DonutChart
-            data={ethnicityData}
-            formatTooltip={(v) => `${v}%`}
-          />
+          <p className="text-sm font-semibold text-slate-600 mb-2">Autorreconocimiento étnico</p>
+          <BarBreakdown data={ethnicityData} />
         </div>
       )}
 
