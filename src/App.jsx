@@ -1,7 +1,7 @@
 import { useState, useMemo } from "react";
 import Dashboard from "./pages/Dashboard";
 import { METRICS } from "./data/metrics";
-import { getDepartments, getNational, BASE_YEAR } from "./data/selectors";
+import { getDepartments, getNational, BASE_YEAR, YEARS } from "./data/selectors";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
@@ -22,6 +22,7 @@ export default function App() {
     selectedDeptCode,
     selectedDept,
     selectedYear,
+    years: YEARS,
     departments,
     national,
   };

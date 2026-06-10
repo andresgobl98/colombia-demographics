@@ -2,10 +2,17 @@ import ColombiaMap from "../components/ColombiaMap";
 import RegionPanel from "../components/RegionPanel";
 import MetricSelector from "../components/MetricSelector";
 import TopicRanking from "../components/TopicRanking";
+import TimelineSlider from "../components/TimelineSlider";
 
 export default function Dashboard({ state, actions }) {
-  const { metric, metrics, selectedDept, selectedDeptCode, national, departments } = state;
-  const { setSelectedMetricId, setSelectedDeptCode } = actions;
+  const { metric, metrics, selectedDept, selectedDeptCode, national, departments, years, selectedYear } = state;
+  const { setSelectedMetricId, setSelectedDeptCode, setSelectedYear } = actions;
+
+  const timelineOverlay = (
+    <div className="absolute top-3 inset-x-0 z-30 flex justify-center px-3 pointer-events-none">
+      <TimelineSlider years={years} value={selectedYear} onChange={setSelectedYear} />
+    </div>
+  );
 
   return (
     <div className="flex flex-col h-svh bg-slate-50">
@@ -33,7 +40,8 @@ export default function Dashboard({ state, actions }) {
       {/* ── Desktop layout (md+) ────────────────────────────────────────────── */}
       <div className="hidden md:flex flex-1 overflow-hidden">
         <main className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
-          <div className="flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="relative flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+            {timelineOverlay}
             <ColombiaMap
               data={departments}
               metric={metric}
@@ -51,7 +59,8 @@ export default function Dashboard({ state, actions }) {
       {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
         {/* Map */}
-        <div className="h-[55vh] min-h-[380px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden shrink-0">
+        <div className="relative h-[55vh] min-h-[380px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden shrink-0">
+          {timelineOverlay}
           <ColombiaMap
             data={departments}
             metric={metric}
