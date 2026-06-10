@@ -1,10 +1,83 @@
 <!doctype html>
-<html lang="en">
+<html lang="es">
   <head>
     <meta charset="UTF-8" />
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>colombia-demographics</title>
+    <meta name="theme-color" content="#2563eb" />
+
+    <!-- Primary meta -->
+    <title>CO Demográfica · Mapa demográfico de Colombia por departamento</title>
+    <meta
+      name="description"
+      content="Explora la población, distribución por sexo y autorreconocimiento étnico de los 33 departamentos de Colombia, con proyecciones del DANE 2018–2050. Mapa interactivo y gratuito basado en datos oficiales."
+    />
+    <meta
+      name="keywords"
+      content="demografía Colombia, población departamentos, censo 2018, proyecciones DANE, mapa demográfico, datos abiertos Colombia, etnicidad, CNPV"
+    />
+    <meta name="author" content="Andrés González" />
+    <meta name="robots" content="index, follow" />
+
+    <!-- NOTE: update the URLs below to the final .co domain once it is connected in Vercel. -->
+    <link rel="canonical" href="https://colombia-demographics.vercel.app/" />
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website" />
+    <meta property="og:site_name" content="CO Demográfica" />
+    <meta property="og:locale" content="es_CO" />
+    <meta property="og:title" content="CO Demográfica · Mapa demográfico de Colombia" />
+    <meta
+      property="og:description"
+      content="Población, sexo y autorreconocimiento étnico de los 33 departamentos de Colombia, con proyecciones del DANE 2018–2050. Interactivo y gratuito."
+    />
+    <meta property="og:url" content="https://colombia-demographics.vercel.app/" />
+    <meta property="og:image" content="https://colombia-demographics.vercel.app/og-image.svg" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content="CO Demográfica · Mapa demográfico de Colombia" />
+    <meta
+      name="twitter:description"
+      content="Población, sexo y autorreconocimiento étnico de los 33 departamentos de Colombia, con proyecciones del DANE 2018–2050."
+    />
+    <meta name="twitter:image" content="https://colombia-demographics.vercel.app/og-image.svg" />
+
+    <!-- Structured data: site + dataset (eligible for Google Dataset Search) -->
+    <script type="application/ld+json">
+      {
+        "@context": "https://schema.org",
+        "@graph": [
+          {
+            "@type": "WebSite",
+            "name": "CO Demográfica",
+            "url": "https://colombia-demographics.vercel.app/",
+            "description": "Mapa interactivo de la demografía de Colombia por departamento, basado en datos del DANE.",
+            "inLanguage": "es"
+          },
+          {
+            "@type": "Dataset",
+            "name": "Demografía de Colombia por departamento (DANE)",
+            "description": "Población total, distribución por sexo y autorreconocimiento étnico de los 33 departamentos de Colombia. Incluye el Censo Nacional de Población y Vivienda 2018 y las proyecciones de población del DANE para el periodo 2018–2050.",
+            "url": "https://colombia-demographics.vercel.app/",
+            "inLanguage": "es",
+            "isAccessibleForFree": true,
+            "keywords": ["demografía", "Colombia", "población", "departamentos", "censo 2018", "proyecciones", "etnicidad"],
+            "temporalCoverage": "2018/2050",
+            "spatialCoverage": { "@type": "Place", "name": "Colombia" },
+            "creator": {
+              "@type": "GovernmentOrganization",
+              "name": "Departamento Administrativo Nacional de Estadística (DANE)",
+              "url": "https://www.dane.gov.co/"
+            },
+            "license": "https://www.dane.gov.co/"
+          }
+        ]
+      }
+    </script>
+
     <script>
       // Apply theme before paint to avoid a flash of the wrong theme.
       (function () {
