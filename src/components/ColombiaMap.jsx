@@ -217,7 +217,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
       {/* Hover tooltip */}
       {tooltip && (
         <div
-          className="fixed z-50 pointer-events-none bg-slate-800 text-white text-xs rounded-lg px-3 py-2 shadow-lg"
+          className="hidden md:block fixed z-50 pointer-events-none bg-slate-800 text-white text-xs rounded-lg px-3 py-2 shadow-lg"
           style={{ left: tooltip.x + 12, top: tooltip.y - 36 }}
         >
           <p className="font-semibold">{tooltip.name}</p>
