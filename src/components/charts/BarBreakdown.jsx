@@ -25,17 +25,17 @@ export default function BarBreakdown({
         return (
           <li key={entry.name} className="flex items-center gap-2">
             {showRank && (
-              <span className="text-xs text-slate-400 w-4 text-right shrink-0 tabular-nums">
+              <span className="text-xs text-slate-400 dark:text-slate-500 w-4 text-right shrink-0 tabular-nums">
                 {i + 1}
               </span>
             )}
             <span
-              className="text-xs text-slate-600 shrink-0 truncate"
+              className="text-xs text-slate-600 dark:text-slate-300 shrink-0 truncate"
               style={{ width: labelWidth }}
             >
               {entry.name}
             </span>
-            <div className="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden">
+            <div className="flex-1 bg-slate-100 dark:bg-slate-700 rounded-full h-2.5 overflow-hidden">
               <div
                 className="h-full rounded-full transition-all duration-500"
                 style={{
@@ -45,7 +45,7 @@ export default function BarBreakdown({
                 }}
               />
             </div>
-            <span className="text-xs font-medium text-slate-700 w-16 text-right tabular-nums">
+            <span className="text-xs font-medium text-slate-700 dark:text-slate-200 w-16 text-right tabular-nums">
               {formatValue(entry.value)}
             </span>
           </li>

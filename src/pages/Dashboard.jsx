@@ -3,6 +3,7 @@ import RegionPanel from "../components/RegionPanel";
 import MetricSelector from "../components/MetricSelector";
 import TopicRanking from "../components/TopicRanking";
 import TimelineSlider from "../components/TimelineSlider";
+import { ThemeToggle } from "../components/ui";
 
 export default function Dashboard({ state, actions }) {
   const { metric, metrics, selectedDept, selectedDeptCode, national, departments, years, selectedYear } = state;
@@ -15,10 +16,10 @@ export default function Dashboard({ state, actions }) {
   );
 
   return (
-    <div className="flex flex-col h-svh bg-slate-50">
+    <div className="flex flex-col h-svh bg-slate-50 dark:bg-slate-900">
 
       {/* ── Header ─────────────────────────────────────────────────────────── */}
-      <header className="bg-white border-b border-slate-200 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm shrink-0">
+      <header className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 md:px-6 py-3 flex items-center justify-between shadow-sm shrink-0">
         <div className="flex items-center gap-3">
           <div className="w-8 h-8 rounded-lg bg-blue-600 flex items-center justify-center shrink-0">
             <svg className="w-4 h-4 text-white" fill="currentColor" viewBox="0 0 20 20">
@@ -26,21 +27,24 @@ export default function Dashboard({ state, actions }) {
             </svg>
           </div>
           <div>
-            <h1 className="text-base font-bold text-slate-800 leading-none">Colombia en Datos</h1>
-            <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">DANE · Censo 2018 y proyecciones 2018–2050</p>
+            <h1 className="text-base font-bold text-slate-800 dark:text-slate-100 leading-none">Colombia en Datos</h1>
+            <p className="text-xs text-slate-400 dark:text-slate-500 mt-0.5 hidden sm:block">DANE · Censo 2018 y proyecciones 2018–2050</p>
           </div>
         </div>
-        <MetricSelector
-          metrics={metrics}
-          selected={metric.id}
-          onChange={setSelectedMetricId}
-        />
+        <div className="flex items-center gap-2">
+          <MetricSelector
+            metrics={metrics}
+            selected={metric.id}
+            onChange={setSelectedMetricId}
+          />
+          <ThemeToggle />
+        </div>
       </header>
 
       {/* ── Desktop layout (md+) ────────────────────────────────────────────── */}
       <div className="hidden md:flex flex-1 overflow-hidden">
         <main className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
-          <div className="relative flex-1 bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden">
+          <div className="relative flex-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
             {timelineOverlay}
             <ColombiaMap
               data={departments}
@@ -51,7 +55,7 @@ export default function Dashboard({ state, actions }) {
           </div>
           <TopicRanking data={departments} metric={metric} />
         </main>
-        <aside className="w-80 bg-white border-l border-slate-200 overflow-y-auto">
+        <aside className="w-80 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 overflow-y-auto">
           <RegionPanel department={selectedDept} national={national} year={selectedYear} />
         </aside>
       </div>
@@ -59,7 +63,7 @@ export default function Dashboard({ state, actions }) {
       {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
         {/* Map */}
-        <div className="relative h-[55vh] min-h-[380px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden shrink-0">
+        <div className="relative h-[55vh] min-h-[380px] bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden shrink-0">
           {timelineOverlay}
           <ColombiaMap
             data={departments}
@@ -74,7 +78,7 @@ export default function Dashboard({ state, actions }) {
 
       {/* ── Mobile slide-in panel ───────────────────────────────────────────── */}
       <div
-        className={`md:hidden fixed inset-0 z-40 bg-white overflow-y-auto transition-transform duration-300 ease-out ${
+        className={`md:hidden fixed inset-0 z-40 bg-white dark:bg-slate-900 overflow-y-auto transition-transform duration-300 ease-out ${
           selectedDept ? "translate-x-0" : "translate-x-full"
         }`}
       >
@@ -89,15 +93,15 @@ export default function Dashboard({ state, actions }) {
       </div>
 
       {/* ── Footer (desktop only) ───────────────────────────────────────────── */}
-      <footer className="hidden md:flex bg-white border-t border-slate-200 px-6 py-3 items-center justify-between text-xs text-slate-400 shrink-0">
+      <footer className="hidden md:flex bg-white dark:bg-slate-800 border-t border-slate-200 dark:border-slate-700 px-6 py-3 items-center justify-between text-xs text-slate-400 dark:text-slate-500 shrink-0">
         <span>Datos: DANE · Censo 2018 y proyecciones PPED 2018–2050</span>
         <span>
           Desarrollado por{" "}
-          <a href="https://github.com/andresgobl98" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-blue-600 transition-colors">
+          <a href="https://github.com/andresgobl98" target="_blank" rel="noreferrer" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             Andrés González
           </a>
           {" · "}
-          <a href="https://github.com/andresgobl98/colombia-demographics" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-blue-600 transition-colors">
+          <a href="https://github.com/andresgobl98/colombia-demographics" target="_blank" rel="noreferrer" className="text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
             Ver repositorio
           </a>
         </span>

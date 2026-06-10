@@ -1,5 +1,18 @@
 @import "tailwindcss";
 
+/* Class-based dark mode (Tailwind v4): toggled via a `dark` class on <html>. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/* Map chrome colors as theme-aware CSS variables (SVG fills read these). */
+:root {
+  --map-nodata: #e2e8f0;
+  --map-stroke: #ffffff;
+}
+.dark {
+  --map-nodata: #334155;
+  --map-stroke: #1e293b;
+}
+
 *, *::before, *::after {
   box-sizing: border-box;
 }
@@ -9,6 +22,11 @@ body {
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
   background: #f8fafc;
   color: #1e293b;
+}
+
+.dark body {
+  background: #0f172a;
+  color: #e2e8f0;
 }
 
 #root {

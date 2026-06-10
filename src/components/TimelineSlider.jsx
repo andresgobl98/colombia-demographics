@@ -10,9 +10,9 @@ export default function TimelineSlider({ years, value, onChange }) {
   const max = years.length - 1;
 
   return (
-    <div className="bg-white/95 backdrop-blur rounded-2xl shadow-md border border-slate-100 px-4 py-2 flex items-center gap-3 w-[min(92%,360px)] pointer-events-auto">
+    <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 px-4 py-2 flex items-center gap-3 w-[min(92%,360px)] pointer-events-auto">
       <div className="shrink-0 text-center w-12">
-        <span className="text-lg font-bold text-slate-800 tabular-nums leading-none">{value}</span>
+        <span className="text-lg font-bold text-slate-800 dark:text-slate-100 tabular-nums leading-none">{value}</span>
       </div>
       <div className="flex-1 flex flex-col">
         <input
@@ -24,7 +24,7 @@ export default function TimelineSlider({ years, value, onChange }) {
           className="w-full accent-blue-600 cursor-pointer"
           aria-label="Año"
         />
-        <div className="flex justify-between text-[10px] text-slate-400 -mt-0.5 px-0.5">
+        <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 -mt-0.5 px-0.5">
           <span>{years[0]}</span>
           <span>{years[max]}</span>
         </div>

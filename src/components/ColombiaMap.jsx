@@ -106,9 +106,9 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   const getFill = (geo) => {
     const code = getDeptCode(geo);
     const dept = data[code];
-    if (!dept) return "#e2e8f0";
+    if (!dept) return "var(--map-nodata)";
     const val = dept[metric.id];
-    return val != null ? colorScale(val) : "#e2e8f0";
+    return val != null ? colorScale(val) : "var(--map-nodata)";
   };
 
   const isEmpty = geographies.length === 0;
@@ -116,14 +116,14 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
       {isEmpty ? (
-        <div className="flex flex-col items-center gap-3 text-slate-400 p-8 text-center">
+        <div className="flex flex-col items-center gap-3 text-slate-400 dark:text-slate-500 p-8 text-center">
           <svg className="w-16 h-16 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
           </svg>
-          <p className="font-medium text-slate-500">Sin datos GeoJSON</p>
+          <p className="font-medium text-slate-500 dark:text-slate-400">Sin datos GeoJSON</p>
           <p className="text-sm max-w-xs">
             Agrega los departamentos de Colombia en{" "}
-            <code className="bg-slate-100 px-1 rounded text-xs">public/colombia.geojson</code>.
+            <code className="bg-slate-100 dark:bg-slate-700 px-1 rounded text-xs">public/colombia.geojson</code>.
           </p>
         </div>
       ) : (
@@ -152,7 +152,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
                       key={geo.rsmKey}
                       geography={geo}
                       fill={getFill(geo)}
-                      stroke="#fff"
+                      stroke="var(--map-stroke)"
                       strokeWidth={0.5}
                       style={{
                         default: {
@@ -204,7 +204,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
       {!isEmpty && isOffDefault && (
         <button
           onClick={resetView}
-          className="absolute top-4 right-4 flex items-center gap-1.5 bg-white/90 hover:bg-white rounded-lg px-3 py-1.5 shadow text-xs font-medium text-slate-600 transition-colors"
+          className="absolute top-4 right-4 flex items-center gap-1.5 bg-white/90 dark:bg-slate-800/90 hover:bg-white dark:hover:bg-slate-800 rounded-lg px-3 py-1.5 shadow text-xs font-medium text-slate-600 dark:text-slate-200 transition-colors"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z M12 8v4l2 2" />
@@ -215,15 +215,15 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
 
       {/* Color legend */}
       {!isEmpty && (
-        <div className="absolute bottom-4 left-4 bg-white/90 rounded-lg px-3 py-2 shadow text-xs">
-          <p className="font-medium text-slate-600 mb-1">{metric.label}</p>
+        <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-slate-800/90 rounded-lg px-3 py-2 shadow text-xs">
+          <p className="font-medium text-slate-600 dark:text-slate-300 mb-1">{metric.label}</p>
           <div
             className="h-2 w-32 rounded"
             style={{
               background: `linear-gradient(to right, ${metric.colorRange[0]}, ${metric.colorRange[1]})`,
             }}
           />
-          <div className="flex justify-between text-slate-400 mt-0.5">
+          <div className="flex justify-between text-slate-400 dark:text-slate-500 mt-0.5">
             <span>{metric.format(metric.domain[0])}</span>
             <span>{metric.format(metric.domain[1])}</span>
           </div>

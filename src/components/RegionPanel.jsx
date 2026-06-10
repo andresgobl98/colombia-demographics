@@ -47,7 +47,7 @@ export default function RegionPanel({ department, national, year, onBack }) {
       {onBack && (
         <button
           onClick={onBack}
-          className="flex items-center gap-1.5 text-sm text-slate-500 hover:text-blue-600 transition-colors -mb-1 self-start"
+          className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors -mb-1 self-start"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M15 19l-7-7 7-7" />
@@ -60,13 +60,13 @@ export default function RegionPanel({ department, national, year, onBack }) {
       <div>
         {isNational ? (
           <>
-            <h2 className="text-xl font-bold text-slate-800">Colombia</h2>
-            <p className="text-sm text-slate-400">Total nacional · {year}</p>
+            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Colombia</h2>
+            <p className="text-sm text-slate-400 dark:text-slate-500">Total nacional · {year}</p>
           </>
         ) : (
           <>
-            <h2 className="text-xl font-bold text-slate-800">{department.name}</h2>
-            <p className="text-sm text-slate-400">
+            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{department.name}</h2>
+            <p className="text-sm text-slate-400 dark:text-slate-500">
               {department.capital ? `Capital: ${department.capital}` : ""}
               {department.capital ? " · " : ""}{year}
             </p>
@@ -100,7 +100,7 @@ export default function RegionPanel({ department, national, year, onBack }) {
       {/* Gráfica por sexo */}
       {sexData.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-slate-600 mb-1">Distribución por sexo</p>
+          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">Distribución por sexo</p>
           <DonutChart
             data={sexData}
             formatTooltip={(v) => v.toLocaleString("es-CO")}
@@ -112,13 +112,13 @@ export default function RegionPanel({ department, national, year, onBack }) {
       {ethnicityData.length > 0 && (
         <div>
           <div className="flex items-baseline justify-between mb-2 gap-2">
-            <p className="text-sm font-semibold text-slate-600">Autorreconocimiento étnico</p>
-            <span className="text-[10px] font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5 shrink-0">
+            <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Autorreconocimiento étnico</p>
+            <span className="text-[10px] font-medium text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50 rounded-full px-2 py-0.5 shrink-0">
               Censo 2018
             </span>
           </div>
           <BarBreakdown data={ethnicityData} />
-          <p className="text-[11px] text-slate-400 mt-2 leading-snug">
+          <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-2 leading-snug">
             Composición étnica del Censo Nacional 2018 (CNPV). El DANE no publica
             proyección étnica, por lo que este desglose no varía entre años.
           </p>
@@ -126,7 +126,7 @@ export default function RegionPanel({ department, national, year, onBack }) {
       )}
 
       {isNational && (
-        <p className="text-xs text-slate-400 text-center pt-2 border-t border-slate-100">
+        <p className="text-xs text-slate-400 dark:text-slate-500 text-center pt-2 border-t border-slate-100 dark:border-slate-700">
           Haz clic en un departamento para ver su detalle
         </p>
       )}
