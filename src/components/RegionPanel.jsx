@@ -1,4 +1,4 @@
-import { PieChart, Pie, Cell, Tooltip, ResponsiveContainer, Legend } from "recharts";
+import { DonutChart, BarBreakdown } from "./charts";
 
 const SEX_COLORS = { male: "#3b82f6", female: "#f43f5e" };
 const SEX_LABELS  = { male: "Hombres", female: "Mujeres" };
@@ -27,67 +27,6 @@ function StatCard({ label, value }) {
     <div className="bg-slate-50 rounded-xl p-3">
       <p className="text-xs text-slate-400 mb-0.5">{label}</p>
       <p className="text-base font-semibold text-slate-800">{value}</p>
-    </div>
-  );
-}
-
-// Labeled horizontal bars — every group stays visible regardless of size.
-// Bar width reflects true proportion; the value label always carries the exact figure.
-function BarBreakdown({ data }) {
-  const max = Math.max(...data.map((d) => d.value), 0);
-  return (
-    <ul className="flex flex-col gap-2">
-      {data.map((entry) => {
-        const pct = max > 0 ? (entry.value / max) * 100 : 0;
-        return (
-          <li key={entry.name} className="flex items-center gap-2">
-            <span className="text-xs text-slate-600 w-28 shrink-0 truncate">{entry.name}</span>
-            <div className="flex-1 bg-slate-100 rounded-full h-2.5 overflow-hidden">
-              <div
-                className="h-full rounded-full"
-                style={{
-                  // floor non-zero groups at 2px so they never vanish
-                  width: entry.value > 0 ? `max(2px, ${pct}%)` : 0,
-                  backgroundColor: entry.color,
-                }}
-              />
-            </div>
-            <span className="text-xs font-medium text-slate-700 w-12 text-right tabular-nums">
-              {entry.value}%
-            </span>
-          </li>
-        );
-      })}
-    </ul>
-  );
-}
-
-function DonutChart({ data, formatTooltip }) {
-  return (
-    <div style={{ height: 230 }}>
-      <ResponsiveContainer width="100%" height="100%">
-        <PieChart>
-          <Pie
-            data={data}
-            cx="50%"
-            cy="45%"
-            innerRadius={48}
-            outerRadius={75}
-            paddingAngle={1}
-            dataKey="value"
-          >
-            {data.map((entry) => (
-              <Cell key={entry.name} fill={entry.color} />
-            ))}
-          </Pie>
-          <Tooltip formatter={formatTooltip} />
-          <Legend
-            iconType="circle"
-            iconSize={8}
-            wrapperStyle={{ fontSize: 11, paddingTop: 4 }}
-          />
-        </PieChart>
-      </ResponsiveContainer>
     </div>
   );
 }
