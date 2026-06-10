@@ -1,4 +1,5 @@
 import { DonutChart, BarBreakdown } from "./charts";
+import { StatCard } from "./ui";
 
 const SEX_COLORS = { male: "#3b82f6", female: "#f43f5e" };
 const SEX_LABELS  = { male: "Hombres", female: "Mujeres" };
@@ -21,15 +22,6 @@ const ETHNICITY_LABELS = {
   ningun_grupo:    "Ningún grupo",
   sin_informacion: "Sin información",
 };
-
-function StatCard({ label, value }) {
-  return (
-    <div className="bg-slate-50 rounded-xl p-3">
-      <p className="text-xs text-slate-400 mb-0.5">{label}</p>
-      <p className="text-base font-semibold text-slate-800">{value}</p>
-    </div>
-  );
-}
 
 export default function RegionPanel({ department, national, onBack }) {
   const isNational = !department;
