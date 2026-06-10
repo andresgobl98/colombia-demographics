@@ -9,9 +9,14 @@ export default function Dashboard({ state, actions }) {
   const { metric, metrics, selectedDept, selectedDeptCode, national, departments, years, selectedYear } = state;
   const { setSelectedMetricId, setSelectedDeptCode, setSelectedYear } = actions;
 
+  const slider = (
+    <TimelineSlider years={years} value={selectedYear} onChange={setSelectedYear} />
+  );
+
+  // Desktop: float the slider over the top of the map (plenty of room there).
   const timelineOverlay = (
     <div className="absolute top-3 inset-x-0 z-30 flex justify-center px-3 pointer-events-none">
-      <TimelineSlider years={years} value={selectedYear} onChange={setSelectedYear} />
+      {slider}
     </div>
   );
 
@@ -62,9 +67,10 @@ export default function Dashboard({ state, actions }) {
 
       {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
+        {/* Year slider sits above the map in normal flow (no overlap) */}
+        <div className="flex justify-center shrink-0">{slider}</div>
         {/* Map */}
         <div className="relative h-[55vh] min-h-[380px] bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden shrink-0">
-          {timelineOverlay}
           <ColombiaMap
             data={departments}
             metric={metric}
