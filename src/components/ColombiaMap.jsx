@@ -112,7 +112,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   const isEmpty = geographies.length === 0;
 
   return (
-    <div className="relative w-full h-full min-h-[500px] flex flex-col items-center justify-center">
+    <div className="relative w-full h-full flex flex-col items-center justify-center">
       {isEmpty ? (
         <div className="flex flex-col items-center gap-3 text-slate-400 p-8 text-center">
           <svg className="w-16 h-16 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">

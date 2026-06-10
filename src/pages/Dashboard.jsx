@@ -51,7 +51,7 @@ export default function Dashboard({ state, actions }) {
       {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
         {/* Map */}
-        <div className="h-[55vh] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden shrink-0">
+        <div className="h-[55vh] min-h-[380px] bg-white rounded-2xl shadow-sm border border-slate-100 overflow-hidden shrink-0">
           <ColombiaMap
             data={departments}
             metric={metric}
