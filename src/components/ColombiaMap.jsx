@@ -1,8 +1,12 @@
-import { useEffect, useState } from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { useEffect, useRef, useState } from "react";
+import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
+import { geoCentroid, geoBounds } from "d3-geo";
 
 const GEO_URL = "/colombia.geojson";
+
+const DEFAULT_CENTER = [-74, 4];
+const DEFAULT_ZOOM = 1;
 
 function getDeptCode(geo) {
   return (
@@ -15,9 +19,20 @@ function getDeptCode(geo) {
   );
 }
 
+// Derive a zoom level that frames a department from its geographic bounds.
+function zoomForFeature(feature) {
+  const [[x0, y0], [x1, y1]] = geoBounds(feature);
+  const maxSpan = Math.max(x1 - x0, y1 - y0); // degrees
+  // ~7° span → zoom 1.5, ~1° span → zoom 6, clamped
+  return Math.max(2, Math.min(6, 7 / maxSpan));
+}
+
 export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   const [geographies, setGeographies] = useState([]);
-  const [tooltip, setTooltip] = useState(null); // { name, x, y }
+  const [tooltip, setTooltip] = useState(null);
+  const [position, setPosition] = useState({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+
+  const animRef = useRef(null);
 
   useEffect(() => {
     fetch(GEO_URL)
@@ -25,6 +40,44 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
       .then((fc) => setGeographies(fc.features ?? []))
       .catch(() => {});
   }, []);
+
+  // Animate center/zoom whenever the selection changes.
+  useEffect(() => {
+    if (geographies.length === 0) return;
+
+    let target;
+    if (!selectedId) {
+      target = { coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM };
+    } else {
+      const feature = geographies.find((g) => getDeptCode(g) === selectedId);
+      if (!feature) return;
+      target = { coordinates: geoCentroid(feature), zoom: zoomForFeature(feature) };
+    }
+
+    cancelAnimationFrame(animRef.current);
+
+    const start = position;
+    const startTime = performance.now();
+    const duration = 600;
+    const ease = (t) => 1 - Math.pow(1 - t, 3); // ease-out cubic
+
+    const tick = (now) => {
+      const t = Math.min(1, (now - startTime) / duration);
+      const k = ease(t);
+      setPosition({
+        coordinates: [
+          start.coordinates[0] + (target.coordinates[0] - start.coordinates[0]) * k,
+          start.coordinates[1] + (target.coordinates[1] - start.coordinates[1]) * k,
+        ],
+        zoom: start.zoom + (target.zoom - start.zoom) * k,
+      });
+      if (t < 1) animRef.current = requestAnimationFrame(tick);
+    };
+
+    animRef.current = requestAnimationFrame(tick);
+    return () => cancelAnimationFrame(animRef.current);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedId, geographies]);
 
   const colorScale = scaleLinear()
     .domain(metric.domain)
@@ -62,50 +115,58 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
           height={900}
           style={{ width: "100%", height: "100%", display: "block" }}
         >
-          <Geographies geography={{ type: "FeatureCollection", features: geographies }}>
-            {({ geographies: geos }) =>
-              geos.map((geo) => {
-                const code = getDeptCode(geo);
-                const dept = data[code];
-                const isSelected = code === selectedId;
-                return (
-                  <Geography
-                    key={geo.rsmKey}
-                    geography={geo}
-                    fill={getFill(geo)}
-                    stroke="#fff"
-                    strokeWidth={0.5}
-                    style={{
-                      default: {
-                        outline: "none",
-                        opacity: isSelected ? 1 : 0.85,
-                        filter: isSelected ? "drop-shadow(0 0 4px rgba(0,0,0,0.3))" : "none",
-                      },
-                      hover: { outline: "none", opacity: 1, cursor: "pointer" },
-                      pressed: { outline: "none" },
-                    }}
-                    onClick={() => onSelect(code === selectedId ? null : code)}
-                    onMouseEnter={(e) => {
-                      if (dept) {
-                        setTooltip({
-                          name: dept.name,
-                          value: metric.format(dept[metric.id]),
-                          x: e.clientX,
-                          y: e.clientY,
-                        });
-                      }
-                    }}
-                    onMouseMove={(e) => {
-                      if (tooltip) {
-                        setTooltip((t) => ({ ...t, x: e.clientX, y: e.clientY }));
-                      }
-                    }}
-                    onMouseLeave={() => setTooltip(null)}
-                  />
-                );
-              })
-            }
-          </Geographies>
+          <ZoomableGroup
+            center={position.coordinates}
+            zoom={position.zoom}
+            minZoom={1}
+            maxZoom={8}
+            onMoveEnd={setPosition}
+          >
+            <Geographies geography={{ type: "FeatureCollection", features: geographies }}>
+              {({ geographies: geos }) =>
+                geos.map((geo) => {
+                  const code = getDeptCode(geo);
+                  const dept = data[code];
+                  const isSelected = code === selectedId;
+                  return (
+                    <Geography
+                      key={geo.rsmKey}
+                      geography={geo}
+                      fill={getFill(geo)}
+                      stroke="#fff"
+                      strokeWidth={0.5}
+                      style={{
+                        default: {
+                          outline: "none",
+                          opacity: isSelected ? 1 : 0.85,
+                          filter: isSelected ? "drop-shadow(0 0 4px rgba(0,0,0,0.3))" : "none",
+                        },
+                        hover: { outline: "none", opacity: 1, cursor: "pointer" },
+                        pressed: { outline: "none" },
+                      }}
+                      onClick={() => onSelect(code === selectedId ? null : code)}
+                      onMouseEnter={(e) => {
+                        if (dept) {
+                          setTooltip({
+                            name: dept.name,
+                            value: metric.format(dept[metric.id]),
+                            x: e.clientX,
+                            y: e.clientY,
+                          });
+                        }
+                      }}
+                      onMouseMove={(e) => {
+                        if (tooltip) {
+                          setTooltip((t) => ({ ...t, x: e.clientX, y: e.clientY }));
+                        }
+                      }}
+                      onMouseLeave={() => setTooltip(null)}
+                    />
+                  );
+                })
+              }
+            </Geographies>
+          </ZoomableGroup>
         </ComposableMap>
       )}
 
@@ -118,6 +179,16 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
           <p className="font-semibold">{tooltip.name}</p>
           <p className="text-slate-300">{metric.label}: {tooltip.value}</p>
         </div>
+      )}
+
+      {/* Reset button (visible when zoomed into a department) */}
+      {!isEmpty && selectedId && (
+        <button
+          onClick={() => onSelect(null)}
+          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-lg px-3 py-1.5 shadow text-xs font-medium text-slate-600 transition-colors"
+        >
+          Ver todo el país
+        </button>
       )}
 
       {/* Color legend */}

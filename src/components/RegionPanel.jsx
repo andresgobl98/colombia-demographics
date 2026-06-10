@@ -73,7 +73,7 @@ function DonutChart({ data, formatTooltip }) {
             cy="45%"
             innerRadius={48}
             outerRadius={75}
-            paddingAngle={0.1}
+            paddingAngle={1}
             dataKey="value"
           >
             {data.map((entry) => (
