@@ -11,7 +11,7 @@ export default function TopicRanking({ data, metric }) {
   if (entries.length === 0) return null;
 
   return (
-    <div className="bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-4 max-h-[70vh] md:max-h-64 overflow-y-auto">
+    <div className="shrink-0 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-4 max-h-[70vh] md:max-h-64 overflow-y-auto">
       <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-3">
         Ranking — {metric.label}
       </p>
