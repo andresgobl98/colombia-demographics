@@ -229,7 +229,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
       {!isEmpty && isOffDefault && (
         <button
           onClick={resetView}
-          className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-white/90 dark:bg-slate-800/90 hover:bg-white dark:hover:bg-slate-800 rounded-lg px-3 py-1.5 shadow text-xs font-medium text-slate-600 dark:text-slate-200 transition-colors"
+          className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 rounded-lg px-3 py-1.5 shadow-md text-xs font-medium text-slate-700 dark:text-slate-100 transition-colors"
         >
           <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z M12 8v4l2 2" />
