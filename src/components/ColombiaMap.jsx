@@ -2,6 +2,9 @@ import { useEffect, useRef, useState } from "react";
 import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import { geoCentroid, geoBounds } from "d3-geo";
+import SanAndresInset from "./SanAndresInset";
+
+const SAN_ANDRES_CODE = "88";
 
 const GEO_URL = "/colombia.geojson";
 
@@ -111,7 +114,23 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
     return val != null ? colorScale(val) : "var(--map-nodata)";
   };
 
+  // Shared tooltip handlers (used by the main map and the San Andrés inset).
+  const showTooltip = (dept) => (e) => {
+    if (dept) {
+      setTooltip({
+        name: dept.name,
+        value: metric.format(dept[metric.id]),
+        x: e.clientX,
+        y: e.clientY,
+      });
+    }
+  };
+  const moveTooltip = (e) =>
+    setTooltip((t) => (t ? { ...t, x: e.clientX, y: e.clientY } : t));
+  const hideTooltip = () => setTooltip(null);
+
   const isEmpty = geographies.length === 0;
+  const sanAndres = geographies.find((g) => getDeptCode(g) === SAN_ANDRES_CODE);
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
@@ -164,22 +183,9 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
                         pressed: { outline: "none" },
                       }}
                       onClick={() => onSelect(code === selectedId ? null : code)}
-                      onMouseEnter={(e) => {
-                        if (dept) {
-                          setTooltip({
-                            name: dept.name,
-                            value: metric.format(dept[metric.id]),
-                            x: e.clientX,
-                            y: e.clientY,
-                          });
-                        }
-                      }}
-                      onMouseMove={(e) => {
-                        if (tooltip) {
-                          setTooltip((t) => ({ ...t, x: e.clientX, y: e.clientY }));
-                        }
-                      }}
-                      onMouseLeave={() => setTooltip(null)}
+                      onMouseEnter={showTooltip(dept)}
+                      onMouseMove={moveTooltip}
+                      onMouseLeave={hideTooltip}
                     />
                   );
                 })
@@ -187,6 +193,21 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
+      )}
+
+      {/* San Andrés y Providencia inset (top-left, clear of the centered slider) */}
+      {!isEmpty && sanAndres && (
+        <SanAndresInset
+          feature={sanAndres}
+          fill={getFill(sanAndres)}
+          selected={selectedId === SAN_ANDRES_CODE}
+          onClick={() =>
+            onSelect(selectedId === SAN_ANDRES_CODE ? null : SAN_ANDRES_CODE)
+          }
+          onEnter={showTooltip(data[SAN_ANDRES_CODE])}
+          onMove={moveTooltip}
+          onLeave={hideTooltip}
+        />
       )}
 
       {/* Hover tooltip */}
