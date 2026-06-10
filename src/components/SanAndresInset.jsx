@@ -57,7 +57,8 @@ export default function SanAndresInset({
 
   return (
     <div className="absolute top-3 left-3 z-20 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50/95 dark:bg-slate-900/70 backdrop-blur shadow-sm overflow-hidden">
-      <div style={{ width: W, height: H }}>
+      {/* Smaller on mobile so it covers less of the mainland; SVG scales to fit */}
+      <div className="w-[76px] h-[62px] md:w-28 md:h-[92px]">
         <ComposableMap
           projection={projection}
           width={W}

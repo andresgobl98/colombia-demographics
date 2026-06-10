@@ -6,6 +6,15 @@ import SanAndresInset from "./SanAndresInset";
 
 const SAN_ANDRES_CODE = "88";
 
+// Let single-finger touch scroll the page instead of panning the map; still
+// allow pinch-zoom (2+ touches) and desktop wheel/drag. Maps to d3-zoom .filter().
+function filterZoomEvent(event) {
+  if (event.type && event.type.startsWith("touch")) {
+    return event.touches && event.touches.length > 1;
+  }
+  return (!event.ctrlKey || event.type === "wheel") && !event.button;
+}
+
 const GEO_URL = "/colombia.geojson";
 
 const DEFAULT_CENTER = [-74, 4];
@@ -162,6 +171,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
             zoom={position.zoom}
             minZoom={1}
             maxZoom={8}
+            filterZoomEvent={filterZoomEvent}
             onMoveEnd={setPosition}
           >
             <Geographies geography={{ type: "FeatureCollection", features: mainGeographies }}>
