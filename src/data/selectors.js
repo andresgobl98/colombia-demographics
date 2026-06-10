@@ -2,17 +2,21 @@ import staticData from "./departments.json";
 import seriesData from "./timeseries.json";
 
 export const YEARS = seriesData.years;
-export const BASE_YEAR = 2018;
+
+// Ethnicity comes from the 2018 census (CNPV); there is no projection for it.
+// It is shown for every year, flagged in the UI as census-sourced.
+export const CENSUS_YEAR = 2018;
+
+// Default the view to the current calendar year, clamped to the available range.
+export const DEFAULT_YEAR = (() => {
+  const now = new Date().getFullYear();
+  return Math.min(YEARS[YEARS.length - 1], Math.max(YEARS[0], now));
+})();
 
 // Index of a given year in the series arrays.
 export function yearIndex(year) {
   const i = YEARS.indexOf(year);
   return i === -1 ? YEARS.length - 1 : i;
-}
-
-// Ethnicity is census-only (2018). Attach it only when viewing that year.
-function ethnicityFor(year, staticEntry) {
-  return year === BASE_YEAR ? staticEntry.ethnicity2018 : undefined;
 }
 
 // Merge static + time-series into the flat shape the UI components expect,
@@ -27,7 +31,7 @@ function assembleDept(code, year) {
     area_km2:  s.area_km2,
     population: t.population[i],
     sex:       { male: t.male[i], female: t.female[i] },
-    ethnicity: ethnicityFor(year, s),
+    ethnicity: s.ethnicity2018, // census 2018, shown for all years
   };
 }
 
@@ -51,6 +55,6 @@ export function getNational(year) {
     area_km2:    s.area_km2,
     population:  t.population[i],
     sex:         { male: t.male[i], female: t.female[i] },
-    ethnicity:   ethnicityFor(year, s),
+    ethnicity:   s.ethnicity2018, // census 2018, shown for all years
   };
 }

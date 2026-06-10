@@ -23,7 +23,7 @@ const ETHNICITY_LABELS = {
   sin_informacion: "Sin información",
 };
 
-export default function RegionPanel({ department, national, onBack }) {
+export default function RegionPanel({ department, national, year, onBack }) {
   const isNational = !department;
   const display    = isNational ? national : department;
 
@@ -61,14 +61,15 @@ export default function RegionPanel({ department, national, onBack }) {
         {isNational ? (
           <>
             <h2 className="text-xl font-bold text-slate-800">Colombia</h2>
-            <p className="text-sm text-slate-400">Total nacional · CNPV 2018</p>
+            <p className="text-sm text-slate-400">Total nacional · {year}</p>
           </>
         ) : (
           <>
             <h2 className="text-xl font-bold text-slate-800">{department.name}</h2>
-            {department.capital && (
-              <p className="text-sm text-slate-400">Capital: {department.capital}</p>
-            )}
+            <p className="text-sm text-slate-400">
+              {department.capital ? `Capital: ${department.capital}` : ""}
+              {department.capital ? " · " : ""}{year}
+            </p>
           </>
         )}
       </div>
@@ -110,8 +111,17 @@ export default function RegionPanel({ department, national, onBack }) {
       {/* Desglose por etnia */}
       {ethnicityData.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-slate-600 mb-2">Autorreconocimiento étnico</p>
+          <div className="flex items-baseline justify-between mb-2 gap-2">
+            <p className="text-sm font-semibold text-slate-600">Autorreconocimiento étnico</p>
+            <span className="text-[10px] font-medium text-amber-700 bg-amber-50 border border-amber-200 rounded-full px-2 py-0.5 shrink-0">
+              Censo 2018
+            </span>
+          </div>
           <BarBreakdown data={ethnicityData} />
+          <p className="text-[11px] text-slate-400 mt-2 leading-snug">
+            Composición étnica del Censo Nacional 2018 (CNPV). El DANE no publica
+            proyección étnica, por lo que este desglose no varía entre años.
+          </p>
         </div>
       )}
 

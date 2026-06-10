@@ -1,13 +1,13 @@
 import { useState, useMemo } from "react";
 import Dashboard from "./pages/Dashboard";
 import { METRICS } from "./data/metrics";
-import { getDepartments, getNational, BASE_YEAR, YEARS } from "./data/selectors";
+import { getDepartments, getNational, DEFAULT_YEAR, YEARS } from "./data/selectors";
 import { Analytics } from "@vercel/analytics/react";
 
 export default function App() {
   const [selectedMetricId, setSelectedMetricId] = useState(METRICS[0].id);
   const [selectedDeptCode, setSelectedDeptCode] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(BASE_YEAR);
+  const [selectedYear, setSelectedYear] = useState(DEFAULT_YEAR);
 
   // Rebuild the year's view only when the year changes.
   const departments = useMemo(() => getDepartments(selectedYear), [selectedYear]);

@@ -27,7 +27,7 @@ export default function Dashboard({ state, actions }) {
           </div>
           <div>
             <h1 className="text-base font-bold text-slate-800 leading-none">Colombia en Datos</h1>
-            <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">CNPV 2018 · Explorador departamental</p>
+            <p className="text-xs text-slate-400 mt-0.5 hidden sm:block">DANE · Censo 2018 y proyecciones 2018–2050</p>
           </div>
         </div>
         <MetricSelector
@@ -52,7 +52,7 @@ export default function Dashboard({ state, actions }) {
           <TopicRanking data={departments} metric={metric} />
         </main>
         <aside className="w-80 bg-white border-l border-slate-200 overflow-y-auto">
-          <RegionPanel department={selectedDept} national={national} />
+          <RegionPanel department={selectedDept} national={national} year={selectedYear} />
         </aside>
       </div>
 
@@ -82,6 +82,7 @@ export default function Dashboard({ state, actions }) {
           <RegionPanel
             department={selectedDept}
             national={national}
+            year={selectedYear}
             onBack={() => setSelectedDeptCode(null)}
           />
         )}
@@ -89,7 +90,7 @@ export default function Dashboard({ state, actions }) {
 
       {/* ── Footer (desktop only) ───────────────────────────────────────────── */}
       <footer className="hidden md:flex bg-white border-t border-slate-200 px-6 py-3 items-center justify-between text-xs text-slate-400 shrink-0">
-        <span>Datos: DANE · CNPV 2018</span>
+        <span>Datos: DANE · Censo 2018 y proyecciones PPED 2018–2050</span>
         <span>
           Desarrollado por{" "}
           <a href="https://github.com/andresgobl98" target="_blank" rel="noreferrer" className="text-slate-500 hover:text-blue-600 transition-colors">
