@@ -82,7 +82,9 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   useEffect(() => {
     if (geographies.length === 0) return;
 
-    if (!selectedId) {
+    // No selection, or San Andrés (lives in the inset, not the mainland map):
+    // show the whole country while the inset carries the highlight.
+    if (!selectedId || selectedId === SAN_ANDRES_CODE) {
       animateTo({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
       return;
     }
@@ -131,6 +133,8 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
 
   const isEmpty = geographies.length === 0;
   const sanAndres = geographies.find((g) => getDeptCode(g) === SAN_ANDRES_CODE);
+  // San Andrés is shown in its own inset, so keep it out of the mainland map.
+  const mainGeographies = geographies.filter((g) => getDeptCode(g) !== SAN_ANDRES_CODE);
 
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
@@ -160,7 +164,7 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
             maxZoom={8}
             onMoveEnd={setPosition}
           >
-            <Geographies geography={{ type: "FeatureCollection", features: geographies }}>
+            <Geographies geography={{ type: "FeatureCollection", features: mainGeographies }}>
               {({ geographies: geos }) =>
                 geos.map((geo) => {
                   const code = getDeptCode(geo);
