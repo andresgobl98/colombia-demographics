@@ -1,14 +1,9 @@
 {
   "national": {
     "name": "Colombia",
-    "area_km2": 1141748,
-    "population": 44164417,
     "departments": 33,
-    "sex": {
-      "male": 21570493,
-      "female": 22593924
-    },
-    "ethnicity": {
+    "area_km2": 1141748,
+    "ethnicity2018": {
       "indigena": 4.28,
       "gitano_rrom": 0.01,
       "raizal": 0.06,
@@ -23,12 +18,7 @@
       "name": "Antioquia",
       "capital": "Medellín",
       "area_km2": 63612,
-      "population": 5974788,
-      "sex": {
-        "male": 2885383,
-        "female": 3089405
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.63,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -42,12 +32,7 @@
       "name": "Atlántico",
       "capital": "Barranquilla",
       "area_km2": 3388,
-      "population": 2342265,
-      "sex": {
-        "male": 1140357,
-        "female": 1201908
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 1.67,
         "gitano_rrom": 0.0,
         "raizal": 0.02,
@@ -61,12 +46,7 @@
       "name": "Bogotá, D.C.",
       "capital": "Bogotá",
       "area_km2": 1587,
-      "population": 7181469,
-      "sex": {
-        "male": 3433586,
-        "female": 3747883
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.26,
         "gitano_rrom": 0.01,
         "raizal": 0.01,
@@ -80,12 +60,7 @@
       "name": "Bolívar",
       "capital": "Cartagena",
       "area_km2": 25978,
-      "population": 1909460,
-      "sex": {
-        "male": 947598,
-        "female": 961862
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.27,
         "gitano_rrom": 0.0,
         "raizal": 0.03,
@@ -99,12 +74,7 @@
       "name": "Boyacá",
       "capital": "Tunja",
       "area_km2": 23189,
-      "population": 1135698,
-      "sex": {
-        "male": 559084,
-        "female": 576614
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.61,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -118,12 +88,7 @@
       "name": "Caldas",
       "capital": "Manizales",
       "area_km2": 7888,
-      "population": 923472,
-      "sex": {
-        "male": 447499,
-        "female": 475973
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 6.08,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -137,12 +102,7 @@
       "name": "Caquetá",
       "capital": "Florencia",
       "area_km2": 88965,
-      "population": 359602,
-      "sex": {
-        "male": 182378,
-        "female": 177224
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 2.41,
         "gitano_rrom": 0.01,
         "raizal": 0.01,
@@ -156,12 +116,7 @@
       "name": "Cauca",
       "capital": "Popayán",
       "area_km2": 29308,
-      "population": 1243503,
-      "sex": {
-        "male": 615833,
-        "female": 627670
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 24.9,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -175,12 +130,7 @@
       "name": "Cesar",
       "capital": "Valledupar",
       "area_km2": 22905,
-      "population": 1098577,
-      "sex": {
-        "male": 543838,
-        "female": 554739
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 4.66,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -194,12 +144,7 @@
       "name": "Córdoba",
       "capital": "Montería",
       "area_km2": 25020,
-      "population": 1555596,
-      "sex": {
-        "male": 774448,
-        "female": 781148
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 13.05,
         "gitano_rrom": 0.01,
         "raizal": 0.01,
@@ -213,12 +158,7 @@
       "name": "Cundinamarca",
       "capital": "Bogotá",
       "area_km2": 24210,
-      "population": 2792877,
-      "sex": {
-        "male": 1379858,
-        "female": 1413019
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.36,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -232,12 +172,7 @@
       "name": "Chocó",
       "capital": "Quibdó",
       "area_km2": 46530,
-      "population": 457412,
-      "sex": {
-        "male": 225982,
-        "female": 231430
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 15.05,
         "gitano_rrom": 0.01,
         "raizal": 0.03,
@@ -251,12 +186,7 @@
       "name": "Huila",
       "capital": "Neiva",
       "area_km2": 19890,
-      "population": 1009548,
-      "sex": {
-        "male": 503766,
-        "female": 505782
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 1.21,
         "gitano_rrom": 0.0,
         "raizal": 0.0,
@@ -270,12 +200,7 @@
       "name": "La Guajira",
       "capital": "Riohacha",
       "area_km2": 20848,
-      "population": 825364,
-      "sex": {
-        "male": 404215,
-        "female": 421149
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 47.64,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -289,12 +214,7 @@
       "name": "Magdalena",
       "capital": "Santa Marta",
       "area_km2": 23188,
-      "population": 1263788,
-      "sex": {
-        "male": 632502,
-        "female": 631286
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 1.63,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -308,12 +228,7 @@
       "name": "Meta",
       "capital": "Villavicencio",
       "area_km2": 85635,
-      "population": 919129,
-      "sex": {
-        "male": 464906,
-        "female": 454223
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 2.22,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -327,12 +242,7 @@
       "name": "Nariño",
       "capital": "Pasto",
       "area_km2": 33268,
-      "population": 1335521,
-      "sex": {
-        "male": 653754,
-        "female": 681767
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 15.55,
         "gitano_rrom": 0.01,
         "raizal": 0.01,
@@ -346,12 +256,7 @@
       "name": "Norte de Santander",
       "capital": "Cúcuta",
       "area_km2": 21648,
-      "population": 1346806,
-      "sex": {
-        "male": 664057,
-        "female": 682749
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.34,
         "gitano_rrom": 0.02,
         "raizal": 0.0,
@@ -365,12 +270,7 @@
       "name": "Quindío",
       "capital": "Armenia",
       "area_km2": 1845,
-      "population": 509640,
-      "sex": {
-        "male": 245663,
-        "female": 263977
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.56,
         "gitano_rrom": 0.0,
         "raizal": 0.0,
@@ -384,12 +284,7 @@
       "name": "Risaralda",
       "capital": "Pereira",
       "area_km2": 4140,
-      "population": 839597,
-      "sex": {
-        "male": 401748,
-        "female": 437849
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 3.55,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -403,12 +298,7 @@
       "name": "Santander",
       "capital": "Bucaramanga",
       "area_km2": 30537,
-      "population": 2008841,
-      "sex": {
-        "male": 983439,
-        "female": 1025402
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.06,
         "gitano_rrom": 0.02,
         "raizal": 0.01,
@@ -422,12 +312,7 @@
       "name": "Sucre",
       "capital": "Sincelejo",
       "area_km2": 10917,
-      "population": 864036,
-      "sex": {
-        "male": 434459,
-        "female": 429577
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 12.19,
         "gitano_rrom": 0.02,
         "raizal": 0.02,
@@ -441,12 +326,7 @@
       "name": "Tolima",
       "capital": "Ibagué",
       "area_km2": 23562,
-      "population": 1228763,
-      "sex": {
-        "male": 609017,
-        "female": 619746
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 3.71,
         "gitano_rrom": 0.01,
         "raizal": 0.0,
@@ -460,12 +340,7 @@
       "name": "Valle del Cauca",
       "capital": "Cali",
       "area_km2": 22140,
-      "population": 3789874,
-      "sex": {
-        "male": 1800614,
-        "female": 1989260
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.81,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -479,12 +354,7 @@
       "name": "Arauca",
       "capital": "Arauca",
       "area_km2": 23818,
-      "population": 239503,
-      "sex": {
-        "male": 121060,
-        "female": 118443
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 2.63,
         "gitano_rrom": 0.0,
         "raizal": 0.02,
@@ -498,12 +368,7 @@
       "name": "Casanare",
       "capital": "Yopal",
       "area_km2": 44640,
-      "population": 379892,
-      "sex": {
-        "male": 192020,
-        "female": 187872
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 1.72,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -517,12 +382,7 @@
       "name": "Putumayo",
       "capital": "Mocoa",
       "area_km2": 24885,
-      "population": 283197,
-      "sex": {
-        "male": 142900,
-        "female": 140297
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 18.02,
         "gitano_rrom": 0.01,
         "raizal": 0.0,
@@ -536,12 +396,7 @@
       "name": "San Andrés y Providencia",
       "capital": "San Andrés",
       "area_km2": 52,
-      "population": 48299,
-      "sex": {
-        "male": 23326,
-        "female": 24973
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 0.04,
         "gitano_rrom": 0.0,
         "raizal": 42.46,
@@ -555,12 +410,7 @@
       "name": "Amazonas",
       "capital": "Leticia",
       "area_km2": 109665,
-      "population": 66056,
-      "sex": {
-        "male": 34422,
-        "female": 31634
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 57.28,
         "gitano_rrom": 0.01,
         "raizal": 0.02,
@@ -574,12 +424,7 @@
       "name": "Guainía",
       "capital": "Inírida",
       "area_km2": 72238,
-      "population": 44431,
-      "sex": {
-        "male": 23214,
-        "female": 21217
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 73.92,
         "gitano_rrom": 0.01,
         "raizal": 0.01,
@@ -593,12 +438,7 @@
       "name": "Guaviare",
       "capital": "San José del Guaviare",
       "area_km2": 53460,
-      "population": 73081,
-      "sex": {
-        "male": 39080,
-        "female": 34001
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 9.35,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
@@ -612,12 +452,7 @@
       "name": "Vaupés",
       "capital": "Mitú",
       "area_km2": 54135,
-      "population": 37690,
-      "sex": {
-        "male": 19793,
-        "female": 17897
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 83.22,
         "gitano_rrom": 0.0,
         "raizal": 0.03,
@@ -631,12 +466,7 @@
       "name": "Vichada",
       "capital": "Puerto Carreño",
       "area_km2": 100242,
-      "population": 76642,
-      "sex": {
-        "male": 40694,
-        "female": 35948
-      },
-      "ethnicity": {
+      "ethnicity2018": {
         "indigena": 58.71,
         "gitano_rrom": 0.0,
         "raizal": 0.01,
