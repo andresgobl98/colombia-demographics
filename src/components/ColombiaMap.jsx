@@ -41,22 +41,14 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
       .catch(() => {});
   }, []);
 
-  // Animate center/zoom whenever the selection changes.
-  useEffect(() => {
-    if (geographies.length === 0) return;
+  // Tween the view to a target { coordinates, zoom }. Reads the latest
+  // position from a ref so callers don't need it as a dependency.
+  const positionRef = useRef(position);
+  positionRef.current = position;
 
-    let target;
-    if (!selectedId) {
-      target = { coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM };
-    } else {
-      const feature = geographies.find((g) => getDeptCode(g) === selectedId);
-      if (!feature) return;
-      target = { coordinates: geoCentroid(feature), zoom: zoomForFeature(feature) };
-    }
-
+  const animateTo = (target) => {
     cancelAnimationFrame(animRef.current);
-
-    const start = position;
+    const start = positionRef.current;
     const startTime = performance.now();
     const duration = 600;
     const ease = (t) => 1 - Math.pow(1 - t, 3); // ease-out cubic
@@ -73,11 +65,36 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
       });
       if (t < 1) animRef.current = requestAnimationFrame(tick);
     };
-
     animRef.current = requestAnimationFrame(tick);
+  };
+
+  const resetView = () => {
+    onSelect(null);
+    animateTo({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+  };
+
+  // Animate to the selected department whenever the selection changes.
+  useEffect(() => {
+    if (geographies.length === 0) return;
+
+    if (!selectedId) {
+      animateTo({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+      return;
+    }
+    const feature = geographies.find((g) => getDeptCode(g) === selectedId);
+    if (!feature) return;
+    animateTo({ coordinates: geoCentroid(feature), zoom: zoomForFeature(feature) });
+
     return () => cancelAnimationFrame(animRef.current);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId, geographies]);
+
+  // True when the map is panned/zoomed away from the national default view.
+  const isOffDefault =
+    !!selectedId ||
+    Math.abs(position.zoom - DEFAULT_ZOOM) > 0.01 ||
+    Math.abs(position.coordinates[0] - DEFAULT_CENTER[0]) > 0.05 ||
+    Math.abs(position.coordinates[1] - DEFAULT_CENTER[1]) > 0.05;
 
   const colorScale = scaleLinear()
     .domain(metric.domain)
@@ -181,13 +198,16 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
         </div>
       )}
 
-      {/* Reset button (visible when zoomed into a department) */}
-      {!isEmpty && selectedId && (
+      {/* Reset button — visible on any non-default view (selection or manual pan/zoom) */}
+      {!isEmpty && isOffDefault && (
         <button
-          onClick={() => onSelect(null)}
-          className="absolute top-4 right-4 bg-white/90 hover:bg-white rounded-lg px-3 py-1.5 shadow text-xs font-medium text-slate-600 transition-colors"
+          onClick={resetView}
+          className="absolute top-4 right-4 flex items-center gap-1.5 bg-white/90 hover:bg-white rounded-lg px-3 py-1.5 shadow text-xs font-medium text-slate-600 transition-colors"
         >
-          Ver todo el país
+          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z M12 8v4l2 2" />
+          </svg>
+          Centrar mapa
         </button>
       )}
 
