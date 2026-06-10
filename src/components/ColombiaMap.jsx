@@ -240,15 +240,15 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
 
       {/* Color legend */}
       {!isEmpty && (
-        <div className="absolute bottom-4 left-4 bg-white/90 dark:bg-slate-800/90 rounded-lg px-3 py-2 shadow text-xs">
-          <p className="font-medium text-slate-600 dark:text-slate-300 mb-1">{metric.label}</p>
+        <div className="absolute bottom-4 left-4 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg px-3 py-2 shadow-md text-xs">
+          <p className="font-semibold text-slate-700 dark:text-slate-100 mb-1">{metric.label}</p>
           <div
             className="h-2 w-32 rounded"
             style={{
               background: `linear-gradient(to right, ${metric.colorRange[0]}, ${metric.colorRange[1]})`,
             }}
           />
-          <div className="flex justify-between text-slate-400 dark:text-slate-500 mt-0.5">
+          <div className="flex justify-between text-slate-600 dark:text-slate-300 mt-0.5">
             <span>{metric.format(metric.domain[0])}</span>
             <span>{metric.format(metric.domain[1])}</span>
           </div>
