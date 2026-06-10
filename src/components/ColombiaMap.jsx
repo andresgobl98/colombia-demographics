@@ -44,7 +44,9 @@ export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
   // Tween the view to a target { coordinates, zoom }. Reads the latest
   // position from a ref so callers don't need it as a dependency.
   const positionRef = useRef(position);
-  positionRef.current = position;
+  useEffect(() => {
+    positionRef.current = position;
+  }, [position]);
 
   const animateTo = (target) => {
     cancelAnimationFrame(animRef.current);
