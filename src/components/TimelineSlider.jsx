@@ -10,7 +10,7 @@ export default function TimelineSlider({ years, value, onChange }) {
   const max = years.length - 1;
 
   return (
-    <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 px-4 py-2 flex items-center gap-3 w-[min(92%,360px)] pointer-events-auto">
+    <div className="bg-white/95 dark:bg-slate-800/95 backdrop-blur rounded-2xl shadow-md border border-slate-100 dark:border-slate-700 px-4 py-2 flex items-center gap-3 w-full pointer-events-auto">
       <div className="shrink-0 text-center w-12">
         <span className="text-lg font-bold text-slate-800 dark:text-slate-100 tabular-nums leading-none">{value}</span>
       </div>
