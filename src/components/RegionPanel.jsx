@@ -30,10 +30,11 @@ export default function RegionPanel({ department, national, code, year, onBack }
   const display    = isNational ? national : department;
 
   // Age pyramid is lazy-loaded (age.json is fetched on first use, then cached).
+  // We don't clear it between updates so year-scrubbing animates instead of
+  // flashing a loading state (the cached data resolves near-instantly).
   const [pyramid, setPyramid] = useState(null);
   useEffect(() => {
     let active = true;
-    setPyramid(null);
     getAgePyramid(code ?? null, year).then((p) => {
       if (active) setPyramid(p);
     });
