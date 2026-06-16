@@ -25,7 +25,7 @@ const ETHNICITY_LABELS = {
   sin_informacion: "Sin información",
 };
 
-export default function RegionPanel({ department, national, code, year, onBack }) {
+export default function RegionPanel({ department, national, code, year, onBack, yearControl }) {
   const isNational = !department;
   const display    = isNational ? national : department;
 
@@ -87,6 +87,9 @@ export default function RegionPanel({ department, national, code, year, onBack }
           </>
         )}
       </div>
+
+      {/* Control de año (solo móvil — el escritorio lo muestra sobre el mapa) */}
+      {yearControl && <div>{yearControl}</div>}
 
       {/* Tarjetas de estadísticas */}
       <div className="grid grid-cols-2 gap-2">

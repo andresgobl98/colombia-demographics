@@ -12,6 +12,13 @@ export default function Dashboard({ state, actions }) {
   const { setSelectedMetricId, setSelectedDeptCode, setSelectedYear } = actions;
 
   const [aboutOpen, setAboutOpen] = useState(false);
+  const [panelOpen, setPanelOpen] = useState(false); // mobile detail panel
+
+  // On mobile, selecting a department opens the detail panel.
+  const handleMobileSelect = (code) => {
+    setSelectedDeptCode(code);
+    if (code) setPanelOpen(true);
+  };
 
   const slider = (
     <TimelineSlider years={years} value={selectedYear} onChange={setSelectedYear} />
@@ -84,32 +91,44 @@ export default function Dashboard({ state, actions }) {
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
         {/* Year slider sits above the map in normal flow (no overlap) */}
         <div className="flex justify-center shrink-0">{slider}</div>
+        {/* Entry point to the national breakdown (panel otherwise only opens on
+            a department tap) */}
+        <button
+          onClick={() => { setSelectedDeptCode(null); setPanelOpen(true); }}
+          className="shrink-0 flex items-center justify-center gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 shadow-sm"
+        >
+          <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
+            <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
+          </svg>
+          Ver resumen nacional
+        </button>
         {/* Map */}
         <div className="relative h-[55vh] min-h-[380px] bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden shrink-0">
           <ColombiaMap
             data={departments}
             metric={metric}
             selectedId={selectedDeptCode}
-            onSelect={setSelectedDeptCode}
+            onSelect={handleMobileSelect}
           />
         </div>
         {/* National ranking lives with the map */}
         <TopicRanking data={departments} metric={metric} />
       </div>
 
-      {/* ── Mobile slide-in panel ───────────────────────────────────────────── */}
+      {/* ── Mobile slide-in panel (national summary or a department) ─────────── */}
       <div
         className={`md:hidden fixed inset-0 z-40 bg-white dark:bg-slate-900 overflow-y-auto transition-transform duration-300 ease-out ${
-          selectedDept ? "translate-x-0" : "translate-x-full"
+          panelOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        {selectedDept && (
+        {panelOpen && (
           <RegionPanel
             department={selectedDept}
             national={national}
             code={selectedDeptCode}
             year={selectedYear}
-            onBack={() => setSelectedDeptCode(null)}
+            onBack={() => { setPanelOpen(false); setSelectedDeptCode(null); }}
+            yearControl={<div className="flex justify-center">{slider}</div>}
           />
         )}
       </div>
