@@ -44,6 +44,25 @@ export function getDepartments(year) {
   return out;
 }
 
+// Age pyramids are heavy, so age.json is loaded on demand (code-split) the
+// first time a pyramid is requested, then cached.
+let _agePromise = null;
+function loadAge() {
+  if (!_agePromise) _agePromise = import("./age.json").then((m) => m.default);
+  return _agePromise;
+}
+
+// Resolve the age-by-sex pyramid for a department (or national when code is
+// null) at a given year: { ageGroups, male[], female[] }.
+export async function getAgePyramid(code, year) {
+  const data = await loadAge();
+  const idx = data.years.indexOf(year);
+  const i = idx === -1 ? data.years.length - 1 : idx;
+  const src = code ? data.departments[code] : data.national;
+  if (!src) return null;
+  return { ageGroups: data.ageGroups, male: src.male[i], female: src.female[i] };
+}
+
 // National aggregate for a given year.
 export function getNational(year) {
   const s = staticData.national;

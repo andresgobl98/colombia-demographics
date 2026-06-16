@@ -76,7 +76,7 @@ export default function Dashboard({ state, actions }) {
           <TopicRanking data={departments} metric={metric} />
         </main>
         <aside className="w-80 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 overflow-y-auto">
-          <RegionPanel department={selectedDept} national={national} year={selectedYear} />
+          <RegionPanel department={selectedDept} national={national} code={selectedDeptCode} year={selectedYear} />
         </aside>
       </div>
 
@@ -107,6 +107,7 @@ export default function Dashboard({ state, actions }) {
           <RegionPanel
             department={selectedDept}
             national={national}
+            code={selectedDeptCode}
             year={selectedYear}
             onBack={() => setSelectedDeptCode(null)}
           />

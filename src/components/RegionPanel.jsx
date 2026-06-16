@@ -1,5 +1,7 @@
-import { DonutChart, BarBreakdown } from "./charts";
+import { useState, useEffect } from "react";
+import { DonutChart, BarBreakdown, PopulationPyramid } from "./charts";
 import { StatCard } from "./ui";
+import { getAgePyramid } from "../data/selectors";
 
 const SEX_COLORS = { male: "#3b82f6", female: "#f43f5e" };
 const SEX_LABELS  = { male: "Hombres", female: "Mujeres" };
@@ -23,9 +25,20 @@ const ETHNICITY_LABELS = {
   sin_informacion: "Sin información",
 };
 
-export default function RegionPanel({ department, national, year, onBack }) {
+export default function RegionPanel({ department, national, code, year, onBack }) {
   const isNational = !department;
   const display    = isNational ? national : department;
+
+  // Age pyramid is lazy-loaded (age.json is fetched on first use, then cached).
+  const [pyramid, setPyramid] = useState(null);
+  useEffect(() => {
+    let active = true;
+    setPyramid(null);
+    getAgePyramid(code ?? null, year).then((p) => {
+      if (active) setPyramid(p);
+    });
+    return () => { active = false; };
+  }, [code, year]);
 
   const sexData = Object.entries(display?.sex ?? {}).map(([key, value]) => ({
     name:  SEX_LABELS[key]  ?? key,
@@ -107,6 +120,22 @@ export default function RegionPanel({ department, national, year, onBack }) {
           />
         </div>
       )}
+
+      {/* Pirámide poblacional por edad y sexo */}
+      <div>
+        <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">
+          Pirámide poblacional
+        </p>
+        {pyramid ? (
+          <PopulationPyramid
+            ageGroups={pyramid.ageGroups}
+            male={pyramid.male}
+            female={pyramid.female}
+          />
+        ) : (
+          <p className="text-xs text-slate-400 dark:text-slate-500">Cargando…</p>
+        )}
+      </div>
 
       {/* Desglose por etnia */}
       {ethnicityData.length > 0 && (
