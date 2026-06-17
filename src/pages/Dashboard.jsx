@@ -24,6 +24,13 @@ export default function Dashboard({ state, actions }) {
     <TimelineSlider years={years} value={selectedYear} onChange={setSelectedYear} />
   );
 
+  // Lives next to the map (the component it affects), not in the global header.
+  const metricControl = (
+    <div className="flex justify-end shrink-0">
+      <MetricSelector metrics={metrics} selected={metric.id} onChange={setSelectedMetricId} />
+    </div>
+  );
+
   // Desktop: float the slider over the top of the map (capped, centered).
   const timelineOverlay = (
     <div className="absolute top-3 inset-x-0 z-30 flex justify-center px-3 pointer-events-none">
@@ -48,11 +55,6 @@ export default function Dashboard({ state, actions }) {
           </div>
         </div>
         <div className="flex items-center gap-2">
-          <MetricSelector
-            metrics={metrics}
-            selected={metric.id}
-            onChange={setSelectedMetricId}
-          />
           <button
             onClick={() => setAboutOpen(true)}
             aria-label="Acerca de"
@@ -71,6 +73,7 @@ export default function Dashboard({ state, actions }) {
       {/* ── Desktop layout (md+) ────────────────────────────────────────────── */}
       <div className="hidden md:flex flex-1 overflow-hidden">
         <main className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
+          {metricControl}
           <div className="relative flex-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
             {timelineOverlay}
             <ColombiaMap
@@ -89,6 +92,8 @@ export default function Dashboard({ state, actions }) {
 
       {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
+        {/* Map controls sit above the map: coloring metric, then year */}
+        {metricControl}
         {/* Year slider sits above the map in normal flow, full width */}
         <div className="shrink-0">{slider}</div>
         {/* Map */}
