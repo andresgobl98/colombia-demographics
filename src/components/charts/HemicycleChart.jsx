@@ -16,15 +16,15 @@ export default function HemicycleChart({ parties, highlightId = null, onHighligh
   const total = parties.reduce((a, p) => a + p.seats, 0);
   if (total === 0) return null;
 
-  const W = 440;
-  const H = 232;
-  const margin = 14;
+  const W = 480;
+  const H = 252;
+  const margin = 12;
   const cx = W / 2;
   const baseY = H - margin;
   const Rout = W / 2 - margin; // outer radius in px
 
   const rows = Math.max(3, Math.ceil(Math.sqrt(total / 3)));
-  const innerFrac = 0.55;
+  const innerFrac = 0.46; // smaller hole → rings spread out, less cramped
   const radii = Array.from({ length: rows }, (_, i) =>
     innerFrac + (1 - innerFrac) * (rows === 1 ? 1 : i / (rows - 1))
   );
@@ -61,7 +61,7 @@ export default function HemicycleChart({ parties, highlightId = null, onHighligh
   // Seat radius from outer-row spacing and row gap.
   const arcOuter = (Math.PI * Rout) / counts[rows - 1];
   const rowGap = ((1 - innerFrac) * Rout) / Math.max(1, rows - 1);
-  const seatR = Math.max(3, Math.min(arcOuter * 0.42, rowGap * 0.46));
+  const seatR = Math.max(3.5, Math.min(arcOuter * 0.48, rowGap * 0.46));
 
   // Assign parties in order to the angle-sorted seats.
   const expanded = parties.flatMap((p) => Array(p.seats).fill(p));

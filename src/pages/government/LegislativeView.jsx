@@ -23,6 +23,12 @@ export default function LegislativeView() {
     []
   );
 
+  // High → low representation: legend reads top-to-bottom, hemicycle left-to-right.
+  const orderedParties = useMemo(
+    () => [...PARTIES].sort((a, b) => b.seats - a.seats),
+    []
+  );
+
   const roster = selectedDept
     ? REPRESENTATIVES.filter((r) => r.departmentCode === selectedDept)
     : REPRESENTATIVES;
@@ -44,9 +50,9 @@ export default function LegislativeView() {
       <Card className="p-4 md:p-6">
         <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-3">Distribución de curules</p>
         <div className="grid md:grid-cols-2 gap-6 items-center">
-          <HemicycleChart parties={PARTIES} highlightId={highlight} onHighlight={setHighlight} />
+          <HemicycleChart parties={orderedParties} highlightId={highlight} onHighlight={setHighlight} />
           <ul className="flex flex-col gap-1.5">
-            {PARTIES.map((p) => (
+            {orderedParties.map((p) => (
               <li
                 key={p.id}
                 onMouseEnter={() => setHighlight(p.id)}
