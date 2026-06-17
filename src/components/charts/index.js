@@ -3,3 +3,4 @@
 export { default as DonutChart } from "./DonutChart";
 export { default as BarBreakdown } from "./BarBreakdown";
 export { default as PopulationPyramid } from "./PopulationPyramid";
+export { default as HemicycleChart } from "./HemicycleChart";

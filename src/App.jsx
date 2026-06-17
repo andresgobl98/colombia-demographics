@@ -1,42 +1,21 @@
-import { useState, useMemo } from "react";
-import Dashboard from "./pages/Dashboard";
-import { METRICS } from "./data/metrics";
-import { getDepartments, getNational, DEFAULT_YEAR, YEARS } from "./data/selectors";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
+import AppLayout from "./layouts/AppLayout";
+import DemographicsPage from "./pages/DemographicsPage";
+import GovernmentPage from "./pages/GovernmentPage";
 
 export default function App() {
-  const [selectedMetricId, setSelectedMetricId] = useState(METRICS[0].id);
-  const [selectedDeptCode, setSelectedDeptCode] = useState(null);
-  const [selectedYear, setSelectedYear] = useState(DEFAULT_YEAR);
-
-  // Rebuild the year's view only when the year changes.
-  const departments = useMemo(() => getDepartments(selectedYear), [selectedYear]);
-  const national    = useMemo(() => getNational(selectedYear), [selectedYear]);
-
-  const metric       = METRICS.find((m) => m.id === selectedMetricId);
-  const selectedDept = selectedDeptCode ? departments[selectedDeptCode] : null;
-
-  const state = {
-    metrics: METRICS,
-    metric,
-    selectedDeptCode,
-    selectedDept,
-    selectedYear,
-    years: YEARS,
-    departments,
-    national,
-  };
-
-  const actions = {
-    setSelectedMetricId,
-    setSelectedDeptCode,
-    setSelectedYear,
-  };
-
   return (
-    <>
+    <BrowserRouter>
+      <Routes>
+        <Route element={<AppLayout />}>
+          <Route path="/" element={<DemographicsPage />} />
+          <Route path="/gobierno" element={<Navigate to="/gobierno/legislativo" replace />} />
+          <Route path="/gobierno/:branch" element={<GovernmentPage />} />
+          <Route path="*" element={<Navigate to="/" replace />} />
+        </Route>
+      </Routes>
       <Analytics />
-      <Dashboard state={state} actions={actions} />
-    </>
+    </BrowserRouter>
   );
 }
