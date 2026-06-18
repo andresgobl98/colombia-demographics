@@ -1,10 +1,30 @@
 import { useState, useMemo } from "react";
 import { HemicycleChart } from "../../components/charts";
 import RepresentationMap from "../../components/RepresentationMap";
-import { CHAMBERS, PARTY_META, partiesForChamber } from "../../data/congress";
+import { CHAMBERS, PARTY_META, CONSTITUENCY_META, partiesForChamber } from "../../data/congress";
 import deptData from "../../data/departments.json";
 
 const deptName = (code) => deptData.departments[code]?.name ?? code;
+
+// Condense the official committee string, e.g.
+// "Comisión Séptima Constitucional Permanente (Constitucional) | Comisión …"
+// → "Comisión Séptima  (+1)".
+function shortCommission(raw) {
+  const parts = raw.split("|").map((s) => s.trim()).filter(Boolean);
+  const first = parts[0]
+    .replace("Constitucional Permanente", "")
+    .replace(/\s*\([^)]*\)\s*/g, "")
+    .replace(/\s+/g, " ")
+    .trim();
+  return parts.length > 1 ? `${first} (+${parts.length - 1})` : first;
+}
+
+// Tags worth flagging in the roster (territorial / national are the norm).
+const SPECIAL_CONSTITUENCIES = new Set(["indigena", "afro", "citrep", "comunes", "internacional", "runnerup"]);
+const SPECIAL_LABEL = {
+  indigena: "Indígena", afro: "Afro", citrep: "CITREP",
+  comunes: "Paz", internacional: "Exterior", runnerup: "Oposición",
+};
 
 function Card({ children, className = "" }) {
   return (
@@ -41,6 +61,8 @@ export default function LegislativeView() {
     setHighlight(null);
   };
 
+  // The Cámara carries its complete roster; the Senado carries a verified sample.
+  const fullRoster = chamberId === "camara";
   const roster =
     chamber.byDepartment && selectedDept
       ? chamber.members.filter((m) => m.departmentCode === selectedDept)
@@ -54,8 +76,11 @@ export default function LegislativeView() {
           <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{chamber.name}</h2>
           <p className="text-sm text-slate-400 dark:text-slate-500">
             Periodo {chamber.period} · {chamber.totalSeats} curules
-            <span className="ml-2 text-[11px] font-medium text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50 rounded-full px-2 py-0.5">
-              Datos ilustrativos
+            {fullRoster && chamber.members.length < chamber.totalSeats && (
+              <> · {chamber.members.length} en ejercicio</>
+            )}
+            <span className="ml-2 text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
+              {fullRoster ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
             </span>
           </p>
         </div>
@@ -108,7 +133,8 @@ export default function LegislativeView() {
           <Card className="p-4 flex flex-col">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
-                {selectedDept ? `Representantes · ${deptName(selectedDept)}` : "Representantes (muestra)"}
+                {selectedDept ? `Representantes · ${deptName(selectedDept)}` : "Representantes"}
+                <span className="ml-1.5 font-normal text-slate-400 dark:text-slate-500">({roster.length})</span>
               </p>
               {selectedDept && (
                 <button onClick={() => setSelectedDept(null)} className="text-xs text-blue-600 dark:text-blue-400 hover:underline">
@@ -116,7 +142,9 @@ export default function LegislativeView() {
                 </button>
               )}
             </div>
-            <MemberList members={roster} emptyHint={`Sin representantes en los datos de muestra para ${deptName(selectedDept)}.`} />
+            <div className="overflow-y-auto max-h-[420px] pr-1">
+              <MemberList members={roster} emptyHint={`No hay representantes de ${deptName(selectedDept)} en el directorio.`} />
+            </div>
           </Card>
         </div>
       ) : (
@@ -126,6 +154,9 @@ export default function LegislativeView() {
             El Senado se elige por circunscripción nacional, por lo que sus curules no se asignan por departamento.
           </p>
           <MemberList members={roster} />
+          <p className="mt-3 text-[11px] text-slate-400 dark:text-slate-500">
+            El conteo de curules es completo; el listado de nombres es una selección verificada.
+          </p>
         </Card>
       )}
     </div>
@@ -141,13 +172,41 @@ function MemberList({ members, emptyHint }) {
       {members.map((m) => {
         const party = PARTY_META[m.partyId];
         return (
-          <li key={m.id} className="flex items-center gap-3 py-2.5">
-            <span className="w-2.5 h-2.5 rounded-full shrink-0" style={{ backgroundColor: party.color }} />
+          <li key={m.id} className="flex items-start gap-3 py-2.5">
+            <span className="w-2.5 h-2.5 rounded-full shrink-0 mt-1.5" style={{ backgroundColor: party.color }} />
             <div className="min-w-0 flex-1">
               <p className="text-sm text-slate-800 dark:text-slate-100 truncate">{m.name}</p>
               <p className="text-xs text-slate-400 dark:text-slate-500 truncate">
                 {party.name}{m.departmentCode ? ` · ${deptName(m.departmentCode)}` : ""}
               </p>
+              {m.commission && (
+                <p className="text-[11px] text-slate-400 dark:text-slate-500 truncate" title={m.commission}>
+                  {shortCommission(m.commission)}
+                </p>
+              )}
+            </div>
+            <div className="shrink-0 flex flex-col items-end gap-1">
+              {SPECIAL_CONSTITUENCIES.has(m.constituency) && (
+                <span
+                  title={CONSTITUENCY_META[m.constituency]}
+                  className="text-[10px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5"
+                >
+                  {SPECIAL_LABEL[m.constituency]}
+                </span>
+              )}
+              {m.email && (
+                <a
+                  href={`mailto:${m.email}`}
+                  title={m.email}
+                  className="text-slate-300 hover:text-blue-600 dark:text-slate-600 dark:hover:text-blue-400 transition-colors"
+                  aria-label={`Escribir a ${m.name}`}
+                >
+                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                    <rect x="3" y="5" width="18" height="14" rx="2" />
+                    <path strokeLinecap="round" strokeLinejoin="round" d="m3 7 9 6 9-6" />
+                  </svg>
+                </a>
+              )}
             </div>
           </li>
         );
