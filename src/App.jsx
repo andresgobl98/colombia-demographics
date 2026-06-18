@@ -9,7 +9,8 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<DemographicsPage />} />
+          <Route path="/" element={<Navigate to="/datos" replace />} />
+          <Route path="/datos" element={<DemographicsPage />} />
           <Route path="/gobierno" element={<Navigate to="/gobierno/legislativo" replace />} />
           <Route path="/gobierno/:branch" element={<GovernmentPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

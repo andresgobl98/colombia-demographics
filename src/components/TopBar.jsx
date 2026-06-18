@@ -26,7 +26,7 @@ export default function TopBar({ onAbout }) {
 
       {/* Section navigation */}
       <nav className="flex items-center gap-1">
-        <NavLink to="/" end className={navClass}>Datos</NavLink>
+        <NavLink to="/datos" end className={navClass}>Datos</NavLink>
         <NavLink to="/gobierno" className={navClass}>Gobierno</NavLink>
       </nav>
 
