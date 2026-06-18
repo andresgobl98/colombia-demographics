@@ -123,16 +123,16 @@ export default function LegislativeView() {
       {/* Members — map + roster for the departmental Cámara; full list for the national Senado */}
       {chamber.byDepartment ? (
         <div className="grid md:grid-cols-2 gap-6">
-          <Card className="p-3">
+          <Card className="p-3 overflow-hidden">
             <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2 px-1">
               Representación por departamento
             </p>
-            <div className="h-[460px]">
+            <div className="h-[50vh] min-h-[320px] md:h-[460px]">
               <RepresentationMap withData={withData} selectedId={selectedDept} onSelect={setSelectedDept} />
             </div>
           </Card>
 
-          <Card className="p-4 flex flex-col">
+          <Card className="p-4 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between mb-3">
               <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
                 {selectedDept ? `Representantes · ${deptName(selectedDept)}` : "Representantes"}
@@ -144,7 +144,7 @@ export default function LegislativeView() {
                 </button>
               )}
             </div>
-            <div className="overflow-y-auto max-h-[420px] pr-3">
+            <div className="overflow-y-auto max-h-[45vh] md:max-h-[420px] pr-3">
               <MemberList members={roster} emptyHint={`No hay representantes de ${deptName(selectedDept)} en el directorio.`} />
             </div>
           </Card>
