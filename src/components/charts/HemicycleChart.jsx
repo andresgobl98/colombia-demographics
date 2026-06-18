@@ -87,10 +87,10 @@ export default function HemicycleChart({ parties, highlightId = null, onHighligh
           </circle>
         );
       })}
-      <text x={cx} y={baseY - 6} textAnchor="middle" className="fill-slate-700 dark:fill-slate-200" style={{ fontSize: 22, fontWeight: 700 }}>
+      <text x={cx} y={baseY - 8} textAnchor="middle" className="fill-slate-700 dark:fill-slate-200" style={{ fontSize: 32, fontWeight: 700 }}>
         {total}
       </text>
-      <text x={cx} y={baseY + 8} textAnchor="middle" className="fill-slate-400 dark:fill-slate-500" style={{ fontSize: 9 }}>
+      <text x={cx} y={baseY + 9} textAnchor="middle" className="fill-slate-400 dark:fill-slate-500" style={{ fontSize: 12 }}>
         curules
       </text>
     </svg>

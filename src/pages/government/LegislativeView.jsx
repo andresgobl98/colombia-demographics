@@ -74,15 +74,17 @@ export default function LegislativeView() {
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
           <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{chamber.name}</h2>
-          <p className="text-sm text-slate-400 dark:text-slate-500">
-            Periodo {chamber.period} · {chamber.totalSeats} curules
-            {fullRoster && chamber.members.length < chamber.totalSeats && (
-              <> · {chamber.members.length} en ejercicio</>
-            )}
-            <span className="ml-2 text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
+          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-400 dark:text-slate-500">
+            <span>
+              Periodo {chamber.period} · {chamber.totalSeats} curules
+              {fullRoster && chamber.members.length < chamber.totalSeats && (
+                <> · {chamber.members.length} en ejercicio</>
+              )}
+            </span>
+            <span className="whitespace-nowrap text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
               {fullRoster ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
             </span>
-          </p>
+          </div>
         </div>
         <div className="flex gap-1 bg-slate-100 dark:bg-slate-700/40 rounded-xl p-1">
           <button onClick={() => switchChamber("camara")} className={chamberBtnClass(chamberId === "camara")}>
@@ -201,7 +203,7 @@ function MemberList({ members, emptyHint }) {
                   className="text-slate-300 hover:text-blue-600 dark:text-slate-600 dark:hover:text-blue-400 transition-colors"
                   aria-label={`Escribir a ${m.name}`}
                 >
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
                     <rect x="3" y="5" width="18" height="14" rx="2" />
                     <path strokeLinecap="round" strokeLinejoin="round" d="m3 7 9 6 9-6" />
                   </svg>
