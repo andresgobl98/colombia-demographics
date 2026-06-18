@@ -1,6 +1,6 @@
 # CO Demográfica
 
-Explorador interactivo de estadísticas demográficas y de representación política de Colombia.
+Explorador interactivo de estadísticas demográficas y de representación política de Colombia. **[→ Abrir app](https://colombia-demographics.vercel.app)**
 
 ---
 
@@ -38,24 +38,6 @@ El objetivo es hacer accesible, de forma visual e intuitiva, información públi
 | Mapa | [React Simple Maps](https://www.react-simple-maps.io) + [D3 Scale](https://d3js.org/d3-scale) |
 | Gráficas | [Recharts](https://recharts.org) |
 | Procesamiento de datos | Python 3 · pandas · openpyxl |
-
----
-
-## Uso
-
-```bash
-npm install
-npm run dev
-```
-
-Para regenerar los datos desde los archivos fuente del DANE:
-
-```bash
-python scripts/parse_cnpv.py          # población por departamento y sexo
-python scripts/parse_ethnicity.py     # autorreconocimiento étnico
-python scripts/parse_age.py           # pirámides de edad
-python scripts/parse_projections.py   # proyecciones de población 2018–2050
-```
 
 ---
 
