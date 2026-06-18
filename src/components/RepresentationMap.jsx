@@ -50,7 +50,7 @@ export default function RepresentationMap({ withData, selectedId, onSelect }) {
   return (
     <ComposableMap
       projection="geoMercator"
-      projectionConfig={{ center: [-74, 4], scale: 2200 }}
+      projectionConfig={{ center: [-74.3, 4.7], scale: 1950 }}
       width={520}
       height={620}
       style={{ width: "100%", height: "100%", display: "block" }}

@@ -142,7 +142,7 @@ export default function LegislativeView() {
                 </button>
               )}
             </div>
-            <div className="overflow-y-auto max-h-[420px] pr-1">
+            <div className="overflow-y-auto max-h-[420px] pr-3">
               <MemberList members={roster} emptyHint={`No hay representantes de ${deptName(selectedDept)} en el directorio.`} />
             </div>
           </Card>
