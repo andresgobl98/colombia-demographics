@@ -25,3 +25,6 @@ dist-ssr
 
 # Raw DANE source files (large xlsx, not committed)
 /data/
+
+# Local Agent instructions
+CLAUDE.md
