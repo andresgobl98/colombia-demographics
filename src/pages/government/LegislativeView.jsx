@@ -61,8 +61,7 @@ export default function LegislativeView() {
     setHighlight(null);
   };
 
-  // The Cámara carries its complete roster; the Senado carries a verified sample.
-  const fullRoster = chamberId === "camara";
+  const fullRoster = true;
   const roster =
     chamber.byDepartment && selectedDept
       ? chamber.members.filter((m) => m.departmentCode === selectedDept)
@@ -82,7 +81,7 @@ export default function LegislativeView() {
               )}
             </span>
             <span className="whitespace-nowrap text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
-              {fullRoster ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
+              {chamberId === "camara" ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
             </span>
           </div>
         </div>
@@ -151,14 +150,11 @@ export default function LegislativeView() {
         </div>
       ) : (
         <Card className="p-4 flex flex-col">
-          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">Senadores (muestra)</p>
+          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">Senadores</p>
           <p className="text-xs text-slate-400 dark:text-slate-500 mb-3">
             El Senado se elige por circunscripción nacional, por lo que sus curules no se asignan por departamento.
           </p>
           <MemberList members={roster} />
-          <p className="mt-3 text-[11px] text-slate-400 dark:text-slate-500">
-            El conteo de curules es completo; el listado de nombres es una selección verificada.
-          </p>
         </Card>
       )}
     </div>
