@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
+import { Bars3Icon } from "@heroicons/react/24/outline";
 import Sidebar from "../components/Sidebar";
 import { ThemeToggle } from "../components/ui";
 import AboutModal from "../components/AboutModal";
@@ -40,7 +41,7 @@ export default function AppLayout() {
   };
 
   return (
-    <div className="flex h-svh bg-slate-50 dark:bg-slate-900">
+    <div className="flex h-svh bg-slate-100 dark:bg-slate-900">
       {/* Desktop sidebar (collapsible rail) */}
       <div
         className={`hidden md:block shrink-0 transition-[width] duration-200 ${
@@ -64,9 +65,7 @@ export default function AppLayout() {
               aria-label="Abrir menú"
               className="w-9 h-9 flex items-center justify-center rounded-lg border border-slate-200 dark:border-slate-700 text-slate-600 dark:text-slate-300 hover:bg-slate-50 dark:hover:bg-slate-700 transition-colors shrink-0"
             >
-              <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" d="M3.75 6.75h16.5M3.75 12h16.5m-16.5 5.25h16.5" />
-              </svg>
+              <Bars3Icon className="w-5 h-5" />
             </button>
             <h1 className="text-base font-bold text-slate-800 dark:text-slate-100 leading-none truncate">
               CO Demográfica

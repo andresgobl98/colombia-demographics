@@ -100,6 +100,25 @@ DANE department codes are 2-digit strings (`"05"`, `"11"`, not numbers). GeoJSON
 - Commission strings from camara.gov.co are long; `shortCommission()` condenses them
 - `HemicycleChart` SVG center label: `fontSize: 32` for total, `fontSize: 12` for "curules"
 
+## Accessibility & readability (applies to all UI work)
+
+- **Readability is a hard requirement.** Strive for accessible, legible UIs by default.
+- **Font-size floor: 14px (`text-sm`) for any real content.** Reserve 12px (`text-xs`)
+  for uppercase eyebrow/badge labels only. Do **not** use `text-[10px]`/`text-[11px]`
+  or smaller. Base is 16px (`text-base`); prefer it for primary content (names, body copy).
+- **Touch targets:** make the whole card/row tappable rather than a tiny inline link,
+  and keep a visible affordance (e.g. a chevron) so the interaction is discoverable.
+- Light-mode page background is `slate-100` (`#f1f5f9`, set in both `index.css` and
+  `AppLayout`) so white containers (`bg-white`) read as raised surfaces. Card borders
+  use `border-slate-200` (not `-100`) for the same contrast reason.
+
+## Icons
+
+Use **`@heroicons/react/24/outline`** — tree-shakeable, matches the app's stroke style
+(the old hand-rolled SVGs were Heroicons paths). Import the named icon and pass a
+`className` for sizing (`w-5 h-5`). Don't hand-author new icon `<path>` markup.
+The GitHub logo and the brand pin are the only intentionally hand-rolled SVGs (brand marks).
+
 ## Data refresh
 
 To update Cámara roster from a new xlsx:

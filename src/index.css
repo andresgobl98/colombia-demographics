@@ -20,8 +20,13 @@
 body {
   margin: 0;
   font-family: system-ui, 'Segoe UI', Roboto, sans-serif;
-  background: #f8fafc;
+  /* slate-100: a touch darker than the cards so white containers read as
+     raised surfaces in light mode. See accessibility note in CLAUDE.md. */
+  background: #f1f5f9;
   color: #1e293b;
+  /* Readability floor: 16px base. UI text should not drop below 14px (text-sm);
+     reserve 12px (text-xs) for uppercase eyebrow/badge labels only. */
+  font-size: 16px;
 }
 
 .dark body {
