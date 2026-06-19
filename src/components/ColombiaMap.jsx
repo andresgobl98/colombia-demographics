@@ -3,6 +3,7 @@ import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simp
 import { scaleLinear } from "d3-scale";
 import { geoCentroid, geoBounds } from "d3-geo";
 import SanAndresInset from "./SanAndresInset";
+import { useDemographics } from "../state/demographicsStore";
 
 const SAN_ANDRES_CODE = "88";
 
@@ -39,7 +40,13 @@ function zoomForFeature(feature) {
   return Math.max(2, Math.min(6, 7 / maxSpan));
 }
 
-export default function ColombiaMap({ data, metric, selectedId, onSelect }) {
+export default function ColombiaMap() {
+  const {
+    departments: data,
+    metric,
+    selectedDeptCode: selectedId,
+    selectDepartment: onSelect,
+  } = useDemographics();
   const [geographies, setGeographies] = useState([]);
   const [tooltip, setTooltip] = useState(null);
   const [position, setPosition] = useState({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });

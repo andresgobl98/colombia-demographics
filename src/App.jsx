@@ -3,6 +3,7 @@ import { Analytics } from "@vercel/analytics/react";
 import AppLayout from "./layouts/AppLayout";
 import DemographicsPage from "./pages/DemographicsPage";
 import GovernmentPage from "./pages/GovernmentPage";
+import { DemographicsProvider } from "./state/demographicsStore";
 
 export default function App() {
   return (
@@ -10,7 +11,14 @@ export default function App() {
       <Routes>
         <Route element={<AppLayout />}>
           <Route path="/" element={<Navigate to="/datos" replace />} />
-          <Route path="/datos" element={<DemographicsPage />} />
+          <Route
+            path="/datos"
+            element={
+              <DemographicsProvider>
+                <DemographicsPage />
+              </DemographicsProvider>
+            }
+          />
           <Route path="/gobierno" element={<Navigate to="/gobierno/legislativo" replace />} />
           <Route path="/gobierno/:branch" element={<GovernmentPage />} />
           <Route path="*" element={<Navigate to="/" replace />} />

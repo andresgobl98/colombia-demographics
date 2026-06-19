@@ -1,10 +1,12 @@
 import { BarBreakdown } from "./charts";
+import { useDemographics } from "../state/demographicsStore";
 
 const RANK_COLOR = "#3b82f6"; // blue-500
 
-export default function TopicRanking({ data, metric }) {
+export default function TopicRanking() {
+  const { departments: data, metric } = useDemographics();
   const entries = Object.entries(data)
-    .map(([code, dept]) => ({ name: dept.name, value: dept[metric.id], color: RANK_COLOR }))
+    .map(([, dept]) => ({ name: dept.name, value: dept[metric.id], color: RANK_COLOR }))
     .filter((d) => d.value != null)
     .sort((a, b) => b.value - a.value);
 

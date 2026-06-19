@@ -1,12 +1,16 @@
-export default function MetricSelector({ metrics, selected, onChange }) {
+import { METRICS } from "../data/metrics";
+import { useDemographics } from "../state/demographicsStore";
+
+export default function MetricSelector() {
+  const { selectedMetricId, setSelectedMetricId } = useDemographics();
   return (
-    <div className="flex items-center gap-3">
+    <div className="flex items-center gap-3 shrink-0">
       <label className="hidden sm:block text-sm font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap">
         Colorear mapa por
       </label>
       <select
-        value={selected}
-        onChange={(e) => onChange(e.target.value)}
+        value={selectedMetricId}
+        onChange={(e) => setSelectedMetricId(e.target.value)}
         className="appearance-none text-sm border border-slate-200 dark:border-slate-700 rounded-lg pl-3 pr-9 py-2 bg-white dark:bg-slate-800 text-slate-800 dark:text-slate-200 shadow-sm focus:outline-none focus:ring-2 focus:ring-blue-500 cursor-pointer bg-no-repeat"
         style={{
           backgroundImage:
@@ -15,7 +19,7 @@ export default function MetricSelector({ metrics, selected, onChange }) {
           backgroundSize: "1rem",
         }}
       >
-        {metrics.map((m) => (
+        {METRICS.map((m) => (
           <option key={m.id} value={m.id}>
             {m.label}
           </option>

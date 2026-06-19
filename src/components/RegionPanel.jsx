@@ -1,7 +1,9 @@
 import { useState, useEffect } from "react";
 import { DonutChart, BarBreakdown, PopulationPyramid } from "./charts";
 import { StatCard } from "./ui";
+import TimelineSlider from "./TimelineSlider";
 import { getAgePyramid } from "../data/selectors";
+import { useDemographics } from "../state/demographicsStore";
 
 const SEX_COLORS = { male: "#3b82f6", female: "#f43f5e" };
 const SEX_LABELS  = { male: "Hombres", female: "Mujeres" };
@@ -25,7 +27,14 @@ const ETHNICITY_LABELS = {
   sin_informacion: "Sin información",
 };
 
-export default function RegionPanel({ department, national, code, year, onBack, yearControl }) {
+export default function RegionPanel({ mobile = false }) {
+  const {
+    selectedDept: department,
+    national,
+    selectedDeptCode: code,
+    selectedYear: year,
+    closePanel,
+  } = useDemographics();
   const isNational = !department;
   const display    = isNational ? national : department;
 
@@ -58,9 +67,9 @@ export default function RegionPanel({ department, national, code, year, onBack, 
   return (
     <div className="flex flex-col gap-4 p-4">
       {/* Botón de regreso (solo móvil) */}
-      {onBack && (
+      {mobile && (
         <button
-          onClick={onBack}
+          onClick={closePanel}
           className="flex items-center gap-1.5 text-sm text-slate-500 dark:text-slate-400 hover:text-blue-600 dark:hover:text-blue-400 transition-colors -mb-1 self-start"
         >
           <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
@@ -88,8 +97,13 @@ export default function RegionPanel({ department, national, code, year, onBack, 
         )}
       </div>
 
-      {/* Control de año (solo móvil — el escritorio lo muestra sobre el mapa) */}
-      {yearControl && <div>{yearControl}</div>}
+      {/* Control de año (solo móvil — el escritorio lo muestra en la barra superior).
+          El panel siempre muestra datos por año, así que el control va siempre. */}
+      {mobile && (
+        <div>
+          <TimelineSlider />
+        </div>
+      )}
 
       {/* Tarjetas de estadísticas */}
       <div className="grid grid-cols-2 gap-2">
