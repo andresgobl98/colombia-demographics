@@ -1,9 +1,49 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
 import { PRESIDENTE, VICEPRESIDENTE, MINISTRIES } from "../../data/executive";
 
 const MONTHS_ES = ["ene.", "feb.", "mar.", "abr.", "may.", "jun.",
                    "jul.", "ago.", "sep.", "oct.", "nov.", "dic."];
+
+// Column count mirrors the Tailwind breakpoints we used before (1 < sm, 2 sm–lg,
+// 3 ≥ lg). We resolve it in JS so cards can be split into *explicit* columns:
+// each column owns a fixed slice of the list, so expanding a card only reflows
+// its own column and never makes a card hop to another column (the CSS
+// multi-column tradeoff we're replacing).
+function useColumnCount() {
+  const compute = () => {
+    if (typeof window === "undefined") return 1;
+    if (window.matchMedia("(min-width: 1024px)").matches) return 3;
+    if (window.matchMedia("(min-width: 640px)").matches) return 2;
+    return 1;
+  };
+  const [cols, setCols] = useState(compute);
+  useEffect(() => {
+    const queries = [
+      window.matchMedia("(min-width: 640px)"),
+      window.matchMedia("(min-width: 1024px)"),
+    ];
+    const onChange = () => setCols(compute());
+    queries.forEach((q) => q.addEventListener("change", onChange));
+    return () => queries.forEach((q) => q.removeEventListener("change", onChange));
+  }, []);
+  return cols;
+}
+
+// Split a list into `cols` sequential, near-equal chunks (column-first order:
+// the first column holds the lowest-numbered items).
+function splitColumns(items, cols) {
+  const out = Array.from({ length: cols }, () => []);
+  const base = Math.floor(items.length / cols);
+  const extra = items.length % cols; // first `extra` columns get one more
+  let idx = 0;
+  for (let c = 0; c < cols; c++) {
+    const size = base + (c < extra ? 1 : 0);
+    out[c] = items.slice(idx, idx + size);
+    idx += size;
+  }
+  return out;
+}
 
 function formatSince(iso, approx = false) {
   const [y, m, d] = iso.split("-").map(Number);
@@ -107,16 +147,24 @@ function MinistryCard({ ministry }) {
         {formatSince(ministry.since, ministry.sinceApprox)}
       </p>
 
-      {expanded && (
-        <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700">
-          <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-1.5">
-            {ministry.description}
-          </p>
-          <p className="text-sm text-slate-400 dark:text-slate-500 italic">
-            {ministry.title}
-          </p>
+      {/* Expandable description — animated height via the grid-rows 0fr→1fr
+          technique; the inner wrapper clips overflow during the transition. */}
+      <div
+        className={`grid transition-[grid-template-rows] duration-300 ease-out ${
+          expanded ? "grid-rows-[1fr]" : "grid-rows-[0fr]"
+        }`}
+      >
+        <div className="overflow-hidden">
+          <div className="mt-3 pt-3 border-t border-slate-100 dark:border-slate-700">
+            <p className="text-sm text-slate-500 dark:text-slate-400 leading-relaxed mb-1.5">
+              {ministry.description}
+            </p>
+            <p className="text-sm text-slate-400 dark:text-slate-500 italic">
+              {ministry.title}
+            </p>
+          </div>
         </div>
-      )}
+      </div>
 
       <span className="mt-3 flex items-center gap-1 text-sm text-slate-400 dark:text-slate-500 group-hover:text-slate-600 dark:group-hover:text-slate-300 transition-colors">
         <ChevronDownIcon
@@ -129,6 +177,8 @@ function MinistryCard({ ministry }) {
 }
 
 export default function ExecutiveView() {
+  const columns = useColumnCount();
+
   return (
     <div className="p-4 md:p-6 max-w-5xl mx-auto flex flex-col">
       <header className="mb-6">
@@ -145,9 +195,16 @@ export default function ExecutiveView() {
         <Connector />
         <CabinetDivider count={MINISTRIES.length} />
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 w-full mt-1">
-          {MINISTRIES.map((m) => (
-            <MinistryCard key={m.id} ministry={m} />
+        {/* Explicit columns (not CSS grid/multi-column): each column is an
+            independent flex stack, so expanding a card only pushes the cards
+            below it in the same column — no row-stretch, no column-hopping. */}
+        <div className="flex items-start gap-3 w-full mt-1">
+          {splitColumns(MINISTRIES, columns).map((col, i) => (
+            <div key={i} className="flex-1 min-w-0 flex flex-col gap-3">
+              {col.map((m) => (
+                <MinistryCard key={m.id} ministry={m} />
+              ))}
+            </div>
           ))}
         </div>
 

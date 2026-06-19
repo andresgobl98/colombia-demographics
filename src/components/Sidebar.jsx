@@ -141,7 +141,9 @@ export default function Sidebar({
         <button onClick={onAbout} aria-label="Acerca de" title="Acerca de" className={iconBtn}>
           <InformationCircleIcon className="w-5 h-5" />
         </button>
-        <ThemeToggle />
+        {/* The mobile layout already exposes a theme toggle in its top header, so
+            only the desktop rail renders one here to avoid two switches on mobile. */}
+        {!mobile && <ThemeToggle />}
         <a
           href="https://github.com/andresgobl98/colombia-demographics"
           target="_blank"

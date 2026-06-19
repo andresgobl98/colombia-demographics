@@ -1,20 +1,13 @@
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useState } from "react";
 import { ComposableMap, Geographies, ZoomableGroup } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import { geoCentroid, geoBounds } from "d3-geo";
 import SanAndresInset from "./SanAndresInset";
 import DepartmentGeography from "./DepartmentGeography";
+import MapZoomControls from "./MapZoomControls";
+import { useMapZoom } from "./useMapZoom";
 import { useColombiaGeographies, getDeptCode, SAN_ANDRES_CODE } from "./geo";
 import { useDemographics } from "../../state/demographicsStore";
-
-// Let single-finger touch scroll the page instead of panning the map; still
-// allow pinch-zoom (2+ touches) and desktop wheel/drag. Maps to d3-zoom .filter().
-function filterZoomEvent(event) {
-  if (event.type && event.type.startsWith("touch")) {
-    return event.touches && event.touches.length > 1;
-  }
-  return (!event.ctrlKey || event.type === "wheel") && !event.button;
-}
 
 const DEFAULT_CENTER = [-74, 4];
 const DEFAULT_ZOOM = 1;
@@ -36,42 +29,13 @@ export default function ColombiaMap() {
   } = useDemographics();
   const { geographies, mainGeographies, sanAndres, isEmpty } = useColombiaGeographies();
   const [tooltip, setTooltip] = useState(null);
-  const [position, setPosition] = useState({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
 
-  const animRef = useRef(null);
-
-  // Tween the view to a target { coordinates, zoom }. Reads the latest
-  // position from a ref so callers don't need it as a dependency.
-  const positionRef = useRef(position);
-  useEffect(() => {
-    positionRef.current = position;
-  }, [position]);
-
-  const animateTo = (target) => {
-    cancelAnimationFrame(animRef.current);
-    const start = positionRef.current;
-    const startTime = performance.now();
-    const duration = 600;
-    const ease = (t) => 1 - Math.pow(1 - t, 3); // ease-out cubic
-
-    const tick = (now) => {
-      const t = Math.min(1, (now - startTime) / duration);
-      const k = ease(t);
-      setPosition({
-        coordinates: [
-          start.coordinates[0] + (target.coordinates[0] - start.coordinates[0]) * k,
-          start.coordinates[1] + (target.coordinates[1] - start.coordinates[1]) * k,
-        ],
-        zoom: start.zoom + (target.zoom - start.zoom) * k,
-      });
-      if (t < 1) animRef.current = requestAnimationFrame(tick);
-    };
-    animRef.current = requestAnimationFrame(tick);
-  };
+  const { animateTo, zoomIn, zoomOut, reset, isOffDefault, zoomableGroupProps } =
+    useMapZoom({ center: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
 
   const resetView = () => {
     onSelect(null);
-    animateTo({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
+    reset();
   };
 
   // Animate to the selected department whenever the selection changes.
@@ -87,16 +51,11 @@ export default function ColombiaMap() {
     const feature = geographies.find((g) => getDeptCode(g) === selectedId);
     if (!feature) return;
     animateTo({ coordinates: geoCentroid(feature), zoom: zoomForFeature(feature) });
+  }, [selectedId, geographies, animateTo]);
 
-    return () => cancelAnimationFrame(animRef.current);
-  }, [selectedId, geographies]);
-
-  // True when the map is panned/zoomed away from the national default view.
-  const isOffDefault =
-    !!selectedId ||
-    Math.abs(position.zoom - DEFAULT_ZOOM) > 0.01 ||
-    Math.abs(position.coordinates[0] - DEFAULT_CENTER[0]) > 0.05 ||
-    Math.abs(position.coordinates[1] - DEFAULT_CENTER[1]) > 0.05;
+  // Show the reset control on any non-default view, including a San Andrés
+  // selection (which keeps the mainland centered, so isOffDefault stays false).
+  const showReset = isOffDefault || !!selectedId;
 
   const colorScale = scaleLinear()
     .domain(metric.domain)
@@ -147,14 +106,7 @@ export default function ColombiaMap() {
           height={900}
           style={{ width: "100%", height: "100%", display: "block" }}
         >
-          <ZoomableGroup
-            center={position.coordinates}
-            zoom={position.zoom}
-            minZoom={1}
-            maxZoom={8}
-            filterZoomEvent={filterZoomEvent}
-            onMoveEnd={setPosition}
-          >
+          <ZoomableGroup {...zoomableGroupProps}>
             <Geographies geography={{ type: "FeatureCollection", features: mainGeographies }}>
               {({ geographies: geos }) =>
                 geos.map((geo) => {
@@ -205,17 +157,14 @@ export default function ColombiaMap() {
         </div>
       )}
 
-      {/* Reset button — visible on any non-default view (selection or manual pan/zoom) */}
-      {!isEmpty && isOffDefault && (
-        <button
-          onClick={resetView}
-          className="absolute bottom-4 right-4 flex items-center gap-1.5 bg-white dark:bg-slate-700 border border-slate-200 dark:border-slate-600 hover:bg-slate-50 dark:hover:bg-slate-600 rounded-lg px-3 py-1.5 shadow-md text-xs font-medium text-slate-700 dark:text-slate-100 transition-colors"
-        >
-          <svg className="w-3.5 h-3.5" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M3 12a9 9 0 1018 0 9 9 0 00-18 0z M12 8v4l2 2" />
-          </svg>
-          Centrar mapa
-        </button>
+      {/* Zoom controls + reset (reset shows on any non-default view) */}
+      {!isEmpty && (
+        <MapZoomControls
+          onZoomIn={zoomIn}
+          onZoomOut={zoomOut}
+          onReset={resetView}
+          showReset={showReset}
+        />
       )}
 
       {/* Color legend */}

@@ -92,6 +92,15 @@ Do not change `center`/`scale` without re-verifying the full map fits — San An
 
 DANE department codes are 2-digit strings (`"05"`, `"11"`, not numbers). GeoJSON property read via `getDeptCode()` which tries multiple property names.
 
+**Shared zoom/pan lives in one place** — both maps get identical wheel/drag/pinch
+behaviour, animated tweening and +/- controls from `useMapZoom.js` (hook) and
+`MapZoomControls.jsx` (the +/- and "Centrar mapa" buttons). A map just calls
+`useMapZoom({ center, zoom })`, spreads `zoomableGroupProps` onto `<ZoomableGroup>`,
+and renders `<MapZoomControls .../>`. Put any new shared map behaviour there, not in
+the individual maps. `center` must be a stable (module-level) reference.
+`ColombiaMap` additionally auto-zooms to the selected department via the hook's
+`animateTo`; `RepresentationMap` is manual-zoom only (it's a picker).
+
 ## UI notes
 
 - Mobile-first; Tailwind v4 (no config file — CSS-based)
