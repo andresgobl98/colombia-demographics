@@ -1,5 +1,6 @@
 import { useParams, Navigate } from "react-router-dom";
 import LegislativeView from "./government/LegislativeView";
+import ExecutiveView from "./government/ExecutiveView";
 
 // Branch switching now lives in the sidebar; this list only validates the
 // :branch param and labels the "coming soon" placeholder. `rama` is the
@@ -33,6 +34,8 @@ export default function GovernmentPage() {
     <div className="flex-1 overflow-y-auto">
       {branch === "legislativo" ? (
         <LegislativeView />
+      ) : branch === "ejecutivo" ? (
+        <ExecutiveView />
       ) : (
         <ComingSoon rama={BRANCHES.find((b) => b.id === branch).rama} />
       )}
