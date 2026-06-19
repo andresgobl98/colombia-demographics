@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { HemicycleChart } from "../../components/charts";
-import RepresentationMap from "../../components/RepresentationMap";
+import { RepresentationMap } from "../../components/maps";
 import { CHAMBERS, PARTY_META, CONSTITUENCY_META, partiesForChamber } from "../../data/congress";
 import deptData from "../../data/departments.json";
 

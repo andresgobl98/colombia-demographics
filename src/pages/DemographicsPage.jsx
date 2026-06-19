@@ -1,4 +1,4 @@
-import ColombiaMap from "../components/ColombiaMap";
+import { ColombiaMap } from "../components/maps";
 import RegionPanel from "../components/RegionPanel";
 import ControlBar from "../components/ControlBar";
 import TopicRanking from "../components/TopicRanking";

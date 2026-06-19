@@ -1,20 +1,7 @@
-import { useEffect, useState } from "react";
-import { ComposableMap, Geographies, Geography } from "react-simple-maps";
+import { ComposableMap, Geographies } from "react-simple-maps";
 import SanAndresInset from "./SanAndresInset";
-
-const GEO_URL = "/colombia.geojson";
-const SAN_ANDRES_CODE = "88";
-
-function getDeptCode(geo) {
-  return (
-    geo.properties?.DPTO ||
-    geo.properties?.DPTO_CCDGO ||
-    geo.properties?.code ||
-    geo.properties?.id ||
-    geo.properties?.DANE ||
-    null
-  );
-}
+import DepartmentGeography from "./DepartmentGeography";
+import { useColombiaGeographies, getDeptCode, SAN_ANDRES_CODE } from "./geo";
 
 /**
  * Barebones department-selection map for the government section. Uniform fill,
@@ -27,14 +14,7 @@ function getDeptCode(geo) {
  * @param {(code:string|null)=>void} onSelect
  */
 export default function RepresentationMap({ withData, selectedId, onSelect }) {
-  const [geographies, setGeographies] = useState([]);
-
-  useEffect(() => {
-    fetch(GEO_URL)
-      .then((r) => r.json())
-      .then((fc) => setGeographies(fc.features ?? []))
-      .catch(() => {});
-  }, []);
+  const { mainGeographies, sanAndres, isEmpty } = useColombiaGeographies();
 
   const fillFor = (code) => {
     if (code === selectedId) return "#2563eb";          // selected → accent
@@ -42,16 +22,13 @@ export default function RepresentationMap({ withData, selectedId, onSelect }) {
     return "var(--map-nodata)";                          // theme-aware neutral
   };
 
-  if (geographies.length === 0) {
+  if (isEmpty) {
     return (
       <div className="flex items-center justify-center h-full min-h-[300px] text-sm text-slate-400 dark:text-slate-500">
         Cargando mapa…
       </div>
     );
   }
-
-  const sanAndres = geographies.find((g) => getDeptCode(g) === SAN_ANDRES_CODE);
-  const mainGeographies = geographies.filter((g) => getDeptCode(g) !== SAN_ANDRES_CODE);
 
   return (
     <div className="relative w-full h-full">
@@ -66,24 +43,13 @@ export default function RepresentationMap({ withData, selectedId, onSelect }) {
           {({ geographies: geos }) =>
             geos.map((geo) => {
               const code = getDeptCode(geo);
-              const isSelected = code === selectedId;
               return (
-                <Geography
+                <DepartmentGeography
                   key={geo.rsmKey}
                   geography={geo}
                   fill={fillFor(code)}
-                  stroke="var(--map-stroke)"
-                  strokeWidth={0.5}
+                  selected={code === selectedId}
                   onClick={() => onSelect(code === selectedId ? null : code)}
-                  style={{
-                    default: {
-                      outline: "none",
-                      opacity: isSelected ? 1 : 0.85,
-                      filter: isSelected ? "drop-shadow(0 0 4px rgba(0,0,0,0.3))" : "none",
-                    },
-                    hover: { outline: "none", cursor: "pointer", opacity: 1 },
-                    pressed: { outline: "none" },
-                  }}
                 />
               );
             })

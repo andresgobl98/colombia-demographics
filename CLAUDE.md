@@ -21,9 +21,12 @@ src/
     government/
       LegislativeView.jsx          # congress hemicycle + roster UI
   components/
-    ColombiaMap.jsx                # main choropleth map
-    RepresentationMap.jsx          # department-selection map (legislative)
-    SanAndresInset.jsx             # San Andrés inset overlay
+    maps/
+      ColombiaMap.jsx              # main choropleth map (zoom, tooltip, legend)
+      RepresentationMap.jsx        # department-selection map (legislative)
+      SanAndresInset.jsx           # San Andrés inset overlay
+      DepartmentGeography.jsx      # shared <Geography> w/ selection styling
+      geo.js                       # GEO_URL, getDeptCode, useColombiaGeographies()
     charts/
       HemicycleChart.jsx           # parliament seat diagram (SVG)
       DonutChart.jsx

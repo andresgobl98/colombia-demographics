@@ -1,11 +1,11 @@
 import { useEffect, useRef, useState } from "react";
-import { ComposableMap, Geographies, Geography, ZoomableGroup } from "react-simple-maps";
+import { ComposableMap, Geographies, ZoomableGroup } from "react-simple-maps";
 import { scaleLinear } from "d3-scale";
 import { geoCentroid, geoBounds } from "d3-geo";
 import SanAndresInset from "./SanAndresInset";
-import { useDemographics } from "../state/demographicsStore";
-
-const SAN_ANDRES_CODE = "88";
+import DepartmentGeography from "./DepartmentGeography";
+import { useColombiaGeographies, getDeptCode, SAN_ANDRES_CODE } from "./geo";
+import { useDemographics } from "../../state/demographicsStore";
 
 // Let single-finger touch scroll the page instead of panning the map; still
 // allow pinch-zoom (2+ touches) and desktop wheel/drag. Maps to d3-zoom .filter().
@@ -16,21 +16,8 @@ function filterZoomEvent(event) {
   return (!event.ctrlKey || event.type === "wheel") && !event.button;
 }
 
-const GEO_URL = "/colombia.geojson";
-
 const DEFAULT_CENTER = [-74, 4];
 const DEFAULT_ZOOM = 1;
-
-function getDeptCode(geo) {
-  return (
-    geo.properties?.DPTO ||
-    geo.properties?.DPTO_CCDGO ||
-    geo.properties?.code ||
-    geo.properties?.id ||
-    geo.properties?.DANE ||
-    null
-  );
-}
 
 // Derive a zoom level that frames a department from its geographic bounds.
 function zoomForFeature(feature) {
@@ -47,18 +34,11 @@ export default function ColombiaMap() {
     selectedDeptCode: selectedId,
     selectDepartment: onSelect,
   } = useDemographics();
-  const [geographies, setGeographies] = useState([]);
+  const { geographies, mainGeographies, sanAndres, isEmpty } = useColombiaGeographies();
   const [tooltip, setTooltip] = useState(null);
   const [position, setPosition] = useState({ coordinates: DEFAULT_CENTER, zoom: DEFAULT_ZOOM });
 
   const animRef = useRef(null);
-
-  useEffect(() => {
-    fetch(GEO_URL)
-      .then((r) => r.json())
-      .then((fc) => setGeographies(fc.features ?? []))
-      .catch(() => {});
-  }, []);
 
   // Tween the view to a target { coordinates, zoom }. Reads the latest
   // position from a ref so callers don't need it as a dependency.
@@ -109,7 +89,6 @@ export default function ColombiaMap() {
     animateTo({ coordinates: geoCentroid(feature), zoom: zoomForFeature(feature) });
 
     return () => cancelAnimationFrame(animRef.current);
-    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedId, geographies]);
 
   // True when the map is panned/zoomed away from the national default view.
@@ -147,11 +126,6 @@ export default function ColombiaMap() {
     setTooltip((t) => (t ? { ...t, x: e.clientX, y: e.clientY } : t));
   const hideTooltip = () => setTooltip(null);
 
-  const isEmpty = geographies.length === 0;
-  const sanAndres = geographies.find((g) => getDeptCode(g) === SAN_ANDRES_CODE);
-  // San Andrés is shown in its own inset, so keep it out of the mainland map.
-  const mainGeographies = geographies.filter((g) => getDeptCode(g) !== SAN_ANDRES_CODE);
-
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
       {isEmpty ? (
@@ -186,23 +160,12 @@ export default function ColombiaMap() {
                 geos.map((geo) => {
                   const code = getDeptCode(geo);
                   const dept = data[code];
-                  const isSelected = code === selectedId;
                   return (
-                    <Geography
+                    <DepartmentGeography
                       key={geo.rsmKey}
                       geography={geo}
                       fill={getFill(geo)}
-                      stroke="var(--map-stroke)"
-                      strokeWidth={0.5}
-                      style={{
-                        default: {
-                          outline: "none",
-                          opacity: isSelected ? 1 : 0.85,
-                          filter: isSelected ? "drop-shadow(0 0 4px rgba(0,0,0,0.3))" : "none",
-                        },
-                        hover: { outline: "none", opacity: 1, cursor: "pointer" },
-                        pressed: { outline: "none" },
-                      }}
+                      selected={code === selectedId}
                       onClick={() => onSelect(code === selectedId ? null : code)}
                       onMouseEnter={showTooltip(dept)}
                       onMouseMove={moveTooltip}
