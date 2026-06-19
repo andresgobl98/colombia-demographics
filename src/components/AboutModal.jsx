@@ -1,4 +1,5 @@
 import { useEffect } from "react";
+import { SOURCE_GROUPS } from "../data/sources";
 
 export default function AboutModal({ open, onClose }) {
   // Close on Escape
@@ -41,36 +42,36 @@ export default function AboutModal({ open, onClose }) {
         </p>
 
         <div className="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
-          <p>
-            <strong className="text-slate-800 dark:text-slate-100">CO Demográfica</strong> es una
-            herramienta gratuita para explorar y visualizar la demografía de los 33 departamentos
-            de Colombia: población total, distribución por sexo y autorreconocimiento étnico, con
-            una línea de tiempo que recorre desde 2018 hasta 2050.
-          </p>
-
           <div>
             <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Fuentes de datos</h3>
-            <ul className="list-disc list-inside space-y-1">
-              <li>
-                Población y sexo por año: <strong>Proyecciones de Población (PPED) del DANE</strong>,
-                periodo 2018–2050.
-              </li>
-              <li>
-                Autorreconocimiento étnico: <strong>Censo Nacional de Población y Vivienda (CNPV)
-                2018 del DANE</strong>.
-              </li>
-              <li>
-                Geometría departamental:{" "}
-                <a
-                  href="https://gist.github.com/john-guerra/43c7656821069d00dcbc"
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-blue-600 dark:text-blue-400 hover:underline"
-                >
-                  GeoJSON de John Guerra
-                </a>.
-              </li>
-            </ul>
+            <div className="space-y-3">
+              {SOURCE_GROUPS.map((group) => (
+                <div key={group.prefix}>
+                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
+                    {group.label}
+                  </p>
+                  <ul className="list-disc list-inside space-y-1">
+                    {group.sources.map((s) => (
+                      <li key={s.label}>
+                        <strong className="font-medium text-slate-700 dark:text-slate-200">{s.label}</strong>:{" "}
+                        {s.href ? (
+                          <a
+                            href={s.href}
+                            target="_blank"
+                            rel="noreferrer"
+                            className="text-blue-600 dark:text-blue-400 hover:underline"
+                          >
+                            {s.detail}
+                          </a>
+                        ) : (
+                          s.detail
+                        )}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+            </div>
           </div>
 
           <div>
@@ -103,8 +104,17 @@ export default function AboutModal({ open, onClose }) {
               >
                 Andrés González
               </a>
-              . El código se comparte públicamente con fines de referencia. Los datos del DANE son
-              de acceso libre y están sujetos a sus condiciones de uso.
+              . El{" "}
+              <a
+                href="https://github.com/andresgobl98/colombia-demographics"
+                target="_blank"
+                rel="noreferrer"
+                className="text-blue-600 dark:text-blue-400 hover:underline"
+              >
+                código
+              </a>{" "}
+              se comparte públicamente con fines de referencia. Los datos del DANE son de acceso
+              libre y están sujetos a sus condiciones de uso.
             </p>
           </div>
         </div>

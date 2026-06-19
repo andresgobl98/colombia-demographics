@@ -1,6 +1,7 @@
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import { Analytics } from "@vercel/analytics/react";
 import AppLayout from "./layouts/AppLayout";
+import HomePage from "./pages/HomePage";
 import DemographicsPage from "./pages/DemographicsPage";
 import GovernmentPage from "./pages/GovernmentPage";
 import { DemographicsProvider } from "./state/demographicsStore";
@@ -10,7 +11,7 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<Navigate to="/datos/poblacion" replace />} />
+          <Route path="/" element={<HomePage />} />
           <Route path="/datos" element={<Navigate to="/datos/poblacion" replace />} />
           <Route
             path="/datos/poblacion"
