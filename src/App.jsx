@@ -10,9 +10,10 @@ export default function App() {
     <BrowserRouter>
       <Routes>
         <Route element={<AppLayout />}>
-          <Route path="/" element={<Navigate to="/datos" replace />} />
+          <Route path="/" element={<Navigate to="/datos/poblacion" replace />} />
+          <Route path="/datos" element={<Navigate to="/datos/poblacion" replace />} />
           <Route
-            path="/datos"
+            path="/datos/poblacion"
             element={
               <DemographicsProvider>
                 <DemographicsPage />

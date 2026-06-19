@@ -1,20 +1,13 @@
-import { useParams, Navigate, NavLink } from "react-router-dom";
+import { useParams, Navigate } from "react-router-dom";
 import LegislativeView from "./government/LegislativeView";
 
+// Branch switching now lives in the sidebar; this list only validates the
+// :branch param and labels the "coming soon" placeholder.
 const BRANCHES = [
   { id: "legislativo", label: "Legislativo" },
   { id: "ejecutivo", label: "Ejecutivo" },
   { id: "judicial", label: "Judicial" },
 ];
-
-function branchTabClass({ isActive }) {
-  return [
-    "px-4 py-2 text-sm font-medium border-b-2 -mb-px transition-colors whitespace-nowrap",
-    isActive
-      ? "border-blue-600 text-blue-600 dark:text-blue-400"
-      : "border-transparent text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200",
-  ].join(" ");
-}
 
 function ComingSoon({ label }) {
   return (
@@ -36,24 +29,12 @@ export default function GovernmentPage() {
   }
 
   return (
-    <div className="flex-1 flex flex-col overflow-hidden">
-      {/* Branch switcher */}
-      <div className="bg-white dark:bg-slate-800 border-b border-slate-200 dark:border-slate-700 px-4 md:px-6 flex gap-1 shrink-0 overflow-x-auto">
-        {BRANCHES.map((b) => (
-          <NavLink key={b.id} to={`/gobierno/${b.id}`} className={branchTabClass}>
-            {b.label}
-          </NavLink>
-        ))}
-      </div>
-
-      {/* Branch content */}
-      <div className="flex-1 overflow-y-auto">
-        {branch === "legislativo" ? (
-          <LegislativeView />
-        ) : (
-          <ComingSoon label={BRANCHES.find((b) => b.id === branch).label} />
-        )}
-      </div>
+    <div className="flex-1 overflow-y-auto">
+      {branch === "legislativo" ? (
+        <LegislativeView />
+      ) : (
+        <ComingSoon label={BRANCHES.find((b) => b.id === branch).label} />
+      )}
     </div>
   );
 }
