@@ -10,7 +10,7 @@ const stepBtn =
 
 export default function MapZoomControls({ onZoomIn, onZoomOut, onReset, showReset }) {
   return (
-    <div className="absolute bottom-4 right-4 flex flex-col items-end gap-2 z-20">
+    <div className="absolute bottom-4 right-4 z-20 flex flex-row items-end gap-2">
       {showReset && (
         <button
           onClick={onReset}

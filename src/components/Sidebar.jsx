@@ -104,12 +104,13 @@ export default function Sidebar({
           <HomeIcon className={ic} />
           {!collapsed && <span className="truncate">Inicio</span>}
         </NavLink>
+        {collapsed && <div className="h-px bg-slate-100 dark:bg-slate-700 my-2 mx-1" />}
         {SECTIONS.map((section, i) => (
           <div key={section.label} className="flex flex-col gap-1">
             {collapsed
               ? i > 0 && <div className="h-px bg-slate-100 dark:bg-slate-700 my-2 mx-1" />
               : (
-                <p className="px-3 pt-3 pb-1 text-[11px] font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                <p className="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
                   {section.label}
                 </p>
               )}

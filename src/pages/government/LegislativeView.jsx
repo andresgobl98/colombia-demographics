@@ -1,4 +1,5 @@
 import { useState, useMemo } from "react";
+import { BuildingLibraryIcon } from "@heroicons/react/24/outline";
 import { HemicycleChart } from "../../components/charts";
 import { RepresentationMap } from "../../components/maps";
 import { CHAMBERS, PARTY_META, CONSTITUENCY_META, partiesForChamber } from "../../data/congress";
@@ -69,10 +70,23 @@ export default function LegislativeView() {
 
   return (
     <div className="p-4 md:p-6 max-w-6xl mx-auto flex flex-col gap-6">
-      {/* Header + chamber switcher */}
+      {/* Branch-level intro — mirrors the Ejecutiva / Judicial headers */}
+      <div>
+        <div className="flex items-center gap-2">
+          <BuildingLibraryIcon className="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0" />
+          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Rama Legislativa</h2>
+        </div>
+        <p className="text-base text-slate-400 dark:text-slate-500 mt-1">
+          Hace las leyes y ejerce el control político sobre el Gobierno. La
+          conforma el Congreso de la República, bicameral: el Senado, elegido por
+          circunscripción nacional, y la Cámara de Representantes, por departamentos.
+        </p>
+      </div>
+
+      {/* Chamber title + chamber switcher */}
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{chamber.name}</h2>
+          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100">{chamber.name}</h3>
           <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-400 dark:text-slate-500">
             <span>
               Periodo {chamber.period} · {chamber.totalSeats} curules
@@ -80,7 +94,7 @@ export default function LegislativeView() {
                 <> · {chamber.members.length} en ejercicio</>
               )}
             </span>
-            <span className="whitespace-nowrap text-[11px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
+            <span className="whitespace-nowrap text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
               {chamberId === "camara" ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
             </span>
           </div>
@@ -178,7 +192,7 @@ function MemberList({ members, emptyHint }) {
                 {party.name}{m.departmentCode ? ` · ${deptName(m.departmentCode)}` : ""}
               </p>
               {m.commission && (
-                <p className="text-[11px] text-slate-400 dark:text-slate-500 truncate" title={m.commission}>
+                <p className="text-xs text-slate-400 dark:text-slate-500 truncate" title={m.commission}>
                   {shortCommission(m.commission)}
                 </p>
               )}
@@ -187,7 +201,7 @@ function MemberList({ members, emptyHint }) {
               {SPECIAL_CONSTITUENCIES.has(m.constituency) && (
                 <span
                   title={CONSTITUENCY_META[m.constituency]}
-                  className="text-[10px] font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5"
+                  className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5"
                 >
                   {SPECIAL_LABEL[m.constituency]}
                 </span>

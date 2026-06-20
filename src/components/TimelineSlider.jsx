@@ -31,7 +31,7 @@ export default function TimelineSlider({ embedded = false }) {
           className="w-full accent-blue-600 cursor-pointer"
           aria-label="Año"
         />
-        <div className="flex justify-between text-[10px] text-slate-400 dark:text-slate-500 -mt-0.5 px-0.5">
+        <div className="flex justify-between text-xs text-slate-400 dark:text-slate-500 -mt-0.5 px-0.5">
           <span>{YEARS[0]}</span>
           <span>{YEARS[max]}</span>
         </div>

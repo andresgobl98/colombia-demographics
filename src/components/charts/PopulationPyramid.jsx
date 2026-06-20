@@ -54,22 +54,22 @@ export default function PopulationPyramid({ ageGroups, male, female }) {
       <div className="h-11 mb-1 flex flex-col justify-center">
         {detail ? (
           <>
-            <p className="text-[11px] font-semibold text-slate-700 dark:text-slate-200 leading-tight">
+            <p className="text-xs font-semibold text-slate-700 dark:text-slate-200 leading-tight">
               {detail.group} años · {detail.pct.toFixed(1)}% de la población
             </p>
-            <p className="text-[11px] text-slate-500 dark:text-slate-400 tabular-nums leading-tight">
+            <p className="text-xs text-slate-500 dark:text-slate-400 tabular-nums leading-tight">
               H {fullFmt(detail.m)} · M {fullFmt(detail.f)} · Total {fullFmt(detail.t)}
             </p>
           </>
         ) : (
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 leading-snug">
+          <p className="text-xs text-slate-400 dark:text-slate-500 leading-snug">
             Pasa el cursor o toca un grupo de edad para ver el detalle.
           </p>
         )}
       </div>
 
       {/* Sex headers */}
-      <div className="flex text-[10px] font-medium mb-1">
+      <div className="flex text-xs font-medium mb-1">
         <span className="flex-1 text-right pr-1" style={{ color: MALE_COLOR }}>Hombres</span>
         <span className="w-12 shrink-0" />
         <span className="flex-1 text-left pl-1" style={{ color: FEMALE_COLOR }}>Mujeres</span>
@@ -96,7 +96,7 @@ export default function PopulationPyramid({ ageGroups, male, female }) {
                   style={{ width: width(m), backgroundColor: MALE_COLOR, opacity: dim }}
                 />
               </div>
-              <span className="w-12 shrink-0 text-center text-[10px] tabular-nums text-slate-500 dark:text-slate-400">
+              <span className="w-12 shrink-0 text-center text-xs tabular-nums text-slate-500 dark:text-slate-400">
                 {group}
               </span>
               <div className="flex-1 flex justify-start">
@@ -111,7 +111,7 @@ export default function PopulationPyramid({ ageGroups, male, female }) {
       </ul>
 
       {/* Scale axis (labels only, no gridlines) */}
-      <div className="flex mt-1 text-[9px] tabular-nums text-slate-400 dark:text-slate-500">
+      <div className="flex mt-1 text-[10px] tabular-nums text-slate-400 dark:text-slate-500">
         <div className="flex-1 flex justify-between">
           <span>{compactFmt(max)}</span>
           <span>{compactFmt(max / 2)}</span>

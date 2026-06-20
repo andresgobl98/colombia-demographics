@@ -160,12 +160,12 @@ export default function RegionPanel({ mobile = false }) {
         <div>
           <div className="flex items-baseline justify-between mb-2 gap-2">
             <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Autorreconocimiento étnico</p>
-            <span className="text-[10px] font-medium text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50 rounded-full px-2 py-0.5 shrink-0">
+            <span className="text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50 rounded-full px-2 py-0.5 shrink-0">
               Censo 2018
             </span>
           </div>
           <BarBreakdown data={ethnicityData} />
-          <p className="text-[11px] text-slate-400 dark:text-slate-500 mt-2 leading-snug">
+          <p className="text-xs text-slate-400 dark:text-slate-500 mt-2 leading-snug">
             Composición étnica del Censo Nacional 2018 (CNPV). El DANE no publica
             proyección étnica, por lo que este desglose no varía entre años.
           </p>

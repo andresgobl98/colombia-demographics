@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ChevronDownIcon, BriefcaseIcon } from "@heroicons/react/24/outline";
 import { PRESIDENTE, VICEPRESIDENTE, MINISTRIES } from "../../data/executive";
 
 const MONTHS_ES = ["ene.", "feb.", "mar.", "abr.", "may.", "jun.",
@@ -181,10 +181,15 @@ export default function ExecutiveView() {
 
   return (
     <div className="p-4 md:p-6 max-w-5xl mx-auto flex flex-col">
-      <header className="mb-6">
-        <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Rama Ejecutiva</h2>
-        <p className="text-base text-slate-400 dark:text-slate-500">
-          Gobierno Petro · Período 2022–2026
+      <header className="mb-8 w-full">
+        <div className="flex items-center gap-2">
+          <BriefcaseIcon className="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0" />
+          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Rama Ejecutiva</h2>
+        </div>
+        <p className="text-base text-slate-400 dark:text-slate-500 mt-1">
+          Dirige el Estado, define las políticas públicas y administra los asuntos
+          de la Nación. La encabeza el Presidente de la República, junto al
+          Vicepresidente y el Consejo de Ministros. · Gobierno Petro 2022–2026
         </p>
       </header>
 
