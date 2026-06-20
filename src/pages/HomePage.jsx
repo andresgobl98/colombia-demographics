@@ -10,30 +10,43 @@ import { SOURCE_GROUPS } from "../data/sources";
 
 const ic = "w-6 h-6";
 
-const SECTIONS = [
+// Quick links grouped by section. Each group renders under its own label.
+const GROUPS = [
   {
-    to: "/datos/poblacion",
-    title: "Población",
-    desc: "Población total, distribución por sexo y autorreconocimiento étnico de los 33 departamentos, con una línea de tiempo de 2018 a 2050.",
-    icon: UsersIcon,
+    id: "datos",
+    label: "Datos",
+    sections: [
+      {
+        to: "/datos/poblacion",
+        title: "Población",
+        desc: "Población total, distribución por sexo y autorreconocimiento étnico de los 33 departamentos, con una línea de tiempo de 2018 a 2050.",
+        icon: UsersIcon,
+      },
+    ],
   },
   {
-    to: "/gobierno/legislativo",
-    title: "Legislativo",
-    desc: "Cámara y Senado: composición por partido, curules y el directorio completo de representantes y senadores en ejercicio.",
-    icon: BuildingLibraryIcon,
-  },
-  {
-    to: "/gobierno/ejecutivo",
-    title: "Ejecutivo",
-    desc: "Presidencia, ministerios y la rama ejecutiva del Estado colombiano.",
-    icon: BriefcaseIcon,
-  },
-  {
-    title: "Judicial",
-    desc: "Altas cortes y la organización de la rama judicial.",
-    icon: ScaleIcon,
-    soon: true,
+    id: "gobierno",
+    label: "Gobierno",
+    sections: [
+      {
+        to: "/gobierno/legislativo",
+        title: "Legislativo",
+        desc: "Cámara y Senado: composición por partido, curules y el directorio completo de representantes y senadores en ejercicio.",
+        icon: BuildingLibraryIcon,
+      },
+      {
+        to: "/gobierno/ejecutivo",
+        title: "Ejecutivo",
+        desc: "Presidencia, ministerios y la rama ejecutiva del Estado colombiano.",
+        icon: BriefcaseIcon,
+      },
+      {
+        to: "/gobierno/judicial",
+        title: "Judicial",
+        desc: "Altas cortes, Fiscalía y los organismos que administran justicia en Colombia.",
+        icon: ScaleIcon,
+      },
+    ],
   },
 ];
 
@@ -94,10 +107,19 @@ export default function HomePage() {
           </p>
         </header>
 
-        {/* Section cards */}
-        <div className="mt-10 grid gap-4 sm:grid-cols-2">
-          {SECTIONS.map((s) => (
-            <SectionCard key={s.title} section={s} />
+        {/* Section cards, grouped by category */}
+        <div className="mt-10 space-y-8">
+          {GROUPS.map((group) => (
+            <section key={group.id}>
+              <h2 className="text-xs font-semibold uppercase tracking-wide text-slate-600 dark:text-slate-400 mb-3">
+                {group.label}
+              </h2>
+              <div className="grid gap-4 sm:grid-cols-2">
+                {group.sections.map((s) => (
+                  <SectionCard key={s.title} section={s} />
+                ))}
+              </div>
+            </section>
           ))}
         </div>
 

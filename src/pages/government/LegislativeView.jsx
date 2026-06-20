@@ -1,5 +1,6 @@
 import { useState, useMemo } from "react";
 import { BuildingLibraryIcon } from "@heroicons/react/24/outline";
+import { Copy } from "../../components/ui";
 import { HemicycleChart } from "../../components/charts";
 import { RepresentationMap } from "../../components/maps";
 import { CHAMBERS, PARTY_META, CONSTITUENCY_META, partiesForChamber } from "../../data/congress";
@@ -74,30 +75,30 @@ export default function LegislativeView() {
       <div>
         <div className="flex items-center gap-2">
           <BuildingLibraryIcon className="w-6 h-6 text-blue-600 dark:text-blue-400 shrink-0" />
-          <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Rama Legislativa</h2>
+          <Copy as="h2" variant="title">Rama Legislativa</Copy>
         </div>
-        <p className="text-base text-slate-400 dark:text-slate-500 mt-1">
+        <Copy as="p" variant="prose" className="mt-1">
           Hace las leyes y ejerce el control político sobre el Gobierno. La
           conforma el Congreso de la República, bicameral: el Senado, elegido por
           circunscripción nacional, y la Cámara de Representantes, por departamentos.
-        </p>
+        </Copy>
       </div>
 
       {/* Chamber title + chamber switcher */}
       <header className="flex flex-wrap items-center justify-between gap-3">
         <div>
-          <h3 className="text-lg font-bold text-slate-800 dark:text-slate-100">{chamber.name}</h3>
-          <div className="flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-400 dark:text-slate-500">
+          <Copy as="h3" variant="title" className="text-lg">{chamber.name}</Copy>
+          <Copy as="div" variant="detail" className="flex flex-wrap items-center gap-x-2 gap-y-1">
             <span>
               Periodo {chamber.period} · {chamber.totalSeats} curules
               {fullRoster && chamber.members.length < chamber.totalSeats && (
                 <> · {chamber.members.length} en ejercicio</>
               )}
             </span>
-            <span className="whitespace-nowrap text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
+            <span className="whitespace-nowrap text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
               {chamberId === "camara" ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
             </span>
-          </div>
+          </Copy>
         </div>
         <div className="flex gap-1 bg-slate-100 dark:bg-slate-700/40 rounded-xl p-1">
           <button onClick={() => switchChamber("camara")} className={chamberBtnClass(chamberId === "camara")}>
@@ -111,7 +112,7 @@ export default function LegislativeView() {
 
       {/* Composition: hemicycle + party legend */}
       <Card className="p-4 md:p-6">
-        <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-3">Distribución de curules</p>
+        <Copy as="p" variant="detail" className="font-semibold mb-3">Distribución de curules</Copy>
         <div className="grid md:grid-cols-2 gap-6 items-center">
           <HemicycleChart parties={orderedParties} highlightId={highlight} onHighlight={setHighlight} />
           <ul className="flex flex-col gap-1.5">
@@ -125,8 +126,8 @@ export default function LegislativeView() {
                 }`}
               >
                 <span className="w-3 h-3 rounded-full shrink-0" style={{ backgroundColor: p.color }} />
-                <span className="text-sm text-slate-700 dark:text-slate-200 flex-1 truncate">{p.name}</span>
-                <span className="text-sm font-semibold tabular-nums text-slate-500 dark:text-slate-400">{p.seats}</span>
+                <Copy as="span" variant="detail" className="flex-1 truncate">{p.name}</Copy>
+                <Copy as="span" variant="annotation" className="font-semibold tabular-nums">{p.seats}</Copy>
               </li>
             ))}
           </ul>
@@ -137,9 +138,9 @@ export default function LegislativeView() {
       {chamber.byDepartment ? (
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-3 overflow-hidden">
-            <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2 px-1">
+            <Copy as="p" variant="detail" className="font-semibold mb-2 px-1">
               Representación por departamento
-            </p>
+            </Copy>
             <div className="h-[50vh] min-h-[320px] md:h-[460px]">
               <RepresentationMap withData={withData} selectedId={selectedDept} onSelect={setSelectedDept} />
             </div>
@@ -147,10 +148,10 @@ export default function LegislativeView() {
 
           <Card className="p-4 flex flex-col overflow-hidden">
             <div className="flex items-center justify-between mb-3">
-              <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">
+              <Copy as="p" variant="detail" className="font-semibold">
                 {selectedDept ? `Representantes · ${deptName(selectedDept)}` : "Representantes"}
-                <span className="ml-1.5 font-normal text-slate-400 dark:text-slate-500">({roster.length})</span>
-              </p>
+                <Copy as="span" variant="annotation" className="ml-1.5">({roster.length})</Copy>
+              </Copy>
               {selectedDept && (
                 <button onClick={() => setSelectedDept(null)} className="text-xs text-blue-600 dark:text-blue-400 hover:underline">
                   Ver todos
@@ -164,10 +165,10 @@ export default function LegislativeView() {
         </div>
       ) : (
         <Card className="p-4 flex flex-col">
-          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">Senadores</p>
-          <p className="text-xs text-slate-400 dark:text-slate-500 mb-3">
+          <Copy as="p" variant="detail" className="font-semibold mb-1">Senadores</Copy>
+          <Copy as="p" variant="detail" className="mb-3">
             El Senado se elige por circunscripción nacional, por lo que sus curules no se asignan por departamento.
-          </p>
+          </Copy>
           <MemberList members={roster} />
         </Card>
       )}
@@ -177,7 +178,7 @@ export default function LegislativeView() {
 
 function MemberList({ members, emptyHint }) {
   if (!members || members.length === 0) {
-    return <p className="text-sm text-slate-400 dark:text-slate-500">{emptyHint ?? "Sin datos."}</p>;
+    return <Copy variant="annotation">{emptyHint ?? "Sin datos."}</Copy>;
   }
   return (
     <ul className="flex flex-col divide-y divide-slate-100 dark:divide-slate-700">
@@ -187,21 +188,21 @@ function MemberList({ members, emptyHint }) {
           <li key={m.id} className="flex items-start gap-3 py-2.5">
             <span className="w-2.5 h-2.5 rounded-full shrink-0 mt-1.5" style={{ backgroundColor: party.color }} />
             <div className="min-w-0 flex-1">
-              <p className="text-sm text-slate-800 dark:text-slate-100 truncate">{m.name}</p>
-              <p className="text-xs text-slate-400 dark:text-slate-500 truncate">
+              <Copy as="p" variant="detail" className="truncate text-slate-800 dark:text-slate-100">{m.name}</Copy>
+              <Copy as="p" variant="annotation" className="truncate">
                 {party.name}{m.departmentCode ? ` · ${deptName(m.departmentCode)}` : ""}
-              </p>
+              </Copy>
               {m.commission && (
-                <p className="text-xs text-slate-400 dark:text-slate-500 truncate" title={m.commission}>
+                <Copy as="p" variant="annotation" className="truncate" title={m.commission}>
                   {shortCommission(m.commission)}
-                </p>
+                </Copy>
               )}
             </div>
             <div className="shrink-0 flex flex-col items-end gap-1">
               {SPECIAL_CONSTITUENCIES.has(m.constituency) && (
                 <span
                   title={CONSTITUENCY_META[m.constituency]}
-                  className="text-xs font-medium text-slate-500 dark:text-slate-400 bg-slate-100 dark:bg-slate-700/60 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5"
+                  className="text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/60 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5"
                 >
                   {SPECIAL_LABEL[m.constituency]}
                 </span>
@@ -210,7 +211,7 @@ function MemberList({ members, emptyHint }) {
                 <a
                   href={`mailto:${m.email}`}
                   title={m.email}
-                  className="text-slate-300 hover:text-blue-600 dark:text-slate-600 dark:hover:text-blue-400 transition-colors"
+                  className="text-slate-500 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 transition-colors"
                   aria-label={`Escribir a ${m.name}`}
                 >
                   <svg className="w-5 h-5" fill="none" stroke="currentColor" strokeWidth={1.8} viewBox="0 0 24 24">
