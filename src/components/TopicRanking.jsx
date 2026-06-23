@@ -1,4 +1,5 @@
 import { BarBreakdown } from "./charts";
+import { Copy } from "./ui";
 import { useDemographics } from "../state/demographicsStore";
 
 const RANK_COLOR = "#3b82f6"; // blue-500
@@ -14,9 +15,9 @@ export default function TopicRanking() {
 
   return (
     <div className="shrink-0 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 p-4 max-h-[70vh] md:max-h-64 overflow-y-auto">
-      <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-3">
+      <Copy as="p" variant="detail" className="font-semibold mb-3">
         Ranking — {metric.label}
-      </p>
+      </Copy>
       <BarBreakdown data={entries} showRank formatValue={metric.format} />
     </div>
   );

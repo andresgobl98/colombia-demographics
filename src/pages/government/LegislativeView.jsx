@@ -1,6 +1,6 @@
 import { useState, useMemo } from "react";
 import { BuildingLibraryIcon } from "@heroicons/react/24/outline";
-import { Copy } from "../../components/ui";
+import { Copy, InteractiveHint } from "../../components/ui";
 import { HemicycleChart } from "../../components/charts";
 import { RepresentationMap } from "../../components/maps";
 import { CHAMBERS, PARTY_META, CONSTITUENCY_META, partiesForChamber } from "../../data/congress";
@@ -138,9 +138,12 @@ export default function LegislativeView() {
       {chamber.byDepartment ? (
         <div className="grid md:grid-cols-2 gap-6">
           <Card className="p-3 overflow-hidden">
-            <Copy as="p" variant="detail" className="font-semibold mb-2 px-1">
-              Representación por departamento
-            </Copy>
+            <div className="flex flex-wrap items-center justify-between gap-x-3 gap-y-1 mb-2 px-1">
+              <Copy as="p" variant="detail" className="font-semibold">
+                Representación por departamento
+              </Copy>
+              <InteractiveHint>Toca un departamento para filtrar la lista</InteractiveHint>
+            </div>
             <div className="h-[50vh] min-h-[320px] md:h-[460px]">
               <RepresentationMap withData={withData} selectedId={selectedDept} onSelect={setSelectedDept} />
             </div>

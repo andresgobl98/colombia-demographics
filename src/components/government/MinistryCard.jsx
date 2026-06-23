@@ -51,11 +51,13 @@ export default function MinistryCard({ ministry }) {
         </div>
       </div>
 
-      <span className="mt-3 flex items-center gap-1 text-sm text-slate-500 dark:text-slate-400 group-hover:text-slate-700 dark:group-hover:text-slate-200 transition-colors">
+      {/* Action aligned bottom-right (executive-view convention); the pill +
+          accent make the expand/collapse affordance read as a control. */}
+      <span className="mt-3 self-end inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-blue-700 dark:text-blue-300 bg-blue-50 dark:bg-blue-950/40 border border-blue-200/70 dark:border-blue-800/60 group-hover:bg-blue-100 dark:group-hover:bg-blue-900/50 transition-colors">
+        {expanded ? "Ocultar" : "Ver descripción"}
         <ChevronDownIcon
           className={`w-4 h-4 transition-transform duration-150 ${expanded ? "rotate-180" : ""}`}
         />
-        {expanded ? "Ocultar" : "Ver descripción"}
       </span>
     </button>
   );

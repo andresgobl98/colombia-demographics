@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Outlet, useLocation } from "react-router-dom";
 import { Bars3Icon } from "@heroicons/react/24/outline";
 import Sidebar from "../components/Sidebar";
-import { ThemeToggle } from "../components/ui";
+import { ThemeToggle, Copy } from "../components/ui";
 import AboutModal from "../components/AboutModal";
 import DataSources from "../components/DataSources";
 
@@ -67,9 +67,9 @@ export default function AppLayout() {
             >
               <Bars3Icon className="w-5 h-5" />
             </button>
-            <h1 className="text-base font-bold text-slate-800 dark:text-slate-100 leading-none truncate">
+            <Copy as="h1" variant="title" className="text-base leading-none truncate">
               CO Demográfica
-            </h1>
+            </Copy>
           </div>
           <ThemeToggle />
         </header>

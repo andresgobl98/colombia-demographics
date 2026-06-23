@@ -10,7 +10,7 @@ import {
   ChevronRightIcon,
   XMarkIcon,
 } from "@heroicons/react/24/outline";
-import { ThemeToggle } from "./ui";
+import { ThemeToggle, Copy } from "./ui";
 
 const ic = "w-5 h-5 shrink-0";
 
@@ -80,9 +80,9 @@ export default function Sidebar({
             </svg>
           </div>
           {!collapsed && (
-            <h1 className="text-base font-bold text-slate-800 dark:text-slate-100 leading-none truncate">
+            <Copy as="h1" variant="title" className="text-base leading-none truncate">
               CO Demográfica
-            </h1>
+            </Copy>
           )}
         </div>
         {mobile && onClose && (
@@ -110,9 +110,9 @@ export default function Sidebar({
             {collapsed
               ? i > 0 && <div className="h-px bg-slate-100 dark:bg-slate-700 my-2 mx-1" />
               : (
-                <p className="px-3 pt-3 pb-1 text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500">
+                <Copy as="p" variant="eyebrow" className="px-3 pt-3 pb-1">
                   {section.label}
-                </p>
+                </Copy>
               )}
             {section.items.map((item) => {
               const Icon = item.icon;

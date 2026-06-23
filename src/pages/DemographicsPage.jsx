@@ -2,6 +2,7 @@ import { ColombiaMap } from "../components/maps";
 import RegionPanel from "../components/RegionPanel";
 import ControlBar from "../components/ControlBar";
 import TopicRanking from "../components/TopicRanking";
+import { Copy } from "../components/ui";
 import { useDemographics } from "../state/demographicsStore";
 
 export default function DemographicsPage() {
@@ -31,14 +32,14 @@ export default function DemographicsPage() {
         </div>
         <button
           onClick={openNationalPanel}
-          className="shrink-0 flex items-center justify-between gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 text-sm font-medium text-slate-700 dark:text-slate-200 shadow-sm"
+          className="shrink-0 flex items-center justify-between gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 shadow-sm"
         >
-          <span className="flex items-center gap-2">
+          <Copy as="span" variant="detail" className="flex items-center gap-2 font-medium text-slate-700 dark:text-slate-200">
             <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
             </svg>
             Ver más
-          </span>
+          </Copy>
           <svg className="w-4 h-4 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>

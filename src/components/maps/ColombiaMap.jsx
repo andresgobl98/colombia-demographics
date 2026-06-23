@@ -8,6 +8,7 @@ import MapZoomControls from "./MapZoomControls";
 import { useMapZoom } from "./useMapZoom";
 import { useColombiaGeographies, getDeptCode, SAN_ANDRES_CODE } from "./geo";
 import { useDemographics } from "../../state/demographicsStore";
+import { InteractiveHint } from "../ui";
 
 const DEFAULT_CENTER = [-74, 4];
 const DEFAULT_ZOOM = 1;
@@ -88,7 +89,7 @@ export default function ColombiaMap() {
   return (
     <div className="relative w-full h-full flex flex-col items-center justify-center">
       {isEmpty ? (
-        <div className="flex flex-col items-center gap-3 text-slate-400 dark:text-slate-500 p-8 text-center">
+        <div className="flex flex-col items-center gap-3 text-slate-500 dark:text-slate-400 p-8 text-center">
           <svg className="w-16 h-16 opacity-40" fill="none" stroke="currentColor" viewBox="0 0 24 24">
             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={1.5} d="M9 20l-5.447-2.724A1 1 0 013 16.382V5.618a1 1 0 011.447-.894L9 7m0 13l6-3m-6 3V7m6 10l4.553 2.276A1 1 0 0021 18.382V7.618a1 1 0 00-.553-.894L15 4m0 13V4m0 0L9 7" />
           </svg>
@@ -129,6 +130,15 @@ export default function ColombiaMap() {
             </Geographies>
           </ZoomableGroup>
         </ComposableMap>
+      )}
+
+      {/* "Map is clickable" nudge — pinned top-center (clear of the top-left
+          inset, bottom-left legend and bottom-right zoom controls). Fades out
+          once the reader has selected a department. */}
+      {!isEmpty && !selectedId && (
+        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
+          <InteractiveHint variant="pill">Toca un departamento para ver sus datos</InteractiveHint>
+        </div>
       )}
 
       {/* San Andrés y Providencia inset (top-left, clear of the centered slider) */}

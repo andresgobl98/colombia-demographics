@@ -29,7 +29,15 @@ export default function DepartmentGeography({
           opacity: selected ? 1 : 0.85,
           filter: selected ? "drop-shadow(0 0 4px rgba(0,0,0,0.3))" : "none",
         },
-        hover: { outline: "none", opacity: 1, cursor: "pointer" },
+        hover: {
+          outline: "none",
+          opacity: 1,
+          cursor: "pointer",
+          // Thicker stroke on hover gives a clearer "this region is clickable"
+          // cue than the opacity lift alone.
+          stroke: "var(--map-stroke)",
+          strokeWidth: 1.25,
+        },
         pressed: { outline: "none" },
       }}
     />

@@ -1,5 +1,6 @@
 import { useEffect } from "react";
 import { SOURCE_GROUPS } from "../data/sources";
+import { Copy } from "./ui";
 
 export default function AboutModal({ open, onClose }) {
   // Close on Escape
@@ -34,22 +35,22 @@ export default function AboutModal({ open, onClose }) {
           </svg>
         </button>
 
-        <h2 id="about-title" className="text-2xl font-bold text-slate-800 dark:text-slate-100 mb-1">
+        <Copy as="h2" id="about-title" variant="title" className="text-2xl mb-1">
           CO Demográfica
-        </h2>
-        <p className="text-sm text-slate-400 dark:text-slate-500 mb-5">
+        </Copy>
+        <Copy as="p" variant="annotation" className="mb-5">
           Mapa demográfico de Colombia por departamento
-        </p>
+        </Copy>
 
         <div className="space-y-4 text-sm text-slate-600 dark:text-slate-300 leading-relaxed">
           <div>
-            <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Fuentes de datos</h3>
+            <Copy as="h3" variant="detail" className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Fuentes de datos</Copy>
             <div className="space-y-3">
               {SOURCE_GROUPS.map((group) => (
                 <div key={group.prefix}>
-                  <p className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-1">
+                  <Copy as="p" variant="eyebrow" className="mb-1">
                     {group.label}
-                  </p>
+                  </Copy>
                   <ul className="list-disc list-inside space-y-1">
                     {group.sources.map((s) => (
                       <li key={s.label}>
@@ -75,7 +76,7 @@ export default function AboutModal({ open, onClose }) {
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Notas sobre los datos</h3>
+            <Copy as="h3" variant="detail" className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Notas sobre los datos</Copy>
             <ul className="list-disc list-inside space-y-1">
               <li>
                 Las cifras de población corresponden a las proyecciones del DANE, que incorporan el
@@ -93,7 +94,7 @@ export default function AboutModal({ open, onClose }) {
           </div>
 
           <div>
-            <h3 className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Créditos y licencia</h3>
+            <Copy as="h3" variant="detail" className="font-semibold text-slate-700 dark:text-slate-200 mb-1">Créditos y licencia</Copy>
             <p>
               Desarrollado por{" "}
               <a

@@ -44,9 +44,9 @@ export default function SeniorCard({ position }) {
 
       <Copy as="div" variant="annotation" className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-4">
         <span>{position.party}</span>
-        <span className="text-slate-400 dark:text-slate-500">·</span>
+        <span aria-hidden="true">·</span>
         <span>Posesión: {formatSince(position.since)}</span>
-        <span className="text-slate-400 dark:text-slate-500">·</span>
+        <span aria-hidden="true">·</span>
         <span>Período {position.term}</span>
       </Copy>
 

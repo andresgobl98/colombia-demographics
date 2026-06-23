@@ -1,4 +1,5 @@
 import { YEARS } from "../data/selectors";
+import { Copy } from "./ui";
 import { useDemographics } from "../state/demographicsStore";
 
 /**
@@ -19,7 +20,7 @@ export default function TimelineSlider({ embedded = false }) {
   return (
     <div className={wrapper}>
       <div className="shrink-0 text-center w-12">
-        <span className="text-lg font-bold text-slate-800 dark:text-slate-100 tabular-nums leading-none">{selectedYear}</span>
+        <Copy as="span" variant="strong" className="text-lg font-bold text-slate-800 dark:text-slate-100 tabular-nums leading-none">{selectedYear}</Copy>
       </div>
       <div className="flex-1 flex flex-col">
         <input
@@ -31,9 +32,10 @@ export default function TimelineSlider({ embedded = false }) {
           className="w-full accent-blue-600 cursor-pointer"
           aria-label="Año"
         />
-        <div className="flex justify-between text-xs text-slate-400 dark:text-slate-500 -mt-0.5 px-0.5">
-          <span>{YEARS[0]}</span>
-          <span>{YEARS[max]}</span>
+        {/* Axis bounds: slate-400 failed AA on the white card; annotation (slate-500/400) passes. */}
+        <div className="flex justify-between -mt-0.5 px-0.5">
+          <Copy as="span" variant="annotation">{YEARS[0]}</Copy>
+          <Copy as="span" variant="annotation">{YEARS[max]}</Copy>
         </div>
       </div>
     </div>

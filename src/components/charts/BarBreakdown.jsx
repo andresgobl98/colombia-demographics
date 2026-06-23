@@ -25,7 +25,7 @@ export default function BarBreakdown({
         return (
           <li key={entry.name} className="flex items-center gap-2">
             {showRank && (
-              <span className="text-xs text-slate-400 dark:text-slate-500 w-4 text-right shrink-0 tabular-nums">
+              <span className="text-xs text-slate-500 dark:text-slate-400 w-4 text-right shrink-0 tabular-nums">
                 {i + 1}
               </span>
             )}

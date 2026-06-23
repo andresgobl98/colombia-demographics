@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { ScaleIcon, ChevronDownIcon } from "@heroicons/react/24/outline";
+import { ScaleIcon, ChevronDownIcon, ArrowTopRightOnSquareIcon } from "@heroicons/react/24/outline";
 import { Copy } from "../../components/ui";
 import { formatSince } from "../../components/government/format";
 import { JUDICIAL_CATEGORIES, orgsForCategory } from "../../data/judicial";
@@ -54,7 +54,7 @@ function Bench({ org, leadByName }) {
         type="button"
         onClick={() => setOpen((v) => !v)}
         aria-expanded={open}
-        className="group flex items-center gap-1.5 text-sm font-medium text-slate-500 dark:text-slate-400 hover:text-slate-700 dark:hover:text-slate-200 transition-colors"
+        className="inline-flex items-center gap-1.5 rounded-full px-2.5 py-1 text-sm font-medium text-amber-800 dark:text-amber-300 bg-amber-50 dark:bg-amber-950/40 border border-amber-200/70 dark:border-amber-800/60 hover:bg-amber-100 dark:hover:bg-amber-900/50 transition-colors"
       >
         <ChevronDownIcon
           className={`w-4 h-4 transition-transform duration-150 ${open ? "rotate-180" : ""}`}
@@ -79,7 +79,7 @@ function Bench({ org, leadByName }) {
                     const role = leadByName.get(name);
                     return (
                       <li key={name} className="flex items-baseline gap-2">
-                        <span className="text-slate-300 dark:text-slate-600 shrink-0">·</span>
+                        <span aria-hidden="true" className="text-slate-300 dark:text-slate-600 shrink-0">·</span>
                         <Copy as="span" variant="detail" className="min-w-0">
                           {name}
                           {role && (
@@ -150,14 +150,18 @@ function OrgCard({ org }) {
 
       {org.benchGroups && <Bench org={org} leadByName={leadByName} />}
 
-      <a
-        href={org.website}
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-block mt-4 text-sm text-amber-700 dark:text-amber-400 underline hover:text-amber-800 dark:hover:text-amber-300 transition-colors"
-      >
-        Sitio oficial
-      </a>
+      {/* Primary card action pinned bottom-right (matches executive-view convention). */}
+      <div className="mt-4 flex justify-end">
+        <a
+          href={org.website}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex items-center gap-1 text-sm font-medium text-amber-700 dark:text-amber-400 hover:text-amber-800 dark:hover:text-amber-300 transition-colors"
+        >
+          Sitio oficial
+          <ArrowTopRightOnSquareIcon className="w-4 h-4" />
+        </a>
+      </div>
     </div>
   );
 }

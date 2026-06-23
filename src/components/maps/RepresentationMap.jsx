@@ -42,7 +42,7 @@ export default function RepresentationMap({ withData, selectedId, onSelect }) {
 
   if (isEmpty) {
     return (
-      <div className="flex items-center justify-center h-full min-h-[300px] text-sm text-slate-400 dark:text-slate-500">
+      <div className="flex items-center justify-center h-full min-h-[300px] text-sm text-slate-500 dark:text-slate-400">
         Cargando mapa…
       </div>
     );

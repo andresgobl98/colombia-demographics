@@ -1,13 +1,14 @@
 import { METRICS } from "../data/metrics";
 import { useDemographics } from "../state/demographicsStore";
+import { Copy } from "./ui";
 
 export default function MetricSelector() {
   const { selectedMetricId, setSelectedMetricId } = useDemographics();
   return (
     <div className="flex items-center gap-3 shrink-0">
-      <label className="hidden sm:block text-sm font-medium text-slate-600 dark:text-slate-300 whitespace-nowrap">
+      <Copy as="label" variant="detail" className="hidden sm:block font-medium whitespace-nowrap">
         Colorear mapa por
-      </label>
+      </Copy>
       <select
         value={selectedMetricId}
         onChange={(e) => setSelectedMetricId(e.target.value)}

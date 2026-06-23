@@ -1,6 +1,7 @@
 import { useEffect, useRef, useState } from "react";
 import { useLocation } from "react-router-dom";
 import { sourcesForPath } from "../data/sources";
+import { Copy } from "./ui";
 
 /**
  * Floating, route-aware data-sources control. Renders a small icon button in the
@@ -43,24 +44,24 @@ export default function DataSources() {
           aria-label="Fuentes de datos"
           className="absolute bottom-12 right-0 w-72 max-w-[calc(100vw-2rem)] bg-white dark:bg-slate-800 rounded-xl shadow-lg border border-slate-200 dark:border-slate-700 p-4"
         >
-          <h3 className="text-xs font-semibold uppercase tracking-wide text-slate-400 dark:text-slate-500 mb-2">
+          <Copy as="h3" variant="eyebrow" className="mb-2">
             Fuentes de datos
-          </h3>
+          </Copy>
           <ul className="space-y-2.5">
             {sources.map((s) => (
-              <li key={s.label} className="text-sm leading-snug">
-                <p className="font-medium text-slate-700 dark:text-slate-200">{s.label}</p>
+              <li key={s.label} className="leading-snug">
+                <Copy as="p" variant="detail" className="font-medium text-slate-700 dark:text-slate-200">{s.label}</Copy>
                 {s.href ? (
                   <a
                     href={s.href}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-blue-600 dark:text-blue-400 hover:underline"
+                    className="text-sm text-blue-600 dark:text-blue-400 hover:underline"
                   >
                     {s.detail}
                   </a>
                 ) : (
-                  <p className="text-slate-500 dark:text-slate-400">{s.detail}</p>
+                  <Copy as="p" variant="annotation">{s.detail}</Copy>
                 )}
               </li>
             ))}

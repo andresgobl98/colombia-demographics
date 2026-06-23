@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import { DonutChart, BarBreakdown, PopulationPyramid } from "./charts";
-import { StatCard } from "./ui";
+import { StatCard, Copy } from "./ui";
 import TimelineSlider from "./TimelineSlider";
 import { getAgePyramid } from "../data/selectors";
 import { useDemographics } from "../state/demographicsStore";
@@ -83,16 +83,16 @@ export default function RegionPanel({ mobile = false }) {
       <div>
         {isNational ? (
           <>
-            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">Colombia</h2>
-            <p className="text-sm text-slate-400 dark:text-slate-500">Total nacional · {year}</p>
+            <Copy as="h2" variant="title">Colombia</Copy>
+            <Copy as="p" variant="annotation">Total nacional · {year}</Copy>
           </>
         ) : (
           <>
-            <h2 className="text-xl font-bold text-slate-800 dark:text-slate-100">{department.name}</h2>
-            <p className="text-sm text-slate-400 dark:text-slate-500">
+            <Copy as="h2" variant="title">{department.name}</Copy>
+            <Copy as="p" variant="annotation">
               {department.capital ? `Capital: ${department.capital}` : ""}
               {department.capital ? " · " : ""}{year}
-            </p>
+            </Copy>
           </>
         )}
       </div>
@@ -131,7 +131,7 @@ export default function RegionPanel({ mobile = false }) {
       {/* Gráfica por sexo */}
       {sexData.length > 0 && (
         <div>
-          <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-1">Distribución por sexo</p>
+          <Copy as="p" variant="detail" className="font-semibold mb-1">Distribución por sexo</Copy>
           <DonutChart
             data={sexData}
             formatTooltip={(v) => v.toLocaleString("es-CO")}
@@ -141,9 +141,9 @@ export default function RegionPanel({ mobile = false }) {
 
       {/* Pirámide poblacional por edad y sexo */}
       <div>
-        <p className="text-sm font-semibold text-slate-600 dark:text-slate-300 mb-2">
+        <Copy as="p" variant="detail" className="font-semibold mb-2">
           Pirámide poblacional
-        </p>
+        </Copy>
         {pyramid ? (
           <PopulationPyramid
             ageGroups={pyramid.ageGroups}
@@ -151,7 +151,7 @@ export default function RegionPanel({ mobile = false }) {
             female={pyramid.female}
           />
         ) : (
-          <p className="text-xs text-slate-400 dark:text-slate-500">Cargando…</p>
+          <Copy as="p" variant="annotation">Cargando…</Copy>
         )}
       </div>
 
@@ -159,23 +159,23 @@ export default function RegionPanel({ mobile = false }) {
       {ethnicityData.length > 0 && (
         <div>
           <div className="flex items-baseline justify-between mb-2 gap-2">
-            <p className="text-sm font-semibold text-slate-600 dark:text-slate-300">Autorreconocimiento étnico</p>
+            <Copy as="p" variant="detail" className="font-semibold">Autorreconocimiento étnico</Copy>
             <span className="text-xs font-medium text-amber-700 dark:text-amber-300 bg-amber-50 dark:bg-amber-900/30 border border-amber-200 dark:border-amber-700/50 rounded-full px-2 py-0.5 shrink-0">
               Censo 2018
             </span>
           </div>
           <BarBreakdown data={ethnicityData} />
-          <p className="text-xs text-slate-400 dark:text-slate-500 mt-2 leading-snug">
+          <Copy as="p" variant="annotation" className="mt-2 leading-snug">
             Composición étnica del Censo Nacional 2018 (CNPV). El DANE no publica
             proyección étnica, por lo que este desglose no varía entre años.
-          </p>
+          </Copy>
         </div>
       )}
 
       {isNational && (
-        <p className="text-xs text-slate-400 dark:text-slate-500 text-center pt-2 border-t border-slate-100 dark:border-slate-700">
+        <Copy as="p" variant="annotation" className="text-center pt-2 border-t border-slate-100 dark:border-slate-700">
           Haz clic en un departamento para ver su detalle
-        </p>
+        </Copy>
       )}
     </div>
   );

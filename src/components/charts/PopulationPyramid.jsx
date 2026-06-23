@@ -1,7 +1,11 @@
 import { useState } from "react";
 
-const MALE_COLOR = "#3b82f6";   // blue-500
-const FEMALE_COLOR = "#f43f5e"; // rose-500
+const MALE_COLOR = "#3b82f6";   // blue-500 — bar fill
+const FEMALE_COLOR = "#f43f5e"; // rose-500 — bar fill
+// Header labels use a darker shade of the same hue so the text clears WCAG AA on
+// white (blue/rose-500 only hit ~3.7); the bars keep the lighter fill.
+const MALE_LABEL = "#2563eb";   // blue-600
+const FEMALE_LABEL = "#e11d48"; // rose-600
 
 const fullFmt = (v) => v.toLocaleString("es-CO");
 const compactFmt = (v) =>
@@ -62,7 +66,7 @@ export default function PopulationPyramid({ ageGroups, male, female }) {
             </p>
           </>
         ) : (
-          <p className="text-xs text-slate-400 dark:text-slate-500 leading-snug">
+          <p className="text-xs text-slate-500 dark:text-slate-400 leading-snug">
             Pasa el cursor o toca un grupo de edad para ver el detalle.
           </p>
         )}
@@ -70,9 +74,9 @@ export default function PopulationPyramid({ ageGroups, male, female }) {
 
       {/* Sex headers */}
       <div className="flex text-xs font-medium mb-1">
-        <span className="flex-1 text-right pr-1" style={{ color: MALE_COLOR }}>Hombres</span>
+        <span className="flex-1 text-right pr-1 dark:!text-blue-400" style={{ color: MALE_LABEL }}>Hombres</span>
         <span className="w-12 shrink-0" />
-        <span className="flex-1 text-left pl-1" style={{ color: FEMALE_COLOR }}>Mujeres</span>
+        <span className="flex-1 text-left pl-1 dark:!text-rose-400" style={{ color: FEMALE_LABEL }}>Mujeres</span>
       </div>
 
       {/* Bars */}
@@ -111,7 +115,7 @@ export default function PopulationPyramid({ ageGroups, male, female }) {
       </ul>
 
       {/* Scale axis (labels only, no gridlines) */}
-      <div className="flex mt-1 text-[10px] tabular-nums text-slate-400 dark:text-slate-500">
+      <div className="flex mt-1 text-xs tabular-nums text-slate-500 dark:text-slate-400">
         <div className="flex-1 flex justify-between">
           <span>{compactFmt(max)}</span>
           <span>{compactFmt(max / 2)}</span>
