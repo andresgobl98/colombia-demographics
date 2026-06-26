@@ -1,5 +1,5 @@
 import { getPovertyMetric } from "../../data/povertyMetrics";
-import MetricStatCard from "./MetricStatCard";
+import { MetricStatCard } from "../ui";
 
 // Headline indicators that have a national figure (the GEIH monetary trio does
 // not), one per data family, shown as statement cards.

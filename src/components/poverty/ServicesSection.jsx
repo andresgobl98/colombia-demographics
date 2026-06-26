@@ -1,8 +1,7 @@
 import { DumbbellChart } from "../charts";
-import { Copy } from "../ui";
+import { Copy, MetricStatCard } from "../ui";
 import { getPovertyMetric } from "../../data/povertyMetrics";
 import { usePoverty } from "../../state/povertyStore";
-import MetricStatCard from "./MetricStatCard";
 
 const ACUEDUCTO = getPovertyMetric("acueducto");
 const ALCANTARILLADO = getPovertyMetric("alcantarillado");

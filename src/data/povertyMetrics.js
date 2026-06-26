@@ -198,10 +198,6 @@ export const metricsByFamily = (family) => POVERTY_METRICS.filter((m) => m.famil
 export const getPovertyMetric = (id) =>
   POVERTY_METRICS.find((m) => m.id === id) ?? POVERTY_METRICS[0];
 
-// Renders a metric's headline as plain-language sentence parts:
-// `${before} <number> ${after}`. The number is returned separately so the UI can
-// emphasise/colour it. Falls back gracefully when there is no value.
-export function metricSentence(metric, value) {
-  const number = (metric.sentenceNumber ?? metric.format)(value);
-  return { before: metric.sentence?.before ?? "", number, after: metric.sentence?.after ?? "" };
-}
+// Plain-language headline builder now lives in a shared module (used by the
+// demographics view too); re-exported here so existing poverty imports keep working.
+export { metricSentence } from "./metricStatement";

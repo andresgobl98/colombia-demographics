@@ -13,7 +13,9 @@ export function DemographicsProvider({ children }) {
   const [selectedMetricId, setSelectedMetricId] = useState(METRICS[0].id);
   const [selectedYear, setSelectedYear] = useState(DEFAULT_YEAR);
   const [selectedDeptCode, setSelectedDeptCode] = useState(null);
-  const [panelOpen, setPanelOpen] = useState(false); // mobile detail panel
+  // Which face the map's companion shows: the cross-department ranking or the
+  // selected territory's detail. Picking a department flips it to "detalle".
+  const [companionTab, setCompanionTab] = useState("ranking");
 
   const metric = useMemo(
     () => METRICS.find((m) => m.id === selectedMetricId) ?? METRICS[0],
@@ -23,23 +25,11 @@ export function DemographicsProvider({ children }) {
   const national = useMemo(() => getNational(selectedYear), [selectedYear]);
   const selectedDept = selectedDeptCode ? departments[selectedDeptCode] : null;
 
-  // Select a department from the map. On mobile this also surfaces the detail
-  // panel; on desktop the panel isn't rendered, so opening it is a no-op.
+  // Select a department (or clear with null). Selecting one surfaces its detail
+  // in the companion, mirroring the poverty explorer.
   const selectDepartment = useCallback((code) => {
     setSelectedDeptCode(code);
-    if (code) setPanelOpen(true);
-  }, []);
-
-  // Mobile "Ver más" → national detail in the slide-in panel.
-  const openNationalPanel = useCallback(() => {
-    setSelectedDeptCode(null);
-    setPanelOpen(true);
-  }, []);
-
-  // Mobile "Volver al mapa" → close the panel and clear the selection.
-  const closePanel = useCallback(() => {
-    setPanelOpen(false);
-    setSelectedDeptCode(null);
+    if (code) setCompanionTab("detalle");
   }, []);
 
   const value = useMemo(
@@ -49,27 +39,24 @@ export function DemographicsProvider({ children }) {
       selectedYear,
       setSelectedYear,
       selectedDeptCode,
-      panelOpen,
+      companionTab,
+      setCompanionTab,
       metric,
       departments,
       national,
       selectedDept,
       selectDepartment,
-      openNationalPanel,
-      closePanel,
     }),
     [
       selectedMetricId,
       selectedYear,
       selectedDeptCode,
-      panelOpen,
+      companionTab,
       metric,
       departments,
       national,
       selectedDept,
       selectDepartment,
-      openNationalPanel,
-      closePanel,
     ]
   );
 

@@ -6,7 +6,7 @@ import {
   IPM_CONTRIB_DIMENSIONS,
   metricSentence,
 } from "../../data/povertyMetrics";
-import { renderMetricIcon, toneFor } from "./metricVisuals";
+import { renderMetricIcon, toneFor } from "../ui/metricVisuals";
 import { usePoverty } from "../../state/povertyStore";
 
 // Compact tile labels (the full metric labels are too long for a 2-col grid).

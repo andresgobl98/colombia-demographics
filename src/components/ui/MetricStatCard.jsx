@@ -1,6 +1,6 @@
-import { metricSentence } from "../../data/povertyMetrics";
+import { metricSentence } from "../../data/metricStatement";
 import { renderMetricIcon, toneFor } from "./metricVisuals";
-import { Copy } from "../ui";
+import Copy from "./Copy";
 
 const NUM_SIZE = {
   lg: "text-5xl sm:text-6xl",
@@ -10,16 +10,18 @@ const NUM_SIZE = {
 /**
  * Statement card for a single metric: the figure is the hero — large and
  * tone-coloured — with the sentence's trailing clause as its caption, an icon in
- * a tinted badge, and the metric's definition anchored at the bottom.
+ * a tinted badge, and the metric's definition anchored at the bottom. Shared by
+ * the poverty and demographics views; the metric descriptor supplies the icon,
+ * tone, sentence and formatting.
  *
- * @param {Object} metric   POVERTY_METRICS descriptor
+ * @param {Object} metric   metric descriptor (label, description, tone, icon, sentence, format)
  * @param {number|null} value
  * @param {"lg"|"md"} [size="md"]
  */
 export default function MetricStatCard({ metric, value, size = "md" }) {
   const tone = toneFor(metric);
   // The big number is the statement; the sentence's trailing clause becomes its
-  // caption, so the leading "El" is dropped on purpose.
+  // caption, so any leading word ("El") is dropped on purpose.
   const { number, after } = metricSentence(metric, value);
   return (
     <div
@@ -38,16 +40,18 @@ export default function MetricStatCard({ metric, value, size = "md" }) {
         <p className={`${NUM_SIZE[size] ?? NUM_SIZE.md} font-bold leading-none tracking-tight tabular-nums ${tone.num}`}>
           {number}
         </p>
-        <Copy as="p" variant="body" className="mt-2 leading-snug">{after}</Copy>
+        {after && <Copy as="p" variant="body" className="mt-2 leading-snug">{after}</Copy>}
       </div>
 
-      <Copy
-        as="p"
-        variant="annotation"
-        className="leading-snug pt-3 mt-auto border-t border-slate-100 dark:border-slate-700"
-      >
-        {metric.description}
-      </Copy>
+      {metric.description && (
+        <Copy
+          as="p"
+          variant="annotation"
+          className="leading-snug pt-3 mt-auto border-t border-slate-100 dark:border-slate-700"
+        >
+          {metric.description}
+        </Copy>
+      )}
     </div>
   );
 }

@@ -1,13 +1,17 @@
 import { ColombiaMap } from "../components/maps";
-import RegionPanel from "../components/RegionPanel";
-import ControlBar from "../components/ControlBar";
-import TopicRanking from "../components/TopicRanking";
-import { Copy } from "../components/ui";
+import MetricSelector from "../components/MetricSelector";
+import {
+  SummaryBand,
+  YearBar,
+  DemographicsCompanion,
+  AgeStructureSection,
+  EthnicitySection,
+} from "../components/demographics";
+import { Section, Copy } from "../components/ui";
 import { useDemographics } from "../state/demographicsStore";
 
 export default function DemographicsPage() {
-  const { panelOpen, openNationalPanel, departments, metric, selectedDeptCode, selectDepartment } =
-    useDemographics();
+  const { departments, national, metric, selectedDeptCode, selectDepartment } = useDemographics();
 
   const map = (
     <ColombiaMap
@@ -17,55 +21,72 @@ export default function DemographicsPage() {
       onSelect={selectDepartment}
     />
   );
-  const ranking = <TopicRanking departments={departments} metric={metric} />;
 
   return (
-    <>
-      {/* ── Desktop layout (md+) ────────────────────────────────────────────── */}
-      <div className="hidden md:flex flex-1 overflow-hidden">
-        <main className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
-          <ControlBar />
-          <div className="relative flex-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
-            {map}
-          </div>
-          {ranking}
-        </main>
-        <aside className="w-80 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 overflow-y-auto">
-          <RegionPanel />
-        </aside>
-      </div>
+    <div className="flex-1 overflow-y-auto">
+      <div className="max-w-6xl mx-auto flex flex-col gap-10 px-4 md:px-6 pb-6">
+        {/* Sticky year control — drives every time-varying section below */}
+        <YearBar />
 
-      {/* ── Mobile layout (<md) ─────────────────────────────────────────────── */}
-      <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
-        <ControlBar />
-        <div className="relative h-[55vh] min-h-[380px] bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden shrink-0">
-          {map}
-        </div>
-        <button
-          onClick={openNationalPanel}
-          className="shrink-0 flex items-center justify-between gap-2 bg-white dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-xl px-4 py-2.5 shadow-sm"
+        {/* 1 · National panorama ─────────────────────────────────────────────── */}
+        <Section
+          eyebrow="Panorama nacional"
+          title="¿Cuántos somos y cómo estamos repartidos?"
+          description="Las cifras de población de Colombia para el año seleccionado, con proyecciones del DANE basadas en el Censo 2018. Mueve el control de año para verlas cambiar."
         >
-          <Copy as="span" variant="detail" className="flex items-center gap-2 font-medium text-slate-700 dark:text-slate-200">
-            <svg className="w-4 h-4 text-blue-600 dark:text-blue-400" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" d="M9 19v-6a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2a2 2 0 002-2zm0 0V9a2 2 0 012-2h2a2 2 0 012 2v10m-6 0a2 2 0 002 2h2a2 2 0 002-2m0 0V5a2 2 0 012-2h2a2 2 0 012 2v14a2 2 0 01-2 2h-2a2 2 0 01-2-2z" />
-            </svg>
-            Ver más
-          </Copy>
-          <svg className="w-4 h-4 text-slate-400 dark:text-slate-500" fill="none" stroke="currentColor" strokeWidth={2} viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
-          </svg>
-        </button>
-        {ranking}
-      </div>
+          <SummaryBand national={national} />
+        </Section>
 
-      {/* ── Mobile slide-in panel ───────────────────────────────────────────── */}
-      <div
-        className={`md:hidden fixed inset-0 z-40 bg-white dark:bg-slate-900 overflow-y-auto transition-transform duration-300 ease-out ${
-          panelOpen ? "translate-x-0" : "translate-x-full"
-        }`}
-      >
-        {panelOpen && <RegionPanel mobile />}
+        {/* 2 · Map explorer ──────────────────────────────────────────────────── */}
+        <Section
+          eyebrow="Explorador"
+          title="El mapa por departamento"
+          description="Elige qué colorea el mapa y haz clic en un departamento para ver su detalle frente al resto del país."
+          headerRight={<MetricSelector />}
+        >
+          {/* Desktop: map + tabbed companion side by side */}
+          <div className="hidden md:flex gap-4 h-[64vh] min-h-[460px]">
+            <div className="relative flex-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+              {map}
+            </div>
+            <div className="w-80 shrink-0">
+              <DemographicsCompanion />
+            </div>
+          </div>
+
+          {/* Mobile: map stacked above the tabbed companion */}
+          <div className="md:hidden flex flex-col gap-4">
+            <div className="relative h-[55vh] min-h-[380px] bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
+              {map}
+            </div>
+            <div className="h-[65vh]">
+              <DemographicsCompanion />
+            </div>
+          </div>
+        </Section>
+
+        {/* 3 · Age structure ─────────────────────────────────────────────────── */}
+        <Section
+          eyebrow="Estructura por edad"
+          title="¿Una población joven o que envejece?"
+          description="La pirámide reparte a la población por edad y sexo. Sigue al departamento que elijas en el mapa y al año del control superior."
+        >
+          <AgeStructureSection />
+        </Section>
+
+        {/* 4 · Ethnic self-recognition ───────────────────────────────────────── */}
+        <Section
+          eyebrow="Diversidad"
+          title="Quiénes se reconocen en cada grupo étnico"
+          description="La composición étnica que las personas declararon en el Censo 2018. Es un retrato puntual, no una proyección, por lo que no cambia al mover el año."
+        >
+          <EthnicitySection />
+        </Section>
+
+        <Copy as="p" variant="annotation" className="text-center">
+          Fuentes: DANE — Proyecciones de población (PPED) y Censo Nacional de Población y Vivienda 2018.
+        </Copy>
       </div>
-    </>
+    </div>
   );
 }

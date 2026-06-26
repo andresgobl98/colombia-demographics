@@ -6,7 +6,7 @@ import { useDemographics } from "../state/demographicsStore";
  * Year scrubber for the population timeline (DANE PPED 2018–2050).
  *
  * @param {boolean} embedded  drop the standalone card chrome so the slider can
- *                            sit inside a shared container (e.g. the ControlBar)
+ *                            sit inside a shared container (e.g. the sticky YearBar)
  */
 export default function TimelineSlider({ embedded = false }) {
   const { selectedYear, setSelectedYear } = useDemographics();
