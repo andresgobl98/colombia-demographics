@@ -2,6 +2,7 @@ import { NavLink } from "react-router-dom";
 import {
   HomeIcon,
   UsersIcon,
+  BanknotesIcon,
   BuildingLibraryIcon,
   BriefcaseIcon,
   ScaleIcon,
@@ -22,7 +23,10 @@ const ic = "w-5 h-5 shrink-0";
 const SECTIONS = [
   {
     label: "Datos",
-    items: [{ to: "/datos/poblacion", label: "Población", icon: UsersIcon }],
+    items: [
+      { to: "/datos/poblacion", label: "Población", icon: UsersIcon },
+      { to: "/datos/pobreza", label: "Pobreza", icon: BanknotesIcon },
+    ],
   },
   {
     label: "Gobierno",
