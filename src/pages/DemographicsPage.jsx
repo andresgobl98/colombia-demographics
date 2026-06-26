@@ -6,7 +6,18 @@ import { Copy } from "../components/ui";
 import { useDemographics } from "../state/demographicsStore";
 
 export default function DemographicsPage() {
-  const { panelOpen, openNationalPanel } = useDemographics();
+  const { panelOpen, openNationalPanel, departments, metric, selectedDeptCode, selectDepartment } =
+    useDemographics();
+
+  const map = (
+    <ColombiaMap
+      departments={departments}
+      metric={metric}
+      selectedCode={selectedDeptCode}
+      onSelect={selectDepartment}
+    />
+  );
+  const ranking = <TopicRanking departments={departments} metric={metric} />;
 
   return (
     <>
@@ -15,9 +26,9 @@ export default function DemographicsPage() {
         <main className="flex-1 flex flex-col overflow-hidden p-4 gap-4">
           <ControlBar />
           <div className="relative flex-1 bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden">
-            <ColombiaMap />
+            {map}
           </div>
-          <TopicRanking />
+          {ranking}
         </main>
         <aside className="w-80 bg-white dark:bg-slate-800 border-l border-slate-200 dark:border-slate-700 overflow-y-auto">
           <RegionPanel />
@@ -28,7 +39,7 @@ export default function DemographicsPage() {
       <div className="md:hidden flex-1 overflow-y-auto flex flex-col gap-4 p-4">
         <ControlBar />
         <div className="relative h-[55vh] min-h-[380px] bg-white dark:bg-slate-800 rounded-2xl shadow-sm border border-slate-100 dark:border-slate-700 overflow-hidden shrink-0">
-          <ColombiaMap />
+          {map}
         </div>
         <button
           onClick={openNationalPanel}
@@ -44,7 +55,7 @@ export default function DemographicsPage() {
             <path strokeLinecap="round" strokeLinejoin="round" d="M9 5l7 7-7 7" />
           </svg>
         </button>
-        <TopicRanking />
+        {ranking}
       </div>
 
       {/* ── Mobile slide-in panel ───────────────────────────────────────────── */}

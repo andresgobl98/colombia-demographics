@@ -7,7 +7,6 @@ import DepartmentGeography from "./DepartmentGeography";
 import MapZoomControls from "./MapZoomControls";
 import { useMapZoom } from "./useMapZoom";
 import { useColombiaGeographies, getDeptCode, SAN_ANDRES_CODE } from "./geo";
-import { useDemographics } from "../../state/demographicsStore";
 import { InteractiveHint } from "../ui";
 
 const DEFAULT_CENTER = [-74, 4];
@@ -21,13 +20,17 @@ function zoomForFeature(feature) {
   return Math.max(2, Math.min(6, 7 / maxSpan));
 }
 
-export default function ColombiaMap() {
-  const {
-    departments: data,
-    metric,
-    selectedDeptCode: selectedId,
-    selectDepartment: onSelect,
-  } = useDemographics();
+/**
+ * Presentational choropleth of Colombia's departments. Domain-agnostic — it takes
+ * its data and selection through props, so both the demographics and poverty pages
+ * drive it from their own stores:
+ *
+ *   departments  { [deptCode]: { name, [metric.id]: value, ... } }
+ *   metric       descriptor with { id, label, domain, colorRange, format }
+ *   selectedCode currently-selected department code (or null)
+ *   onSelect     (code | null) => void
+ */
+export default function ColombiaMap({ departments: data, metric, selectedCode: selectedId, onSelect }) {
   const { geographies, mainGeographies, sanAndres, isEmpty } = useColombiaGeographies();
   const [tooltip, setTooltip] = useState(null);
 
