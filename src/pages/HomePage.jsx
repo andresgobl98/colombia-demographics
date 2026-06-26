@@ -5,6 +5,7 @@ import {
   BriefcaseIcon,
   ScaleIcon,
   ChevronRightIcon,
+  BanknotesIcon
 } from "@heroicons/react/24/outline";
 import { SOURCE_GROUPS } from "../data/sources";
 import { Copy } from "../components/ui";
@@ -22,6 +23,12 @@ const GROUPS = [
         title: "Población",
         desc: "Población total, distribución por sexo y autorreconocimiento étnico de los 33 departamentos, con una línea de tiempo de 2018 a 2050.",
         icon: UsersIcon,
+      },
+      {
+        to: "/datos/pobreza",
+        title: "Pobreza y calidad de vida",
+        desc: "Pobreza monetaria, pobreza multidimensional y calidad de vida en los 33 departamentos.",
+        icon: BanknotesIcon,
       },
     ],
   },
