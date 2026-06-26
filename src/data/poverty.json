@@ -1,0 +1,603 @@
+{
+  "meta": {
+    "generated": "2026-06-23",
+    "source": "DNP TerriData (DANE, MinTIC, SSPD, UPME) — terridata.dnp.gov.co",
+    "files": [
+      "TerriData_Dim14.xlsx",
+      "TerriData_Dim3.xlsx"
+    ],
+    "note": "Latest available year per indicator; department-level. Monetary poverty (GEIH) covers 23 departments only."
+  },
+  "years": {
+    "pobreza_monetaria": 2024,
+    "pobreza_extrema": 2024,
+    "gini": 2024,
+    "ipm": 2025,
+    "nbi": 2018,
+    "internet": 2024,
+    "acueducto": 2023,
+    "alcantarillado": 2023,
+    "deficit_habitacional": 2024,
+    "ipm_contrib": 2025
+  },
+  "national": {
+    "pobreza_monetaria": null,
+    "pobreza_extrema": null,
+    "gini": null,
+    "ipm": 9.9,
+    "nbi": 14.28,
+    "internet": 17.32,
+    "acueducto": 77.28,
+    "alcantarillado": 68.78,
+    "deficit_habitacional": 26.8
+  },
+  "departments": {
+    "05": {
+      "pobreza_monetaria": 24.7,
+      "pobreza_extrema": 7.8,
+      "gini": 0.53,
+      "ipm": 9.5,
+      "nbi": 10.73,
+      "internet": 23.78,
+      "acueducto": 81.94,
+      "alcantarillado": 75.46,
+      "deficit_habitacional": 22.9,
+      "ipm_contrib": {
+        "educacion": 34.4,
+        "ninez": 10.1,
+        "salud": 10.6,
+        "vivienda": 13.7,
+        "trabajo": 31.2
+      }
+    },
+    "08": {
+      "pobreza_monetaria": 31.6,
+      "pobreza_extrema": 8.6,
+      "gini": 0.49,
+      "ipm": 8.2,
+      "nbi": 11.37,
+      "internet": 14.87,
+      "acueducto": 79.61,
+      "alcantarillado": 70.71,
+      "deficit_habitacional": 28.9,
+      "ipm_contrib": {
+        "educacion": 38.4,
+        "ninez": 15.2,
+        "salud": 12.5,
+        "vivienda": 7.3,
+        "trabajo": 26.6
+      }
+    },
+    "11": {
+      "pobreza_monetaria": 19.6,
+      "pobreza_extrema": 4.2,
+      "gini": 0.52,
+      "ipm": 2.2,
+      "nbi": 3.47,
+      "internet": 29.56,
+      "acueducto": 98.99,
+      "alcantarillado": 98.94,
+      "deficit_habitacional": 7.2,
+      "ipm_contrib": {
+        "educacion": 24.1,
+        "ninez": 15.6,
+        "salud": 24.0,
+        "vivienda": 3.6,
+        "trabajo": 32.8
+      }
+    },
+    "13": {
+      "pobreza_monetaria": 48.0,
+      "pobreza_extrema": 19.2,
+      "gini": 0.53,
+      "ipm": 17.0,
+      "nbi": 26.73,
+      "internet": 12.46,
+      "acueducto": 60.21,
+      "alcantarillado": 43.99,
+      "deficit_habitacional": 54.8,
+      "ipm_contrib": {
+        "educacion": 38.0,
+        "ninez": 9.6,
+        "salud": 5.4,
+        "vivienda": 16.8,
+        "trabajo": 30.1
+      }
+    },
+    "15": {
+      "pobreza_monetaria": 30.9,
+      "pobreza_extrema": 11.5,
+      "gini": 0.5,
+      "ipm": 6.4,
+      "nbi": 10.15,
+      "internet": 13.94,
+      "acueducto": 69.93,
+      "alcantarillado": 46.21,
+      "deficit_habitacional": 21.6,
+      "ipm_contrib": {
+        "educacion": 38.8,
+        "ninez": 11.6,
+        "salud": 7.0,
+        "vivienda": 6.2,
+        "trabajo": 36.4
+      }
+    },
+    "17": {
+      "pobreza_monetaria": 20.0,
+      "pobreza_extrema": 4.8,
+      "gini": 0.49,
+      "ipm": 7.9,
+      "nbi": 8.95,
+      "internet": 16.82,
+      "acueducto": 80.99,
+      "alcantarillado": 70.32,
+      "deficit_habitacional": 19.6,
+      "ipm_contrib": {
+        "educacion": 38.8,
+        "ninez": 10.1,
+        "salud": 7.8,
+        "vivienda": 8.7,
+        "trabajo": 34.7
+      }
+    },
+    "18": {
+      "pobreza_monetaria": 37.4,
+      "pobreza_extrema": 10.8,
+      "gini": 0.47,
+      "ipm": 15.0,
+      "nbi": 23.62,
+      "internet": 7.22,
+      "acueducto": 70.84,
+      "alcantarillado": 66.46,
+      "deficit_habitacional": 43.3,
+      "ipm_contrib": {
+        "educacion": 35.5,
+        "ninez": 17.1,
+        "salud": 6.7,
+        "vivienda": 10.8,
+        "trabajo": 29.9
+      }
+    },
+    "19": {
+      "pobreza_monetaria": 43.1,
+      "pobreza_extrema": 19.1,
+      "gini": 0.52,
+      "ipm": 13.0,
+      "nbi": 18.81,
+      "internet": 6.33,
+      "acueducto": 67.61,
+      "alcantarillado": 48.54,
+      "deficit_habitacional": 39.7,
+      "ipm_contrib": {
+        "educacion": 36.9,
+        "ninez": 12.4,
+        "salud": 5.9,
+        "vivienda": 12.9,
+        "trabajo": 31.8
+      }
+    },
+    "20": {
+      "pobreza_monetaria": 47.8,
+      "pobreza_extrema": 17.4,
+      "gini": 0.48,
+      "ipm": 14.8,
+      "nbi": 23.04,
+      "internet": 9.31,
+      "acueducto": 84.06,
+      "alcantarillado": 81.65,
+      "deficit_habitacional": 42.5,
+      "ipm_contrib": {
+        "educacion": 36.3,
+        "ninez": 16.3,
+        "salud": 4.6,
+        "vivienda": 14.2,
+        "trabajo": 28.7
+      }
+    },
+    "23": {
+      "pobreza_monetaria": 49.6,
+      "pobreza_extrema": 21.3,
+      "gini": 0.54,
+      "ipm": 19.8,
+      "nbi": 35.08,
+      "internet": 5.44,
+      "acueducto": 84.6,
+      "alcantarillado": 70.02,
+      "deficit_habitacional": 59.5,
+      "ipm_contrib": {
+        "educacion": 41.0,
+        "ninez": 10.2,
+        "salud": 2.0,
+        "vivienda": 17.8,
+        "trabajo": 29.0
+      }
+    },
+    "25": {
+      "pobreza_monetaria": 20.1,
+      "pobreza_extrema": 9.2,
+      "gini": 0.49,
+      "ipm": 4.1,
+      "nbi": 6.36,
+      "internet": 19.8,
+      "acueducto": 69.58,
+      "alcantarillado": 54.38,
+      "deficit_habitacional": 15.5,
+      "ipm_contrib": {
+        "educacion": 31.4,
+        "ninez": 15.6,
+        "salud": 12.6,
+        "vivienda": 6.3,
+        "trabajo": 34.0
+      }
+    },
+    "27": {
+      "pobreza_monetaria": 67.4,
+      "pobreza_extrema": 44.9,
+      "gini": 0.59,
+      "ipm": 30.8,
+      "nbi": 65.51,
+      "internet": 3.59,
+      "acueducto": 54.03,
+      "alcantarillado": 37.43,
+      "deficit_habitacional": 87.2,
+      "ipm_contrib": {
+        "educacion": 36.1,
+        "ninez": 11.7,
+        "salud": 3.4,
+        "vivienda": 21.6,
+        "trabajo": 27.2
+      }
+    },
+    "41": {
+      "pobreza_monetaria": 40.4,
+      "pobreza_extrema": 13.8,
+      "gini": 0.5,
+      "ipm": 9.7,
+      "nbi": 12.86,
+      "internet": 13.21,
+      "acueducto": 64.12,
+      "alcantarillado": 53.25,
+      "deficit_habitacional": 26.7,
+      "ipm_contrib": {
+        "educacion": 35.4,
+        "ninez": 23.4,
+        "salud": 3.6,
+        "vivienda": 6.0,
+        "trabajo": 31.6
+      }
+    },
+    "44": {
+      "pobreza_monetaria": 65.7,
+      "pobreza_extrema": 43.2,
+      "gini": 0.55,
+      "ipm": 40.1,
+      "nbi": 53.33,
+      "internet": 4.66,
+      "acueducto": 78.43,
+      "alcantarillado": 74.67,
+      "deficit_habitacional": 50.2,
+      "ipm_contrib": {
+        "educacion": 34.0,
+        "ninez": 10.9,
+        "salud": 3.9,
+        "vivienda": 27.3,
+        "trabajo": 23.8
+      }
+    },
+    "47": {
+      "pobreza_monetaria": 51.7,
+      "pobreza_extrema": 23.2,
+      "gini": 0.5,
+      "ipm": 17.6,
+      "nbi": 26.71,
+      "internet": 10.29,
+      "acueducto": 46.54,
+      "alcantarillado": 28.61,
+      "deficit_habitacional": 56.6,
+      "ipm_contrib": {
+        "educacion": 38.6,
+        "ninez": 11.9,
+        "salud": 6.2,
+        "vivienda": 14.1,
+        "trabajo": 29.2
+      }
+    },
+    "50": {
+      "pobreza_monetaria": 23.6,
+      "pobreza_extrema": 7.7,
+      "gini": 0.49,
+      "ipm": 12.3,
+      "nbi": 13.45,
+      "internet": 15.39,
+      "acueducto": 56.36,
+      "alcantarillado": 54.78,
+      "deficit_habitacional": 28.2,
+      "ipm_contrib": {
+        "educacion": 30.6,
+        "ninez": 14.5,
+        "salud": 13.6,
+        "vivienda": 13.1,
+        "trabajo": 28.2
+      }
+    },
+    "52": {
+      "pobreza_monetaria": 39.2,
+      "pobreza_extrema": 15.3,
+      "gini": 0.51,
+      "ipm": 13.2,
+      "nbi": 21.98,
+      "internet": 7.1,
+      "acueducto": 72.03,
+      "alcantarillado": 50.36,
+      "deficit_habitacional": 43.0,
+      "ipm_contrib": {
+        "educacion": 36.8,
+        "ninez": 10.7,
+        "salud": 7.5,
+        "vivienda": 15.3,
+        "trabajo": 29.8
+      }
+    },
+    "54": {
+      "pobreza_monetaria": 35.3,
+      "pobreza_extrema": 8.7,
+      "gini": 0.47,
+      "ipm": 13.3,
+      "nbi": 18.43,
+      "internet": 11.55,
+      "acueducto": 60.58,
+      "alcantarillado": 59.7,
+      "deficit_habitacional": 30.6,
+      "ipm_contrib": {
+        "educacion": 31.9,
+        "ninez": 15.8,
+        "salud": 12.0,
+        "vivienda": 12.0,
+        "trabajo": 28.4
+      }
+    },
+    "63": {
+      "pobreza_monetaria": 25.9,
+      "pobreza_extrema": 6.5,
+      "gini": 0.47,
+      "ipm": 6.7,
+      "nbi": 6.76,
+      "internet": 22.73,
+      "acueducto": 99.19,
+      "alcantarillado": 90.53,
+      "deficit_habitacional": 15.8,
+      "ipm_contrib": {
+        "educacion": 36.1,
+        "ninez": 13.0,
+        "salud": 14.3,
+        "vivienda": 4.1,
+        "trabajo": 32.6
+      }
+    },
+    "66": {
+      "pobreza_monetaria": 23.8,
+      "pobreza_extrema": 5.2,
+      "gini": 0.47,
+      "ipm": 4.9,
+      "nbi": 8.19,
+      "internet": 22.37,
+      "acueducto": 71.03,
+      "alcantarillado": 62.84,
+      "deficit_habitacional": 18.3,
+      "ipm_contrib": {
+        "educacion": 42.9,
+        "ninez": 11.7,
+        "salud": 6.5,
+        "vivienda": 6.7,
+        "trabajo": 32.2
+      }
+    },
+    "68": {
+      "pobreza_monetaria": 27.4,
+      "pobreza_extrema": 7.7,
+      "gini": 0.48,
+      "ipm": 6.9,
+      "nbi": 9.58,
+      "internet": 18.21,
+      "acueducto": 72.34,
+      "alcantarillado": 64.76,
+      "deficit_habitacional": 18.1,
+      "ipm_contrib": {
+        "educacion": 37.6,
+        "ninez": 13.1,
+        "salud": 7.6,
+        "vivienda": 9.8,
+        "trabajo": 32.0
+      }
+    },
+    "70": {
+      "pobreza_monetaria": 57.5,
+      "pobreza_extrema": 23.7,
+      "gini": 0.51,
+      "ipm": 25.4,
+      "nbi": 29.13,
+      "internet": 7.85,
+      "acueducto": 82.22,
+      "alcantarillado": 67.03,
+      "deficit_habitacional": 56.5,
+      "ipm_contrib": {
+        "educacion": 38.3,
+        "ninez": 11.3,
+        "salud": 7.8,
+        "vivienda": 14.8,
+        "trabajo": 27.8
+      }
+    },
+    "73": {
+      "pobreza_monetaria": 35.6,
+      "pobreza_extrema": 12.2,
+      "gini": 0.51,
+      "ipm": 12.2,
+      "nbi": 12.22,
+      "internet": 17.32,
+      "acueducto": 63.55,
+      "alcantarillado": 54.79,
+      "deficit_habitacional": 24.3,
+      "ipm_contrib": {
+        "educacion": 38.5,
+        "ninez": 13.6,
+        "salud": 8.4,
+        "vivienda": 8.5,
+        "trabajo": 31.0
+      }
+    },
+    "76": {
+      "pobreza_monetaria": 25.7,
+      "pobreza_extrema": 10.4,
+      "gini": 0.51,
+      "ipm": 4.9,
+      "nbi": 6.25,
+      "internet": 19.25,
+      "acueducto": 85.86,
+      "alcantarillado": 82.83,
+      "deficit_habitacional": 14.7,
+      "ipm_contrib": {
+        "educacion": 36.8,
+        "ninez": 13.4,
+        "salud": 7.4,
+        "vivienda": 10.4,
+        "trabajo": 32.0
+      }
+    },
+    "81": {
+      "ipm": 12.7,
+      "nbi": 32.45,
+      "internet": 10.27,
+      "acueducto": 58.41,
+      "alcantarillado": 55.04,
+      "deficit_habitacional": 48.9,
+      "ipm_contrib": {
+        "educacion": 30.4,
+        "ninez": 12.3,
+        "salud": 13.6,
+        "vivienda": 13.0,
+        "trabajo": 30.7
+      }
+    },
+    "85": {
+      "ipm": 8.9,
+      "nbi": 16.08,
+      "internet": 11.74,
+      "acueducto": 64.49,
+      "alcantarillado": 60.52,
+      "deficit_habitacional": 31.9,
+      "ipm_contrib": {
+        "educacion": 35.6,
+        "ninez": 13.3,
+        "salud": 9.8,
+        "vivienda": 8.0,
+        "trabajo": 33.2
+      }
+    },
+    "86": {
+      "ipm": 13.6,
+      "nbi": 18.96,
+      "internet": 6.44,
+      "acueducto": 40.66,
+      "alcantarillado": 51.01,
+      "deficit_habitacional": 62.0,
+      "ipm_contrib": {
+        "educacion": 33.5,
+        "ninez": 13.5,
+        "salud": 10.9,
+        "vivienda": 11.3,
+        "trabajo": 30.8
+      }
+    },
+    "88": {
+      "ipm": 4.3,
+      "nbi": 14.89,
+      "internet": 21.31,
+      "acueducto": 10.94,
+      "alcantarillado": 0.93,
+      "deficit_habitacional": 83.5,
+      "ipm_contrib": {
+        "educacion": 29.8,
+        "ninez": 10.2,
+        "salud": 4.6,
+        "vivienda": 26.4,
+        "trabajo": 29.0
+      }
+    },
+    "91": {
+      "ipm": 18.1,
+      "nbi": 35.24,
+      "internet": 3.87,
+      "acueducto": 42.16,
+      "alcantarillado": 42.16,
+      "deficit_habitacional": 85.5,
+      "ipm_contrib": {
+        "educacion": 29.7,
+        "ninez": 15.6,
+        "salud": 4.4,
+        "vivienda": 21.0,
+        "trabajo": 29.3
+      }
+    },
+    "94": {
+      "ipm": 51.8,
+      "nbi": 59.46,
+      "internet": 2.85,
+      "acueducto": 15.94,
+      "alcantarillado": 11.47,
+      "deficit_habitacional": 83.9,
+      "ipm_contrib": {
+        "educacion": 29.8,
+        "ninez": 12.5,
+        "salud": 4.4,
+        "vivienda": 29.5,
+        "trabajo": 23.7
+      }
+    },
+    "95": {
+      "ipm": 20.0,
+      "nbi": 27.91,
+      "internet": 4.39,
+      "acueducto": 79.11,
+      "alcantarillado": 67.27,
+      "deficit_habitacional": 62.4,
+      "ipm_contrib": {
+        "educacion": 32.6,
+        "ninez": 16.2,
+        "salud": 11.0,
+        "vivienda": 13.8,
+        "trabajo": 26.4
+      }
+    },
+    "97": {
+      "ipm": 41.7,
+      "nbi": 68.94,
+      "internet": 1.75,
+      "acueducto": 94.94,
+      "alcantarillado": 94.62,
+      "deficit_habitacional": 90.7,
+      "ipm_contrib": {
+        "educacion": 27.7,
+        "ninez": 13.5,
+        "salud": 0.8,
+        "vivienda": 31.0,
+        "trabajo": 26.9
+      }
+    },
+    "99": {
+      "ipm": 55.2,
+      "nbi": 67.76,
+      "internet": 2.71,
+      "acueducto": 52.78,
+      "alcantarillado": 3.47,
+      "deficit_habitacional": 92.9,
+      "ipm_contrib": {
+        "educacion": 27.4,
+        "ninez": 13.4,
+        "salud": 4.1,
+        "vivienda": 28.5,
+        "trabajo": 26.7
+      }
+    }
+  }
+}
