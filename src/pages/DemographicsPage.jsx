@@ -84,7 +84,25 @@ export default function DemographicsPage() {
         </Section>
 
         <Copy as="p" variant="annotation" className="text-center">
-          Fuentes: DANE — Proyecciones de población (PPED) y Censo Nacional de Población y Vivienda 2018.
+          Fuentes: DANE —{" "}
+          <a
+            href="https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/proyecciones-de-poblacion"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+          >
+            Proyecciones de población (PPED)
+          </a>{" "}
+          y{" "}
+          <a
+            href="https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/censo-nacional-de-poblacion-y-vivenda-2018"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+          >
+            Censo Nacional de Población y Vivienda 2018
+          </a>
+          .
         </Copy>
       </div>
     </div>

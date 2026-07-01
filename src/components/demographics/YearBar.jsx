@@ -9,7 +9,7 @@ import { Copy } from "../ui";
  */
 export default function YearBar() {
   return (
-    <div className="sticky top-0 z-20 -mx-4 md:-mx-6 px-4 md:px-6 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-700">
+    <div className="sticky top-0 z-30 -mx-4 md:-mx-6 px-4 md:px-6 py-2.5 bg-slate-100/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-700">
       <div className="flex items-center gap-3">
         <Copy as="span" variant="eyebrow" className="hidden sm:flex items-center gap-1.5 shrink-0">
           <CalendarDaysIcon className="w-4 h-4 text-blue-600 dark:text-blue-400" aria-hidden="true" />

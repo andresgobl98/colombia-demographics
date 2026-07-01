@@ -1,4 +1,8 @@
-// NOTE: Titulares aproximados a ago. 2025. Verificar en presidencia.gov.co.
+// NOTE: Titulares actualizados a jun. 2026. Verificar en presidencia.gov.co.
+// El Ministerio de la Igualdad y la Equidad fue liquidado (Decreto 0626 del
+// 19 jun. 2026, tras fallo C-161/2024 de la Corte Constitucional); sus
+// funciones pasaron al Ministerio del Interior y a Prosperidad Social, por lo
+// que ya no aparece en MINISTRIES.
 
 export const PRESIDENTE = {
   id: "presidente",
@@ -9,6 +13,7 @@ export const PRESIDENTE = {
   description:
     "Jefe de Estado, Jefe de Gobierno y Suprema Autoridad Administrativa. Dirige las relaciones internacionales, ejerce la potestad reglamentaria y nombra y separa libremente a los Ministros de Despacho.",
   holder: "Gustavo Petro Urrego",
+  wikipedia: "https://es.wikipedia.org/wiki/Gustavo_Petro",
   party: "Pacto Histórico",
   since: "2022-08-07",
   term: "2022–2026",
@@ -23,6 +28,7 @@ export const VICEPRESIDENTE = {
   description:
     "Reemplaza al Presidente en sus faltas absolutas o temporales. Ejerce las misiones especiales que le confíe el Presidente y puede ser designada Ministra de Despacho.",
   holder: "Francia Márquez Mina",
+  wikipedia: "https://es.wikipedia.org/wiki/Francia_M%C3%A1rquez",
   party: "Pacto Histórico",
   since: "2022-08-07",
   term: "2022–2026",
@@ -36,9 +42,10 @@ export const MINISTRIES = [
     shortTitle: "Interior",
     description:
       "Coordina las relaciones entre la Nación y los territorios, garantiza el ejercicio de los derechos políticos y gestiona la convivencia ciudadana.",
-    holder: "Juan Fernando Cristo Bustos",
-    since: "2024-06-01",
-    sinceApprox: true,
+    holder: "Armando Benedetti Villaneda",
+    wikipedia: "https://es.wikipedia.org/wiki/Armando_Benedetti",
+    since: "2025-03-03",
+    sinceApprox: false,
   },
   {
     id: "relext",
@@ -47,8 +54,9 @@ export const MINISTRIES = [
     shortTitle: "Relaciones Exteriores",
     description:
       "Formula y ejecuta la política exterior, dirige las relaciones diplomáticas y consulares de Colombia en el mundo.",
-    holder: "Luis Gilberto Murillo",
-    since: "2023-07-01",
+    holder: "Rosa Yolanda Villavicencio Mapy",
+    wikipedia: "https://en.wikipedia.org/wiki/Rosa_Yolanda_Villavicencio",
+    since: "2025-07-09",
     sinceApprox: true,
   },
   {
@@ -58,8 +66,9 @@ export const MINISTRIES = [
     shortTitle: "Hacienda",
     description:
       "Formula y ejecuta la política económica, fiscal y financiera del Estado y administra el presupuesto general de la Nación.",
-    holder: "Ricardo Bonilla González",
-    since: "2022-12-01",
+    holder: "Germán Ávila Plazas",
+    wikipedia: "https://es.wikipedia.org/wiki/Germ%C3%A1n_%C3%81vila_Plazas",
+    since: "2025-03-01",
     sinceApprox: true,
   },
   {
@@ -69,9 +78,10 @@ export const MINISTRIES = [
     shortTitle: "Justicia",
     description:
       "Formula la política criminal y penitenciaria, regula el sistema de administración de justicia y promueve el acceso a ella.",
-    holder: "Ángela María Buitrago",
-    since: "2024-02-01",
-    sinceApprox: true,
+    holder: "Jorge Iván Cuervo Restrepo",
+    wikipedia: "https://es.wikipedia.org/wiki/Jorge_Iv%C3%A1n_Cuervo",
+    since: "2026-02-11",
+    sinceApprox: false,
   },
   {
     id: "defensa",
@@ -80,9 +90,10 @@ export const MINISTRIES = [
     shortTitle: "Defensa",
     description:
       "Conduce la política de seguridad y defensa nacional. Ejerce la autoridad civil sobre las Fuerzas Militares y la Policía Nacional.",
-    holder: "Iván Velásquez Gómez",
-    since: "2022-08-07",
-    sinceApprox: false,
+    holder: "Pedro Arnulfo Sánchez Suárez",
+    wikipedia: "https://en.wikipedia.org/wiki/Pedro_Arnulfo_S%C3%A1nchez",
+    since: "2025-03-04",
+    sinceApprox: true,
   },
   {
     id: "agricultura",
@@ -91,9 +102,10 @@ export const MINISTRIES = [
     shortTitle: "Agricultura",
     description:
       "Formula la política agropecuaria, forestal, pesquera y de desarrollo rural para garantizar la seguridad y soberanía alimentaria.",
-    holder: "Jhenifer Mojica Flórez",
-    since: "2023-02-01",
-    sinceApprox: true,
+    holder: "Martha Viviana Carvajalino Villegas",
+    wikipedia: "https://en.wikipedia.org/wiki/Martha_Carvajalino",
+    since: "2024-07-08",
+    sinceApprox: false,
   },
   {
     id: "salud",
@@ -103,6 +115,7 @@ export const MINISTRIES = [
     description:
       "Define la política de salud pública y regula el sistema de aseguramiento en salud y la protección social de los colombianos.",
     holder: "Guillermo Alfonso Jaramillo Martínez",
+    wikipedia: "https://es.wikipedia.org/wiki/Guillermo_Alfonso_Jaramillo",
     since: "2022-08-07",
     sinceApprox: false,
   },
@@ -113,8 +126,9 @@ export const MINISTRIES = [
     shortTitle: "Trabajo",
     description:
       "Formula las políticas de empleo, relaciones laborales, pensiones, economía del cuidado y protección de los derechos laborales.",
-    holder: "Gloria Inés Ramírez Ríos",
-    since: "2022-08-07",
+    holder: "Antonio Eresmid Sanguino Páez",
+    wikipedia: "https://en.wikipedia.org/wiki/Antonio_Sanguino",
+    since: "2025-02-19",
     sinceApprox: false,
   },
   {
@@ -124,8 +138,9 @@ export const MINISTRIES = [
     shortTitle: "Minas y Energía",
     description:
       "Regula el aprovechamiento de los recursos naturales no renovables y lidera la política de transición energética justa.",
-    holder: "Ómar Andrés Camacho",
-    since: "2023-09-01",
+    holder: "Edwin Palma Egea",
+    wikipedia: "https://es.wikipedia.org/wiki/Edwin_Palma_Egea",
+    since: "2025-02-27",
     sinceApprox: true,
   },
   {
@@ -135,8 +150,9 @@ export const MINISTRIES = [
     shortTitle: "Comercio",
     description:
       "Promueve el desarrollo empresarial, la productividad, el comercio exterior y el turismo como motores del crecimiento económico.",
-    holder: "Germán Umaña Mendoza",
-    since: "2022-08-07",
+    holder: "Diana Marcela Morales Rojas",
+    wikipedia: "https://es.wikipedia.org/wiki/Diana_Marcela_Morales",
+    since: "2025-06-05",
     sinceApprox: false,
   },
   {
@@ -146,8 +162,9 @@ export const MINISTRIES = [
     shortTitle: "Educación",
     description:
       "Formula la política educativa nacional y regula el sistema educativo desde el nivel preescolar hasta la educación superior.",
-    holder: "Aurora Vergara Figueroa",
-    since: "2022-08-07",
+    holder: "José Daniel Rojas Medellín",
+    wikipedia: "https://en.wikipedia.org/wiki/Daniel_Rojas_Medell%C3%ADn",
+    since: "2024-07-23",
     sinceApprox: false,
   },
   {
@@ -157,8 +174,9 @@ export const MINISTRIES = [
     shortTitle: "Ambiente",
     description:
       "Define la política ambiental y de biodiversidad, regula los recursos naturales renovables y lidera la acción climática nacional.",
-    holder: "Jhon Milton Ortega Porras",
-    since: "2024-01-01",
+    holder: "Irene Vélez Torres (encargada)",
+    wikipedia: "https://en.wikipedia.org/wiki/Irene_V%C3%A9lez_Torres",
+    since: "2025-08-05",
     sinceApprox: true,
   },
   {
@@ -168,8 +186,9 @@ export const MINISTRIES = [
     shortTitle: "Vivienda",
     description:
       "Formula la política de vivienda social, agua potable y saneamiento básico para garantizar el derecho a un hábitat digno.",
-    holder: "Catalina Velasco Campuzano",
-    since: "2022-08-07",
+    holder: "Helga María Rivas Ardila",
+    wikipedia: "https://en.wikipedia.org/wiki/Helga_Rivas",
+    since: "2024-07-01",
     sinceApprox: true,
   },
   {
@@ -179,9 +198,10 @@ export const MINISTRIES = [
     shortTitle: "TIC",
     description:
       "Formula la política del sector TIC, fomenta la conectividad, la transformación digital y el desarrollo de la economía naranja.",
-    holder: "Mauricio Lizcano Arango",
-    since: "2022-08-07",
-    sinceApprox: false,
+    holder: "Yeimi Carina Murcia Yela",
+    wikipedia: "https://en.wikipedia.org/wiki/Carina_Murcia",
+    since: "2025-09-21",
+    sinceApprox: true,
   },
   {
     id: "transporte",
@@ -190,9 +210,10 @@ export const MINISTRIES = [
     shortTitle: "Transporte",
     description:
       "Formula y ejecuta la política de infraestructura de transporte terrestre, fluvial, marítimo y aéreo del país.",
-    holder: "William Camargo Triana",
-    since: "2022-08-07",
-    sinceApprox: true,
+    holder: "María Constanza García Alicastro",
+    wikipedia: "https://es.wikipedia.org/wiki/Mar%C3%ADa_Constanza_Garc%C3%ADa",
+    since: "2024-07-08",
+    sinceApprox: false,
   },
   {
     id: "culturas",
@@ -201,8 +222,9 @@ export const MINISTRIES = [
     shortTitle: "Culturas",
     description:
       "Reconoce y protege la diversidad cultural de Colombia, el patrimonio inmaterial, las artes, las memorias y los saberes de los pueblos.",
-    holder: "Juan David Correa Ulloa",
-    since: "2022-08-07",
+    holder: "Yannai Kadamani Fonrodona",
+    wikipedia: "https://en.wikipedia.org/wiki/Yannai_Kadamani",
+    since: "2025-02-27",
     sinceApprox: true,
   },
   {
@@ -213,29 +235,20 @@ export const MINISTRIES = [
     description:
       "Fomenta la investigación científica, el desarrollo tecnológico y la innovación como ejes del modelo de desarrollo sostenible.",
     holder: "Yesenia Olaya Requene",
-    since: "2022-08-07",
-    sinceApprox: true,
-  },
-  {
-    id: "igualdad",
-    order: 18,
-    title: "Ministerio de la Igualdad y la Equidad",
-    shortTitle: "Igualdad",
-    description:
-      "Creado en 2023. Formula la política pública para cerrar las brechas de desigualdad de los grupos históricamente discriminados.",
-    holder: "Cielo Rusinque Urrego",
-    since: "2023-06-01",
-    sinceApprox: true,
+    wikipedia: "https://es.wikipedia.org/wiki/Yesenia_Olaya",
+    since: "2023-05-01",
+    sinceApprox: false,
   },
   {
     id: "deporte",
-    order: 19,
+    order: 18,
     title: "Ministerio del Deporte",
     shortTitle: "Deporte",
     description:
       "Promueve la actividad física, el deporte de alto rendimiento y la recreación como derechos y herramientas de desarrollo social.",
-    holder: "Astrid Rodríguez Arce",
-    since: "2022-08-07",
+    holder: "Patricia Duque Cruz",
+    wikipedia: "https://es.wikipedia.org/wiki/Patricia_Duque_Cruz",
+    since: "2025-02-25",
     sinceApprox: true,
   },
 ];

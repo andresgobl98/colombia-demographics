@@ -56,9 +56,12 @@ export default function SanAndresInset({
   );
 
   return (
-    <div className="absolute top-3 left-3 z-20 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50/95 dark:bg-slate-900/70 backdrop-blur shadow-sm overflow-hidden">
-      {/* Smaller on mobile so it covers less of the mainland; SVG scales to fit */}
-      <div className="w-[76px] h-[62px] md:w-28 md:h-[92px]">
+    <div className="absolute top-3 left-3 z-20 w-14 sm:w-[76px] md:w-28 rounded-lg border border-slate-200 dark:border-slate-700 bg-slate-50/95 dark:bg-slate-900/70 backdrop-blur shadow-sm overflow-hidden">
+      {/* Shrinks in steps as the viewport narrows so it covers less of the
+          mainland map, but never below a tappable ~50px floor; SVG scales to
+          fit. The wrapper width is pinned to match — otherwise it sizes
+          itself off the label text below and the box stops shrinking. */}
+      <div className="w-14 h-12 sm:w-[76px] sm:h-[62px] md:w-28 md:h-[92px]">
         <ComposableMap
           projection={projection}
           width={W}

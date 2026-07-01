@@ -1,20 +1,33 @@
 import { useState } from "react";
 import { ChevronDownIcon } from "@heroicons/react/24/outline";
-import { Copy } from "../ui";
+import { Copy, ExternalLink } from "../ui";
 import { formatSince } from "./format";
 
 /**
  * Tappable ministry card with an expandable description.
  *
+ * The card is a div[role=button] rather than a real <button> so the holder's
+ * name can be a genuine nested <a> to Wikipedia (a real <a> can't validly nest
+ * inside a <button>). The link stops propagation so opening it doesn't also
+ * toggle the card's expand state.
+ *
  * @param {object} ministry  entry from data/executive MINISTRIES
  */
 export default function MinistryCard({ ministry }) {
   const [expanded, setExpanded] = useState(false);
+  const toggle = () => setExpanded((v) => !v);
 
   return (
-    <button
-      type="button"
-      onClick={() => setExpanded((v) => !v)}
+    <div
+      role="button"
+      tabIndex={0}
+      onClick={toggle}
+      onKeyDown={(e) => {
+        if (e.key === "Enter" || e.key === " ") {
+          e.preventDefault();
+          toggle();
+        }
+      }}
       aria-expanded={expanded}
       className="group text-left w-full bg-white dark:bg-slate-800 rounded-xl shadow-sm border border-slate-200 dark:border-slate-700 p-4 flex flex-col hover:border-slate-300 dark:hover:border-slate-600 transition-colors cursor-pointer"
     >
@@ -27,7 +40,20 @@ export default function MinistryCard({ ministry }) {
         </Copy>
       </div>
 
-      <Copy as="p" variant="strong" className="leading-snug">{ministry.holder}</Copy>
+      <Copy as="p" variant="strong" className="leading-snug">
+        {ministry.wikipedia ? (
+          <ExternalLink
+            href={ministry.wikipedia}
+            iconClassName="w-3.5 h-3.5"
+            className="hover:text-blue-700 dark:hover:text-blue-300"
+            onClick={(e) => e.stopPropagation()}
+          >
+            {ministry.holder}
+          </ExternalLink>
+        ) : (
+          ministry.holder
+        )}
+      </Copy>
       <Copy as="p" variant="annotation" className="mt-0.5">
         {formatSince(ministry.since, ministry.sinceApprox)}
       </Copy>
@@ -59,6 +85,6 @@ export default function MinistryCard({ ministry }) {
           className={`w-4 h-4 transition-transform duration-150 ${expanded ? "rotate-180" : ""}`}
         />
       </span>
-    </button>
+    </div>
   );
 }

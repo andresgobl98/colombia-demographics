@@ -95,9 +95,18 @@ export default function LegislativeView() {
                 <> · {chamber.members.length} en ejercicio</>
               )}
             </span>
-            <span className="whitespace-nowrap text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5">
+            <a
+              href={
+                chamberId === "camara"
+                  ? "https://www.camara.gov.co/representantes"
+                  : "https://www.senado.gov.co/index.php/el-senado/senadores"
+              }
+              target="_blank"
+              rel="noopener noreferrer"
+              className="whitespace-nowrap text-xs font-medium text-slate-600 dark:text-slate-300 bg-slate-100 dark:bg-slate-700/50 border border-slate-200 dark:border-slate-600/50 rounded-full px-2 py-0.5 hover:bg-slate-200 dark:hover:bg-slate-600/50 hover:text-blue-700 dark:hover:text-blue-400 transition-colors"
+            >
               {chamberId === "camara" ? "Directorio camara.gov.co" : "Directorio senado.gov.co"}
-            </span>
+            </a>
           </Copy>
         </div>
         <div className="flex gap-1 bg-slate-100 dark:bg-slate-700/40 rounded-xl p-1">

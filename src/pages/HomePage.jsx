@@ -157,7 +157,18 @@ export default function HomePage() {
                 <ul className="space-y-1.5">
                   {group.sources.map((s) => (
                     <Copy as="li" key={s.label} variant="detail" className="leading-snug">
-                      {s.detail}
+                      {s.href ? (
+                        <a
+                          href={s.href}
+                          target="_blank"
+                          rel="noreferrer"
+                          className="text-blue-600 dark:text-blue-400 hover:underline"
+                        >
+                          {s.detail}
+                        </a>
+                      ) : (
+                        s.detail
+                      )}
                     </Copy>
                   ))}
                 </ul>

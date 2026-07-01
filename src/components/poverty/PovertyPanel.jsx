@@ -162,7 +162,15 @@ export default function PovertyPanel() {
           </Copy>
           <BarBreakdown data={contribData} formatValue={ipmPct} labelWidth={128} />
           <Copy as="p" variant="annotation" className="mt-2 leading-snug">
-            DANE, 2025.
+            <a
+              href="https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/pobreza-multidimensional"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+            >
+              DANE
+            </a>
+            , 2025.
           </Copy>
         </div>
       )}
@@ -181,8 +189,43 @@ export default function PovertyPanel() {
         variant="annotation"
         className="leading-snug pt-3 border-t border-slate-100 dark:border-slate-700"
       >
-        Fuentes: DANE (pobreza monetaria 2024 · IPM 2025 · NBI Censo 2018 · déficit habitacional 2024),
-        SSPD (acueducto y alcantarillado 2023), MinTIC (internet 2024). Vía DNP TerriData.
+        Fuentes:{" "}
+        <a
+          href="https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/pobreza-monetaria"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+        >
+          DANE
+        </a>{" "}
+        (pobreza monetaria 2024 · IPM 2025 · NBI Censo 2018 · déficit habitacional 2024),{" "}
+        <a
+          href="https://www.superservicios.gov.co/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+        >
+          SSPD
+        </a>{" "}
+        (acueducto y alcantarillado 2023),{" "}
+        <a
+          href="https://www.mintic.gov.co/portal/inicio/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+        >
+          MinTIC
+        </a>{" "}
+        (internet 2024). Vía{" "}
+        <a
+          href="https://terridata.dnp.gov.co"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+        >
+          DNP TerriData
+        </a>
+        .
         {isNational && " La pobreza monetaria y el Gini no tienen agregado nacional en esta fuente."}
       </Copy>
 

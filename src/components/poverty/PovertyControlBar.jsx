@@ -45,7 +45,18 @@ export default function PovertyControlBar() {
           {metric.description}
         </Copy>
         <Copy as="p" variant="annotation" className="leading-snug">
-          {metric.source}
+          {metric.sourceHref ? (
+            <a
+              href={metric.sourceHref}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="underline hover:text-slate-700 dark:hover:text-slate-300 transition-colors"
+            >
+              {metric.source}
+            </a>
+          ) : (
+            metric.source
+          )}
           {year ? ` · ${year}` : ""}
           {metric.note ? ` · ${metric.note}` : ""}
         </Copy>

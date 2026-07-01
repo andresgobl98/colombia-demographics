@@ -9,3 +9,13 @@ export function formatSince(iso, approx = false) {
   const mon = MONTHS_ES[m - 1];
   return approx ? `~${mon} ${y}` : `${d} ${mon} ${y}`;
 }
+
+const VOTES_FORMATTER = new Intl.NumberFormat("es-CO");
+
+export function formatVotes(n) {
+  return VOTES_FORMATTER.format(n);
+}
+
+export function formatPct(pct, digits = 2) {
+  return `${pct.toFixed(digits).replace(".", ",")}%`;
+}

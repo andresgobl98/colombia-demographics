@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import { BriefcaseIcon } from "@heroicons/react/24/outline";
-import { Copy } from "../../components/ui";
-import { SeniorCard, MinistryCard } from "../../components/government";
+import { Copy, ExternalLink } from "../../components/ui";
+import { SeniorCard, MinistryCard, ElectionResultsSection } from "../../components/government";
 import { PRESIDENTE, VICEPRESIDENTE, MINISTRIES } from "../../data/executive";
 
 // Column count mirrors the Tailwind breakpoints we used before (1 < sm, 2 sm–lg,
@@ -82,6 +82,8 @@ export default function ExecutiveView() {
       </header>
 
       <div className="flex flex-col items-center">
+        <ElectionResultsSection />
+
         <SeniorCard position={PRESIDENTE} />
         <Connector />
         <SeniorCard position={VICEPRESIDENTE} />
@@ -102,15 +104,13 @@ export default function ExecutiveView() {
         </div>
 
         <Copy as="p" variant="detail" className="mt-6 text-center">
-          Titulares aproximados a ago. 2025 · Verificar en{" "}
-          <a
+          Titulares actualizados a jun. 2026 · Verificar en{" "}
+          <ExternalLink
             href="https://www.presidencia.gov.co"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="underline hover:text-slate-800 dark:hover:text-slate-100 transition-colors"
+            className="hover:text-slate-800 dark:hover:text-slate-100"
           >
             presidencia.gov.co
-          </a>
+          </ExternalLink>
         </Copy>
       </div>
     </div>

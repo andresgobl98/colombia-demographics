@@ -2,6 +2,7 @@
 // Import as: import { StatCard } from "../components/ui";
 export { default as Copy } from "./Copy";
 export { default as CoveragePill } from "./CoveragePill";
+export { default as ExternalLink } from "./ExternalLink";
 export { default as InteractiveHint } from "./InteractiveHint";
 export { default as MetricStatCard } from "./MetricStatCard";
 export { default as Section } from "./Section";

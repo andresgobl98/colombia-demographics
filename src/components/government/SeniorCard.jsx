@@ -1,4 +1,4 @@
-import { Copy } from "../ui";
+import { Copy, ExternalLink } from "../ui";
 import { formatSince } from "./format";
 
 /**
@@ -39,7 +39,19 @@ export default function SeniorCard({ position }) {
         </Copy>
       </div>
 
-      <Copy as="h3" variant="title" className="mb-0.5">{position.holder}</Copy>
+      <Copy as="h3" variant="title" className="mb-0.5">
+        {position.wikipedia ? (
+          <ExternalLink
+            href={position.wikipedia}
+            iconClassName="w-4 h-4"
+            className="hover:text-blue-700 dark:hover:text-blue-300"
+          >
+            {position.holder}
+          </ExternalLink>
+        ) : (
+          position.holder
+        )}
+      </Copy>
       <Copy as="p" variant="prose" className="mb-3">{position.title}</Copy>
 
       <Copy as="div" variant="annotation" className="flex flex-wrap items-center gap-x-2 gap-y-0.5 mb-4">

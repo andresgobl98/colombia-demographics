@@ -17,7 +17,8 @@
 //     `sentenceNumber` overrides the number formatting for the sentence (e.g.
 //     internet is a rate per 100, not a %).
 //   - `description`: the plain-language definition shown on cards / captions.
-//   - `source`/`group`: attribution and (legacy) detail-panel grouping.
+//   - `source`/`sourceHref`/`group`: attribution (+ link to the publisher) and
+//     (legacy) detail-panel grouping.
 // Reference years are data-derived and live in poverty.json (`POVERTY_YEARS`).
 
 const pct = (digits = 1) => (v) =>
@@ -42,6 +43,7 @@ export const POVERTY_METRICS = [
     tone: "bad",
     icon: "banknotes",
     source: "DANE · GEIH",
+    sourceHref: "https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/pobreza-monetaria",
     note: "Cobertura departamental de la GEIH: 24 departamentos.",
     direction: "lower",
     domain: [15, 70],
@@ -58,6 +60,7 @@ export const POVERTY_METRICS = [
     tone: "bad",
     icon: "banknotes",
     source: "DANE · GEIH",
+    sourceHref: "https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/pobreza-monetaria",
     note: "Cobertura departamental de la GEIH: 24 departamentos.",
     direction: "lower",
     domain: [0, 45],
@@ -74,6 +77,7 @@ export const POVERTY_METRICS = [
     tone: "bad",
     icon: "squares",
     source: "DANE · ECV",
+    sourceHref: "https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/pobreza-multidimensional",
     direction: "lower",
     domain: [0, 55],
     colorRange: ["#ffedd5", "#9a3412"],
@@ -89,6 +93,7 @@ export const POVERTY_METRICS = [
     tone: "warn",
     icon: "clipboard",
     source: "DANE · Censo 2018",
+    sourceHref: "https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/necesidades-basicas-insatisfechas-nbi",
     note: "Medida estructural; última cifra disponible del Censo 2018.",
     direction: "lower",
     domain: [0, 70],
@@ -105,6 +110,7 @@ export const POVERTY_METRICS = [
     tone: "warn",
     icon: "scale",
     source: "DANE · GEIH",
+    sourceHref: "https://www.dane.gov.co/index.php/estadisticas-por-tema/pobreza-y-condiciones-de-vida/pobreza-monetaria",
     note: "Cobertura departamental de la GEIH: 24 departamentos.",
     direction: "lower",
     domain: [0.45, 0.6],
@@ -123,6 +129,7 @@ export const POVERTY_METRICS = [
     tone: "good",
     icon: "water",
     source: "SSPD",
+    sourceHref: "https://www.superservicios.gov.co/",
     direction: "higher",
     domain: [10, 100],
     colorRange: ["#dbeafe", "#1e40af"],
@@ -138,6 +145,7 @@ export const POVERTY_METRICS = [
     tone: "good",
     icon: "water",
     source: "SSPD",
+    sourceHref: "https://www.superservicios.gov.co/",
     direction: "higher",
     domain: [0, 100],
     colorRange: ["#d1fae5", "#065f46"],
@@ -154,6 +162,7 @@ export const POVERTY_METRICS = [
     tone: "good",
     icon: "wifi",
     source: "MinTIC",
+    sourceHref: "https://www.mintic.gov.co/portal/inicio/",
     direction: "higher",
     domain: [0, 30],
     colorRange: ["#cffafe", "#155e75"],
@@ -169,6 +178,7 @@ export const POVERTY_METRICS = [
     tone: "bad",
     icon: "home",
     source: "DANE",
+    sourceHref: "https://www.dane.gov.co/index.php/estadisticas-por-tema/demografia-y-poblacion/deficit-habitacional",
     direction: "lower",
     domain: [0, 95],
     colorRange: ["#ffe4e6", "#9f1239"],

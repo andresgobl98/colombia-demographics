@@ -135,12 +135,20 @@ export default function ColombiaMap({ departments: data, metric, selectedCode: s
         </ComposableMap>
       )}
 
-      {/* "Map is clickable" nudge — pinned top-center (clear of the top-left
-          inset, bottom-left legend and bottom-right zoom controls). Fades out
-          once the reader has selected a department. */}
+      {/* "Map is clickable" nudge — pinned top-center, offset clear of the
+          top-left San Andrés inset (whose reach varies by breakpoint), then
+          centered in the remaining width. Fades out once the reader has
+          selected a department.
+          `inset-x-0` + `flex justify-center` (not `left-1/2 -translate-x-1/2`)
+          because an auto-width absolutely-positioned box with only `left` set
+          has its shrink-to-fit width computed against the space from `left`
+          to the container's edge, not the true available width — on narrow
+          viewports that mis-sizes the pill and forces the text to wrap. */}
       {!isEmpty && !selectedId && (
-        <div className="absolute top-3 left-1/2 -translate-x-1/2 z-20 pointer-events-none">
-          <InteractiveHint variant="pill">Toca un departamento para ver sus datos</InteractiveHint>
+        <div className="absolute top-3 inset-x-0 z-20 flex justify-center pl-[72px] sm:pl-[92px] md:pl-[134px] pr-2 pointer-events-none">
+          <InteractiveHint variant="pill" className="whitespace-nowrap">
+            Toca un departamento
+          </InteractiveHint>
         </div>
       )}
 
