@@ -4,7 +4,7 @@
 // (label, description, tone, icon, sentence, format) but, unlike the poverty
 // metrics, most carry no valence: a population isn't "good" or "bad", so they use
 // the neutral `info` tone. Sex uses the conventional male/female accents that
-// echo the sex donut.
+// echo the sex breakdown bars.
 
 const millions = (v) =>
   v == null ? "N/D" : (v / 1e6).toLocaleString("es-CO", { minimumFractionDigits: 1, maximumFractionDigits: 1 });

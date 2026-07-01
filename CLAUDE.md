@@ -38,7 +38,6 @@ src/
       geo.js                       # GEO_URL, getDeptCode, useColombiaGeographies()
     charts/
       HemicycleChart.jsx           # parliament seat diagram (SVG)
-      DonutChart.jsx
       BarBreakdown.jsx
       PopulationPyramid.jsx
   data/

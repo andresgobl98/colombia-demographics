@@ -1,4 +1,4 @@
-import { DonutChart } from "../charts";
+import { BarBreakdown } from "../charts";
 import { StatCard, Copy } from "../ui";
 import { useDemographics } from "../../state/demographicsStore";
 
@@ -46,7 +46,7 @@ export default function DetailPanel() {
       {sexData.length > 0 && (
         <div>
           <Copy as="p" variant="detail" className="font-semibold mb-1">Distribución por sexo</Copy>
-          <DonutChart data={sexData} formatTooltip={(v) => v.toLocaleString("es-CO")} />
+          <BarBreakdown data={sexData} formatValue={(v) => v.toLocaleString("es-CO")} />
         </div>
       )}
 

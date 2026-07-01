@@ -4,5 +4,6 @@ export { default as SummaryBand } from "./SummaryBand";
 export { default as YearBar } from "./YearBar";
 export { default as DemographicsCompanion } from "./DemographicsCompanion";
 export { default as DetailPanel } from "./DetailPanel";
+export { default as PopulationTrendSection } from "./PopulationTrendSection";
 export { default as AgeStructureSection } from "./AgeStructureSection";
 export { default as EthnicitySection } from "./EthnicitySection";

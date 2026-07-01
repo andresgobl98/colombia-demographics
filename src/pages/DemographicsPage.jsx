@@ -4,6 +4,7 @@ import {
   SummaryBand,
   YearBar,
   DemographicsCompanion,
+  PopulationTrendSection,
   AgeStructureSection,
   EthnicitySection,
 } from "../components/demographics";
@@ -65,7 +66,16 @@ export default function DemographicsPage() {
           </div>
         </Section>
 
-        {/* 3 · Age structure ─────────────────────────────────────────────────── */}
+        {/* 3 · Population trend ──────────────────────────────────────────────── */}
+        <Section
+          eyebrow="Tendencia"
+          title="¿Cómo cambia la población en el tiempo?"
+          description="La línea muestra la proyección completa entre 2018 y 2050. Sigue al departamento que elijas en el mapa; el punto activo sigue el año del control superior."
+        >
+          <PopulationTrendSection />
+        </Section>
+
+        {/* 4 · Age structure ─────────────────────────────────────────────────── */}
         <Section
           eyebrow="Estructura por edad"
           title="¿Una población joven o que envejece?"
@@ -74,7 +84,7 @@ export default function DemographicsPage() {
           <AgeStructureSection />
         </Section>
 
-        {/* 4 · Ethnic self-recognition ───────────────────────────────────────── */}
+        {/* 5 · Ethnic self-recognition ───────────────────────────────────────── */}
         <Section
           eyebrow="Diversidad"
           title="Quiénes se reconocen en cada grupo étnico"

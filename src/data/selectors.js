@@ -63,6 +63,13 @@ export async function getAgePyramid(code, year) {
   return { ageGroups: data.ageGroups, male: src.male[i], female: src.female[i] };
 }
 
+// Full population series across every year (2018–2050) for a department, or
+// the national aggregate when code is null. Feeds the trend line chart.
+export function getPopulationSeries(code) {
+  const t = code ? seriesData.departments[code] : seriesData.national;
+  return YEARS.map((year, i) => ({ x: year, y: t.population[i] }));
+}
+
 // National aggregate for a given year.
 export function getNational(year) {
   const s = staticData.national;

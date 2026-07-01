@@ -39,7 +39,7 @@ const METRIC_ICONS = {
 // (dark): 600/700 in light, 300/400 in dark.
 //   bad/warn/good   carry valence (a problem vs a good thing) — poverty metrics.
 //   info            neutral facts with no valence — most demographic figures.
-//   male/female     conventional sex accents, echoing the sex donut's colours.
+//   male/female     conventional sex accents, echoing the sex breakdown bars' colours.
 const TONE = {
   bad:  { border: "border-l-rose-500",  icon: "text-rose-600 dark:text-rose-400",  num: "text-rose-700 dark:text-rose-300",  badge: "bg-rose-100 dark:bg-rose-500/15" },
   warn: { border: "border-l-amber-500", icon: "text-amber-600 dark:text-amber-400", num: "text-amber-700 dark:text-amber-300", badge: "bg-amber-100 dark:bg-amber-500/15" },

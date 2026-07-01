@@ -1,7 +1,7 @@
 // Barrel for reusable chart components.
-// Import as: import { DonutChart, BarBreakdown } from "../components/charts";
-export { default as DonutChart } from "./DonutChart";
+// Import as: import { BarBreakdown } from "../components/charts";
 export { default as BarBreakdown } from "./BarBreakdown";
+export { default as LineChart } from "./LineChart";
 export { default as ScatterChart } from "./ScatterChart";
 export { default as DumbbellChart } from "./DumbbellChart";
 export { default as LollipopChart } from "./LollipopChart";
